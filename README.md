@@ -38,6 +38,10 @@ docker compose run --rm --no-deps -e OLLAMA_API_BASE=http://host.docker.internal
 
 Outputs appear in `./out/<episode_id>/`.
 
+> **Memory:** the Ollama container needs about **4 GB of RAM** for Gemma 4 E2B; give Docker 6 GB or more. Docker Desktop's Hyper-V backend defaults to 2 GB: raise it under *Settings → Resources → Memory*, or use the host-Ollama shortcut above. With too little memory Ollama logs `llama-server terminated … signal: killed`. The agent then still writes a report, marked `degraded`, built from its deterministic fallbacks.
+>
+> **Speed:** with a GPU an episode takes 10–30 s; on CPU only, expect a few minutes per episode. The committed `out/` reports were replayed from the evaluation run's response cache, so their `stats.seconds` are near zero.
+
 ### Option B: local Python
 
 Requires [uv](https://docs.astral.sh/uv/) and [Ollama](https://ollama.com) ≥ 0.40.
@@ -153,7 +157,7 @@ How to read this:
 
 - **Structure is solved by construction.** Quotes are always verbatim with the right timestamps, summaries are 200–300 words, there are exactly 5 takeaways, and every key point is covered. This comes from schema-constrained decoding, the critic loop and copy-by-id.
 - **Fact-checking is the hard part for a 2B model** (verdict accuracy 0.71–0.74). Most remaining errors are claims the extractor merges or misses, and *outdated* statistics the judge calls "supported" because the evidence is about the same subject.
-- **The bigger wins were agent design, not tuning.** Two changes lifted held-out V̂ from 0.839 to 0.877: escalating to web search when the KB can't settle a claim, and dropping claims about the show itself. The **numeric check** (code that turns "supported" into ⚠ when the claim's numbers match none in the evidence) adds a little on both splits and has never flipped a correct verdict. I designed these three after reading held-out errors, so the search-split numbers are the cleaner evidence for them.
+- **The bigger wins were agent design, not tuning.** Two changes lifted held-out V̂ from 0.839 to 0.877 (measured just before and after adding them): escalating to web search when the KB can't settle a claim, and dropping claims about the show itself. The **numeric check** (code that turns "supported" into ⚠ when the claim's numbers match none in the evidence) adds a little on both splits and has never flipped a correct verdict. I designed these three after reading held-out errors, so the search-split numbers are the cleaner evidence for them.
 - **Every difference between configurations is within noise.** With 5 episodes / 25 claims, one claim is ±0.04 verdict accuracy, and every paired bootstrap interval in `eval/RESULTS.md` touches zero. Read the deltas as directional.
 
 ---
@@ -173,9 +177,9 @@ How to read this:
 
 | | Before | After |
 |---|---|---|
-| Harness search, fitness on 4 search episodes (round 1, 12 expansions × 4 proposals) | 0.731 | **0.797** |
+| Harness search, fitness on 4 search episodes (round 1, 12 expansions × 4 proposals; agent code at search time) | 0.731 | **0.797** |
 | ...the same harness on held-out episodes | 0.877 | 0.887 (within noise) |
-VALIDITY_ROW_PLACEHOLDER
+| Evolver: well-formed edit sets on 2 held-out parent harnesses (64 samples each, vs its exact q8 control) | 11/64 (17 %) | **42/64 (66 %)**, Fisher p < 10⁻⁷ |
 | Task model (RFT LoRA) on held-out, vs its exact q8 control | 0.887 | 0.869 (no gain; within noise) |
 
 What worked, and what didn't:

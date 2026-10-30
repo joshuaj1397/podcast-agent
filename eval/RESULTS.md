@@ -34,7 +34,7 @@ An interval that contains 0 means the difference is not distinguishable from noi
 |---|---|---|
 | `ollama_chat/gemma4:e2b` | 3/16 | 19% |
 | `ollama_chat/podcast-base:q8r` | 11/64 | 17% |
-| `ollama_chat/podcast-evolver:r1` | 40/64 | 62% |
+| `ollama_chat/podcast-evolver:r1` | 42/64 | 66% |
 
 Same proposer prompts (parents never used for evolver training), 8 samples each at temperature 1.0.
 

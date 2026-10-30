@@ -46,8 +46,11 @@ uv run python -m evo.sample --split eval --n 4       # validity baseline on held
 # 3. train (unload Ollama first: `ollama stop gemma4:e2b`), training venv from evo/requirements-train.txt
 .venv-train/Scripts/python -m evo.train_evolver
 .venv-train/Scripts/python -m evo.train_executor
-.venv-train/Scripts/python -m evo.export --adapter evo/checkpoints/evolver-r1 --tag podcast-evolver:r1
-.venv-train/Scripts/python -m evo.export --adapter evo/checkpoints/executor-r1 --tag podcast-exec:r1
+# export: merge -> GGUF (llama.cpp) -> Ollama; see evo/export.py for why GGUF on Windows
+.venv-train/Scripts/python -c "from pathlib import Path; from evo.export import merge; merge(Path('evo/checkpoints/executor-r1'), Path('evo/merged/podcast-exec-r1'))"
+python llama.cpp/convert_hf_to_gguf.py evo/merged/podcast-exec-r1 --outtype q8_0 --outfile evo/gguf/podcast-exec-r1.gguf
+.venv-train/Scripts/python -m evo.export --adapter evo/checkpoints/executor-r1 --tag podcast-exec:r1 --gguf evo/gguf/podcast-exec-r1.gguf --skip-merge
+# (same for evolver-r1 -> podcast-evolver:r1, and the un-tuned base re-saved the same way -> podcast-base:q8r as the control)
 
 # 4. compare on held-out
 uv run podcast-agent eval -H harness/evolved.yaml --model ollama_chat/podcast-exec:r1 --results eval/results/evolved_exec.md
@@ -74,8 +77,11 @@ All agent numbers come from the same code and the same final evaluation run ([`e
 |---|---|
 | SFT data | 4 positive-reward edits from the search (proposer + reflector) + 7 well-formed edits rejection-sampled from the base evolver on *train* parents |
 | GRPO data | proposer groups from the search with non-zero reward variance; trajectories of the held-out *eval* parents are excluded |
-| Training | 4-bit LoRA r=16, 3 SFT epochs (loss 0.43 → 0.2) then 1 GRPO epoch; a few minutes on the RTX 5060 |
-VALIDITY_TABLE_PLACEHOLDER
+| Training | 4-bit LoRA r=16, 3 SFT epochs (per-example loss ≈ 0.37 → 0.2–0.6; 8 examples, noisy) then 1 GRPO epoch over 8 examples; about 3 minutes on the RTX 5060 |
+| Training data after holding out the eval parents | 30 of 60 logged calls; 8 SFT examples (1 positive-reward + 7 rejection-sampled), 8 GRPO examples in 6 groups |
+| **Well-formed edit sets on the 2 held-out parent harnesses** (64 samples each, temperature 1.0) | exact q8 control 11/64 (17 %) → **evolver r1 42/64 (66 %)**, Fisher exact p = 3.7·10⁻⁸ |
+
+This is the clearest Evo² effect here: a few minutes of training on a handful of the evolver's own good edits roughly quadrupled how often it writes an edit the harness can apply. Caveats: there are only 2 held-out parent harnesses (64 samples come from 2 prompts), and well-formed does not mean better. Whether r1's edits also raise fitness needs a second search round with the trained evolver, which is the next step.
 
 **3. Task-model training (rejection-sampling fine-tuning).**
 
