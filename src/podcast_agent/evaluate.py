@@ -101,6 +101,8 @@ def score_report(report: Report, gold: dict, spec: HarnessSpec) -> EpisodeScore:
                     "pred_status": fc.status if fc else None} for g, fc in pairs],
         "problems": problems,
         "extra_predicted_claims": len(report.fact_checks) - sum(fc is not None for _, fc in pairs),
+        "claim_budget": int(report.stats.get("claim_budget", 0)),
+        "claims_over_budget": int(report.stats.get("claims_over_budget", 0)),
     }
     return EpisodeScore(report.episode_id, {k: round(v, 4) for k, v in metrics.items()}, details)
 

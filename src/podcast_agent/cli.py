@@ -119,12 +119,16 @@ def evo_run_cmd(
     iterations: int = typer.Option(6, help="Tree-search expansions per round."),
     group: int = typer.Option(4, help="Proposals per expansion (GRPO group size)."),
     evolver_model: Optional[str] = typer.Option(None, help="Evolver model (default: same as the harness model)."),
+    first_round: int = typer.Option(1, help="Number of the first round (its directory under evo/runs/)."),
+    episodes: str = typer.Option("s01,s03,s05,s09", help="Search episodes used as fitness, comma-separated."),
+    out: Path = typer.Option(Path("harness/evolved.yaml"), "--out", help="Where the best harness is written."),
 ) -> None:
-    """Evo² tree search over harness edits; writes evo/runs/<round>/trajectories.jsonl and harness/evolved.yaml."""
+    """Evo² tree search over harness edits; writes evo/runs/<round>/trajectories.jsonl and the best harness."""
     sys.path.insert(0, str(Path.cwd()))
     from evo.search import run_search
 
-    asyncio.run(run_search(harness_path, rounds=rounds, iterations=iterations, group=group, evolver_model=evolver_model))
+    asyncio.run(run_search(harness_path, rounds=rounds, iterations=iterations, group=group, evolver_model=evolver_model,
+                           first_round=first_round, episodes=episodes.split(","), out=out))
 
 
 if __name__ == "__main__":

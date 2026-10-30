@@ -42,6 +42,7 @@ class EpisodeState:
     quotes: list[Quote] = field(default_factory=list)
     tags: list[str] = field(default_factory=list)
     claims: list[dict] = field(default_factory=list)
+    claims_over_budget: int = 0
     fact_checks: list[FactCheckResult] = field(default_factory=list)
     degraded: list[str] = field(default_factory=list)
 
@@ -71,7 +72,9 @@ class Pipeline:
             for step in self._steps_to_run(state.plan, only):
                 await getattr(self, f"step_{step}")(state)
             report = self.assemble(state)
-            report.stats = {"seconds": round(time.time() - t0, 1), **{k: float(v) for k, v in llm.STATS.items()}}
+            report.stats = {"seconds": round(time.time() - t0, 1), "claim_budget": float(state.plan.claim_budget),
+                            "claims_over_budget": float(state.claims_over_budget),
+                            **{k: float(v) for k, v in llm.STATS.items()}}
             for problem in critic.structural_problems(report, ep, self.spec):
                 tr.warn(f"final check: {problem}")
             if write:
@@ -184,8 +187,17 @@ class Pipeline:
         ids = [t.id for t in s.candidates]
         message = (f"Transcript for context:\n{s.ep.transcript()}\n\n"
                    f"Candidate turns (use only these turn ids):\n{s.ep.transcript(set(ids))}")
+
+        def check(o: Any) -> list[str]:
+            # Constrained decoding can end the reasoning string early (a quote mark inside it), which forces an
+            # empty claims list. Several candidate turns with no claims at all is worth one more look.
+            if not o.claims and len(ids) >= 3:
+                return [f"You returned no claims, but there are {len(ids)} candidate turns. List every checkable "
+                        "claim in them. Keep the reasoning short and do not put double quotes inside it."]
+            return []
+
         out, problems = await self.run_structured("claims", lambda: self.agents.claims(ids), message, None,
-                                                  check=lambda o: [])
+                                                  check=check, repairs=1)
         if out is None:
             s.degraded.append(f"claims failed ({problems[0] if problems else 'no output'})")
             return
@@ -207,6 +219,7 @@ class Pipeline:
         claims.sort(key=lambda c: c["type"] in self.spec.factcheck.unverifiable_types)
         over = claims[s.plan.claim_budget:]
         s.claims = claims[: s.plan.claim_budget]
+        s.claims_over_budget = len(over)
         for c in dropped:
             self.trace.log("claim_dropped", "claims", claim=c, reason="opinion")
         n_meta = len(meta) if self.spec.claims.drop_show_meta else 0

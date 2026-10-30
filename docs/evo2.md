@@ -25,8 +25,8 @@ paper, scaled down to one laptop GPU and extended in one way (we also fine-tune 
 - **Off-policy GRPO.** The paper runs GRPO online. We log trajectories during the search (sampled from the
   quantized Ollama model at temperature 0.9) and train afterwards; the importance ratio uses this policy's
   log-probs before the update as "old" log-probs. This is an approximation and is documented in the code.
-- **One search round** with 12 expansions, plus a validity evaluation of the trained evolver; multiple rounds,
-  crossover and ablations are future work.
+- **Two search rounds** (12 and 8 expansions), plus a validity evaluation of the trained evolver. Round 2 used
+  the trained evolver and a different task model (Gemma 4 E4B). Crossover and ablations are future work.
 - **Config-level edits only.** The edit language changes the YAML harness, not Python code. Code-level edits
   (letting the evolver patch `pipeline.py`) are the obvious next step and need sandboxing.
 - **Small fitness set** (4 short episodes): V̂ differences of about ±0.02 are within noise. Results on the
@@ -55,7 +55,13 @@ python llama.cpp/convert_hf_to_gguf.py evo/merged/podcast-exec-r1 --outtype q8_0
 # 4. compare on held-out
 uv run podcast-agent eval -H harness/evolved.yaml --model ollama_chat/podcast-exec:r1 --results eval/results/evolved_exec.md
 uv run python -m evo.sample --split eval --n 4 --model ollama_chat/podcast-evolver:r1
+
+# 5. round 2: trained evolver, E4B as the task model, 5 fitness episodes (the other 5 search episodes validate)
+PODCAST_MODEL=ollama_chat/gemma4:e4b uv run podcast-agent evo run -H harness/base.yaml --first-round 2     --iterations 8 --group 4 --evolver-model ollama_chat/podcast-evolver:r1     --episodes s01,s03,s05,s07,s09 --out harness/evolved_r2.yaml
 ```
+
+Run evaluations one at a time. Two evaluations running at once against the same Ollama server get their
+requests batched together, which changes outputs even at temperature 0 (and they share the response cache).
 
 ## Results
 
@@ -94,12 +100,61 @@ This is the clearest Evo² effect here: a few minutes of training on a handful o
 
 The task-model LoRA did not help: it was slightly worse, within noise.
 
+**4. Round 2: a new task model, the trained evolver, and a better observation.**
+
+The question was whether a bigger task model (Gemma 4 E4B) or another evolution round raises V̂. E4B first
+scored *lower* than E2B on the search split (0.783 vs 0.890). Reading its traces showed two causes:
+
+- In one episode the claim extractor wrote a `"` inside its reasoning; under Ollama's JSON grammar that closes
+  the string and forces an empty claims list. The critic now asks again when several candidate turns produce no
+  claims (E4B 0.783 → 0.830; E2B never triggers it).
+- E4B's planner chose claim budgets of 3–4 (E2B: 6–8), so correctly extracted claims were never fact-checked.
+  The search's failure feedback only said "claim not extracted", which points at the wrong step, so it now also
+  says "N extracted claims were not fact-checked because the planner's claim_budget was 3", listed first.
+
+Then the search ran with E4B as the task model and `podcast-evolver:r1` as the evolver (8 expansions × 4
+proposals + Reflector, 45 minutes), on 5 search episodes; the other 5 search episodes were kept for validation.
+
+| | |
+|---|---|
+| Fitness (5 search episodes, E4B) | root 0.819 → best 0.955 |
+| What it found | in its **first** proposal: a planner instruction to set `claim_budget` high enough to cover all checkable statements, and a higher budget cap. Raising the cap alone did nothing (0.819) |
+| Validation (5 unused search episodes, E4B), top 7 nodes | root 0.840 → 0.914–0.957; selected `round2-n5r` by its 10-episode mean → `harness/evolved_r2.yaml` |
+| Well-formed evolver outputs | proposer 15/32, Reflector 4/8 (round 1 with the untrained evolver: 7/48 and 3/12) |
+
+Held-out, run once per configuration ([`eval/RESULTS.md`](../eval/RESULTS.md)):
+
+| Task model | Base harness | Round-2 harness |
+|---|---|---|
+| Gemma 4 E2B | 0.877 | **0.924** |
+| Gemma 4 E4B | 0.849 | 0.802 |
+
+- **E4B is not better here.** Its claim extraction is all-or-nothing: on held-out `ep002` the round-2 claims
+  prompt led it to list only "the host hosted the show", which the show-meta filter drops, so that episode lost
+  every claim (0.45), while `ep005` rose from 0.77 to 0.96. I found this on held-out data, so it is reported, not
+  tuned away. (A natural fix is to re-ask when *no claim survives the filters*, validated on the search split.)
+- **The harness evolved with E4B transfers to E2B.** The planner instruction makes E2B check more claims too.
+- **Most of the 0.924 is luck of the seed.** Re-running both E2B configurations with two more seeds (which change
+  the judge's sampled verdicts) gives, averaged over seeds 7–9: held-out 0.873 → **0.896** (+0.023, CI
+  −0.027…+0.097), search split 0.900 → **0.912** (+0.012, CI −0.013…+0.042). The gain is consistent in sign on
+  both splits but within noise; the mechanism (more claims reach the fact-checker) is visible in claim recall.
+
 ## What we learned
 
 - **Measure against an exact control.** The first comparison of the task-model LoRA showed +0.08. That control had been converted to GGUF from the original checkpoint, which still contains the k/v projections of the 20 KV-shared layers (601 tensors). The merged LoRA models were re-saved through transformers, which drops those unused tensors (541). llama.cpp then ran two subtly different models. Re-saving the base through the identical path gave the real answer: no gain.
 - **Watch for evaluation leakage in self-improvement loops.** The edit-validity eval uses parent prompts from the search. The first evolver checkpoint had been trained with GRPO on *all* search trajectories, including those prompts, so it was retrained with the eval parents held out before the reported numbers were taken.
 - **A small evolver needs a well-designed interface.** With one flat edit schema, Gemma 4 E2B filled every field of every edit, copied text from the parameter listing into `old`, and padded valid edits with junk ("notes", "judge"). A discriminated-union schema, so constrained decoding only allows each op's own fields, plus a minimum-length rule, fixed most of that before any training. Training then raised validity further. The evolver's harness matters as much as its weights, which is the paper's thesis.
 - **Self-distillation with little data mostly re-teaches what the model already does.** 135 filtered examples from the model's own outputs did not move held-out quality. A stronger teacher (a larger model's outputs, or human-corrected verdicts from the review queue) is the obvious next data source.
+- **What the evolver sees decides what it can fix.** With failure lines that only said "claim not extracted",
+  round 1 never touched the planner. With one added line naming the planner's budget, a 2B evolver proposed the
+  right planner edit in its first expansion of round 2. Improving the observation was cheaper than training.
+- **A bigger model is not automatically a better agent.** E4B scored below E2B in the same pipeline because its
+  planning and extraction habits differ, and every harness choice had been made with E2B. Comparing models fairly
+  means re-fitting the harness per model, which is what round 2 did.
+- **Evaluation noise is larger than temperature 0 suggests.** Two evaluations that accidentally ran at the same
+  time against Ollama scored the same configuration 0.697 and 0.775 (and the clean run 0.802): batching changes
+  greedy outputs slightly, and a different early output cascades through the pipeline. Seeds alone move held-out
+  V̂ by ±0.03. Paired comparisons, several seeds and more episodes are the remedy.
 - **The fitness set is the bottleneck.** With 4 episodes (about 20 claims) one claim is ±0.02 V̂, so the search climbs partly on noise. The next steps are more search episodes, repeated evaluations of promising nodes, and an acceptance threshold above the noise floor.
 
 ## Implementation notes

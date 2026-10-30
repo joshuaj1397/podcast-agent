@@ -31,3 +31,16 @@ def test_valid_edits_apply(spec):
 def test_malformed_edits_raise(spec, edit, message):
     with pytest.raises(genome.EditError, match=message):
         genome.apply(spec, [edit], "child")
+
+
+def test_failures_put_budget_cuts_first():
+    from evo.search import failures
+    from podcast_agent.evaluate import EpisodeScore
+
+    claims = [{"gold": f"claim {i}", "gold_verdict": "verified", "pred": None, "pred_status": None} for i in range(15)]
+    score = EpisodeScore("s01", {"keypoint_coverage": 1.0, "evidence_recall": 1.0},
+                         {"claims": claims, "problems": [], "extra_predicted_claims": 0,
+                          "claim_budget": 3, "claims_over_budget": 2})
+    lines = failures([score])
+    assert lines[0] == "s01: 2 extracted claims were not fact-checked because the planner's claim_budget was 3"
+    assert len(lines) == 16

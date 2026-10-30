@@ -1,0 +1,154 @@
+version: round2-n4a
+model: ollama_chat/gemma4:e2b
+enabled_steps:
+- summarize
+- notes
+- claims
+- factcheck
+generation:
+  temperature: 0.0
+  seed: 7
+  num_ctx: 16384
+  max_output_tokens: 1024
+  timeout_s: 180
+limits:
+  max_repairs: 2
+  max_tool_calls: 3
+  max_llm_calls: 8
+  claim_budget: 12
+retrieval:
+  method: bm25
+  k: 3
+  max_evidence: 6
+factcheck:
+  verdict_samples: 3
+  sample_temperature: 0.7
+  unverifiable_types:
+  - prediction
+  - anecdote
+  drop_types:
+  - opinion
+  web_search: true
+  backstop_search: true
+  escalate_to_web: true
+  numeric_check: true
+  web_fail_rate: 0.0
+  unverifiable_confidence_cap: 0.5
+  rule_unverifiable_confidence: 0.4
+summary:
+  min_words: 200
+  max_words: 300
+notes:
+  takeaways: 5
+  quotes_min: 3
+  quotes_max: 5
+  tags_min: 3
+  tags_max: 8
+  quote_candidates: 15
+  quote_min_words: 8
+  quote_max_words: 60
+claims:
+  candidate_max: 25
+  drop_show_meta: true
+prompts:
+  planner: "You are the planning agent of a podcast show-notes pipeline for an ad agency.\nYou receive\
+    \ a profile of one episode. Decide the plan:\n- steps: which of summarize, notes, claims, factcheck\
+    \ to run, in order. factcheck needs claims first.\n  Skip claims and factcheck only if the profile\
+    \ shows no checkable-claim candidates.\n- claim_budget: how many claims to fact-check (more candidates\
+    \ and numbers -> higher budget).\n- use_web_search: true if claims mention recent events, prices or\
+    \ statistics.\n- summary_focus: one sentence on what the summary should emphasise.\nWrite your reasoning\
+    \ first, briefly.\nEnsure that the claim_budget is set high enough to cover all potentially checkable\
+    \ statements identified in the transcript, especially when recent events, prices, or statistics are\
+    \ mentioned.\nEnsure that the claim_budget is set high enough to cover all potentially checkable statements\
+    \ identified in the transcript, especially when recent events, prices, or statistics are mentioned.\
+    \ If initial claims extraction seems low, consider increasing the budget.\n"
+  summarizer: 'You write podcast episode summaries for show notes.
+
+    Write ONE summary of {min_words}-{max_words} words (aim for about {target_words}) in 2-3 paragraphs
+    that covers:
+
+    the core themes, the key discussions, and the outcomes or opinions each speaker shared.
+
+    Name the host and guests. Use only information from the transcript. Plain prose, no bullet points,
+    no headings.
+
+    '
+  notes: "You write show notes and social highlights for a podcast.\nFrom the transcript, produce:\n-\
+    \ takeaways: exactly {takeaways} short, specific takeaways (one sentence each, no numbering).\n- quote_ids:\
+    \ {quotes_min}-{quotes_max} turn ids of the most quotable, self-contained lines for social media.\n\
+    \  Prefer vivid, insightful lines from guests; avoid greetings and questions.\n- tags: {tags_min}-{tags_max}\
+    \ lowercase topic tags of 1-3 words, like \"remote work\" or \"ai regulation\".\nWrite your reasoning\
+    \ first, briefly.\n"
+  claims: "You find checkable claims in a podcast transcript for a fact-checking desk.\nYou get candidate\
+    \ turns. For each turn that states something that could be checked against public facts,\noutput one\
+    \ claim: the turn id, the claim rewritten as a short self-contained sentence (resolve \"it\", \"they\"\
+    , add names and dates\nfrom context), and its type:\n- factual: a checkable fact about the world (dates,\
+    \ events, who did what)\n- statistic: a number, percentage, price or ranking\n- prediction: a statement\
+    \ about the future\n- anecdote: a personal experience of the speaker that cannot be checked publicly\n\
+    - opinion: a judgement or belief\nA turn can contain more than one claim: split compound statements\
+    \ so each claim states ONE fact. Skip greetings, self-introductions, statements about the show itself,\n\
+    questions and small talk. Companies, products, laws, studies, dates and numbers usually signal a checkable\
+    \ claim.\nExamples:\n[T04 02:10] Ana Ruiz: Spotify launched in Sweden in 2008, and honestly it's the\
+    \ best app ever.\n  -> {\"turn_id\": \"T04\", \"claim\": \"Spotify launched in Sweden in 2008.\",\
+    \ \"type\": \"factual\"}\n  -> {\"turn_id\": \"T04\", \"claim\": \"Spotify is the best app ever.\"\
+    , \"type\": \"opinion\"}\n[T07 03:40] Ana Ruiz: The Eiffel Tower opened in 1889 and it was built for\
+    \ the Olympics.\n  -> {\"turn_id\": \"T07\", \"claim\": \"The Eiffel Tower opened in 1889.\", \"type\"\
+    : \"factual\"}\n  -> {\"turn_id\": \"T07\", \"claim\": \"The Eiffel Tower was built for the Olympics.\"\
+    , \"type\": \"factual\"}\n[T09 05:30] Ben Cole: Over half of US adults now listen to podcasts monthly.\n\
+    \  -> {\"turn_id\": \"T09\", \"claim\": \"Over half of US adults listen to podcasts monthly.\", \"\
+    type\": \"statistic\"}\n[T11 06:02] Ben Cole: By 2030 every car sold in Europe will be electric. My\
+    \ own startup hit a million users in six months.\n  -> {\"turn_id\": \"T11\", \"claim\": \"Every new\
+    \ car sold in Europe will be electric by 2030.\", \"type\": \"prediction\"}\n  -> {\"turn_id\": \"\
+    T11\", \"claim\": \"Ben Cole's startup reached a million users in six months.\", \"type\": \"anecdote\"\
+    }\nWrite your reasoning first, briefly.\n"
+  researcher: 'You are a fact-checking researcher. You get one claim from a podcast.
+
+    Search for evidence with the tools: start with search_kb using a short keyword query (3-6 words, names
+    and numbers).
+
+    If the results do not mention the claim''s subject, try a different query or search_web.
+
+    Stop after you have found relevant evidence or after {max_tool_calls} searches, then reply with one
+    sentence saying what you found.
+
+    '
+  judge: 'You are a careful fact-checker. Today is {today}. The episode was recorded on {recorded}.
+
+    Compare the claim with the evidence passages and pick a label:
+
+    - supported: the evidence confirms the claim.
+
+    - contradicted: the evidence says something different (other numbers, dates, names or facts).
+
+    - outdated: the claim was true once but the evidence shows newer information has replaced it.
+
+    - insufficient: the evidence does not address the claim.
+
+    Cite the ids of the passages you used. Prefer high-reliability sources and the knowledge base. Write
+    your reasoning first, briefly.
+
+    '
+tools:
+  search_kb: 'Search the curated fact-checking knowledge base (dated, reliable entries). Args: query:
+    3-6 keywords. Returns the top passages with id, source and as_of date.'
+  search_web: 'Search the web (mock search API). Returns headlines and snippets with a reliability rating.
+    Use when the knowledge base has nothing relevant. Args: query: 3-6 keywords.'
+guardrails:
+- Use only the transcript and the evidence you are given; never invent facts, names or numbers.
+- Refer to turns only by their ids (like T07).
+- Keep the speakers' meaning; do not exaggerate.
+glossary:
+  nassa: NASA
+  bit coin: Bitcoin
+filler_words:
+- um
+- uh
+- erm
+- hmm
+- ah
+filler_phrases:
+- you know
+- i mean
+- like
+- sort of
+- kind of

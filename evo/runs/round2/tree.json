@@ -1,0 +1,648 @@
+[
+ {
+  "id": "round2-root",
+  "parent": null,
+  "score": 0.819,
+  "reward": 0.0,
+  "depth": 0,
+  "metrics": {
+   "verdict_accuracy": 0.627,
+   "evidence_recall": 0.833,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.967,
+   "structure": 1.0,
+   "claim_recall": 0.627,
+   "tag_overlap": 0.65
+  },
+  "edits": []
+ },
+ {
+  "id": "round2-n1a",
+  "parent": "round2-root",
+  "score": 0.8425,
+  "reward": 0.0235,
+  "depth": 1,
+  "metrics": {
+   "verdict_accuracy": 0.667,
+   "evidence_recall": 0.883,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.967,
+   "structure": 1.0,
+   "claim_recall": 0.667,
+   "tag_overlap": 0.65
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "10"
+   },
+   {
+    "op": "set_param",
+    "path": "limits.max_tool_calls",
+    "value": "4"
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "claims",
+    "text": "Ensure that every claim extracted by this step is passed to the factcheck step if it is deemed fact-checkable."
+   }
+  ]
+ },
+ {
+  "id": "round2-n1b",
+  "parent": "round2-root",
+  "score": 0.9312,
+  "reward": 0.1122,
+  "depth": 1,
+  "metrics": {
+   "verdict_accuracy": 0.88,
+   "evidence_recall": 0.95,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.933,
+   "structure": 1.0,
+   "claim_recall": 0.88,
+   "tag_overlap": 0.65
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "10"
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "planner",
+    "text": "Ensure that the claim_budget is set high enough to cover all potentially checkable statements identified in the transcript, especially when recent events, prices, or statistics are mentioned."
+   },
+   {
+    "op": "toggle_step",
+    "step": "claims",
+    "enabled": true
+   }
+  ]
+ },
+ {
+  "id": "round2-n1c",
+  "parent": "round2-root",
+  "score": 0.819,
+  "reward": 0.0,
+  "depth": 1,
+  "metrics": {
+   "verdict_accuracy": 0.627,
+   "evidence_recall": 0.833,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.967,
+   "structure": 1.0,
+   "claim_recall": 0.627,
+   "tag_overlap": 0.65
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "12"
+   },
+   {
+    "op": "toggle_step",
+    "step": "factcheck",
+    "enabled": true
+   }
+  ]
+ },
+ {
+  "id": "round2-n1d",
+  "parent": "round2-root",
+  "score": 0.819,
+  "reward": 0.0,
+  "depth": 1,
+  "metrics": {
+   "verdict_accuracy": 0.627,
+   "evidence_recall": 0.833,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.967,
+   "structure": 1.0,
+   "claim_recall": 0.627,
+   "tag_overlap": 0.65
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "10"
+   },
+   {
+    "op": "replace_in_prompt",
+    "prompt": "judge",
+    "old": "Today is {today}. The episode was recorded on {recorded}.",
+    "new": "Today is {today}. The episode was recorded on {recorded}. Context for fact-checking is crucial to accurately label the claim."
+   }
+  ]
+ },
+ {
+  "id": "round2-n1r",
+  "parent": "round2-root",
+  "score": 0.9547,
+  "reward": 0.1357,
+  "depth": 1,
+  "metrics": {
+   "verdict_accuracy": 0.92,
+   "evidence_recall": 1.0,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.933,
+   "structure": 1.0,
+   "claim_recall": 0.92,
+   "tag_overlap": 0.65
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "10"
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "planner",
+    "text": "Ensure that the claim_budget is set high enough to cover all potentially checkable statements identified in the transcript, especially when recent events, prices, or statistics are mentioned."
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "claims",
+    "text": "Ensure that every claim extracted by this step is passed to the factcheck step if it is deemed fact-checkable."
+   },
+   {
+    "op": "toggle_step",
+    "step": "claims",
+    "enabled": true
+   }
+  ]
+ },
+ {
+  "id": "round2-n2d",
+  "parent": "round2-n1d",
+  "score": 0.819,
+  "reward": 0.0,
+  "depth": 2,
+  "metrics": {
+   "verdict_accuracy": 0.627,
+   "evidence_recall": 0.833,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.967,
+   "structure": 1.0,
+   "claim_recall": 0.627,
+   "tag_overlap": 0.65
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "8"
+   },
+   {
+    "op": "replace_in_prompt",
+    "prompt": "judge",
+    "old": "Compare the claim with the evidence passages and pick a label:",
+    "new": "Compare the claim with the evidence passages and pick a label. Synthesize the evidence to determine if the claim is supported, contradicted, outdated, insufficient, or if the evidence is missing."
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "judge",
+    "text": "If evidence is insufficient, label it as 'insufficient'."
+   }
+  ]
+ },
+ {
+  "id": "round2-n2r",
+  "parent": "round2-n1d",
+  "score": 0.819,
+  "reward": 0.0,
+  "depth": 2,
+  "metrics": {
+   "verdict_accuracy": 0.627,
+   "evidence_recall": 0.833,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.967,
+   "structure": 1.0,
+   "claim_recall": 0.627,
+   "tag_overlap": 0.65
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "10"
+   },
+   {
+    "op": "replace_in_prompt",
+    "prompt": "judge",
+    "old": "Compare the claim with the evidence passages and pick a label:",
+    "new": "Compare the claim with the evidence passages and pick a label. Synthesize the evidence to determine if the claim is supported, contradicted, outdated, insufficient, or if the evidence is missing."
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "judge",
+    "text": "If evidence is insufficient, label it as 'insufficient'."
+   }
+  ]
+ },
+ {
+  "id": "round2-n3d",
+  "parent": "round2-n1c",
+  "score": 0.7897,
+  "reward": -0.0293,
+  "depth": 2,
+  "metrics": {
+   "verdict_accuracy": 0.553,
+   "evidence_recall": 0.833,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.967,
+   "structure": 1.0,
+   "claim_recall": 0.593,
+   "tag_overlap": 0.65
+  },
+  "edits": [
+   {
+    "op": "replace_in_prompt",
+    "prompt": "judge",
+    "old": "Compare the claim with the evidence passages and pick a label:",
+    "new": "Compare the claim with the evidence passages and pick a label. Ensure you check all aspects of the claim. Cite the ids of the passages you used. Prefer high-reliability sources and the knowledge base. Write your reasoning first, briefly."
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "claims",
+    "text": "If a claim is missed in the initial pass, the planner should review the transcript for similar statements before proceeding to factcheck."
+   }
+  ]
+ },
+ {
+  "id": "round2-n3r",
+  "parent": "round2-n1c",
+  "score": 0.7897,
+  "reward": -0.0293,
+  "depth": 2,
+  "metrics": {
+   "verdict_accuracy": 0.553,
+   "evidence_recall": 0.833,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.967,
+   "structure": 1.0,
+   "claim_recall": 0.593,
+   "tag_overlap": 0.65
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "6"
+   },
+   {
+    "op": "replace_in_prompt",
+    "prompt": "judge",
+    "old": "Compare the claim with the evidence passages and pick a label:",
+    "new": "Compare the claim with the evidence passages and pick a label. Ensure you check all aspects of the claim. Cite the ids of the passages you used. Prefer high-reliability sources and the knowledge base. Write your reasoning first, briefly."
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "claims",
+    "text": "If a claim is missed in the initial pass, the planner should review the transcript for similar statements before proceeding to factcheck."
+   }
+  ]
+ },
+ {
+  "id": "round2-n4a",
+  "parent": "round2-n1b",
+  "score": 0.9445,
+  "reward": 0.0133,
+  "depth": 2,
+  "metrics": {
+   "verdict_accuracy": 0.88,
+   "evidence_recall": 0.95,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 1.0,
+   "structure": 1.0,
+   "claim_recall": 0.88,
+   "tag_overlap": 0.65
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "12"
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "planner",
+    "text": "Ensure that the claim_budget is set high enough to cover all potentially checkable statements identified in the transcript, especially when recent events, prices, or statistics are mentioned. If initial claims extraction seems low, consider increasing the budget."
+   }
+  ]
+ },
+ {
+  "id": "round2-n4b",
+  "parent": "round2-n1b",
+  "score": 0.9378,
+  "reward": 0.0066,
+  "depth": 2,
+  "metrics": {
+   "verdict_accuracy": 0.88,
+   "evidence_recall": 0.95,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.967,
+   "structure": 1.0,
+   "claim_recall": 0.88,
+   "tag_overlap": 0.65
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "12"
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "planner",
+    "text": "Ensure that the claim_budget is set high enough to cover all potentially checkable statements identified in the transcript, especially when recent events, prices, or statistics are mentioned. **Do not skip claim identification if a statement seems checkable.**"
+   },
+   {
+    "op": "replace_in_prompt",
+    "prompt": "summarizer",
+    "old": "Write ONE summary of {min_words}-{max_words} words (aim for about {target_words}) in 2-3 paragraphs that covers:\nthe core themes, the key discussions, and the outcomes or opinions each speaker shared.\nName the host and guests. Use only information from the transcript. Plain prose, no bullet points, no headings.",
+    "new": "Write ONE summary of {min_words}-{max_words} words (aim for about {target_words}) in 2-3 paragraphs that covers:\nthe core themes, the key discussions, and the outcomes or opinions each speaker shared. **Ensure all significant key points, including specific facts and outcomes discussed, are synthesized into the summary.**\nName the host and guests. Use only information from the transcript. Plain prose, no bullet points, no headings."
+   }
+  ]
+ },
+ {
+  "id": "round2-n4d",
+  "parent": "round2-n1b",
+  "score": 0.948,
+  "reward": 0.0168,
+  "depth": 2,
+  "metrics": {
+   "verdict_accuracy": 0.887,
+   "evidence_recall": 1.0,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.967,
+   "structure": 1.0,
+   "claim_recall": 0.887,
+   "tag_overlap": 0.7
+  },
+  "edits": [
+   {
+    "op": "replace_in_prompt",
+    "prompt": "planner",
+    "old": "Ensure that the claim_budget is set high enough to cover all potentially checkable statements identified in the transcript, especially when recent events, prices, or statistics are mentioned.",
+    "new": "Ensure that the claim_budget is set sufficiently high to cover all potentially checkable statements identified in the transcript, focusing on recent events, prices, or statistics to maximize claim discovery."
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "claims",
+    "text": "When extracting claims, prioritize extracting statements that appear to be personal experiences or unverifiable anecdotes alongside factual and statistical claims, even if they are challenging to verify. Ensure the claim is self-contained."
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "notes",
+    "text": "When producing takeaways, ensure they are very specific and actionable. When producing quote_ids, prioritize lines that encapsulate a main argument or a significant shift in topic."
+   }
+  ]
+ },
+ {
+  "id": "round2-n5a",
+  "parent": "round2-n2d",
+  "score": 0.9312,
+  "reward": 0.1122,
+  "depth": 3,
+  "metrics": {
+   "verdict_accuracy": 0.88,
+   "evidence_recall": 0.95,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.933,
+   "structure": 1.0,
+   "claim_recall": 0.88,
+   "tag_overlap": 0.65
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "12"
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "planner",
+    "text": "If the content is dense or likely to contain multiple factual assertions, ensure the claim_budget is set to the maximum allowed limit to maximize fact-checking coverage."
+   },
+   {
+    "op": "toggle_step",
+    "step": "claims",
+    "enabled": true
+   }
+  ]
+ },
+ {
+  "id": "round2-n5c",
+  "parent": "round2-n2d",
+  "score": 0.819,
+  "reward": 0.0,
+  "depth": 3,
+  "metrics": {
+   "verdict_accuracy": 0.627,
+   "evidence_recall": 0.833,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.967,
+   "structure": 1.0,
+   "claim_recall": 0.627,
+   "tag_overlap": 0.65
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "10"
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "judge",
+    "text": "If the evidence is unverifiable or contradicts the claim, you must explicitly state 'unverifiable' or 'contradicted' in your reasoning, even if you cite no passages."
+   }
+  ]
+ },
+ {
+  "id": "round2-n5d",
+  "parent": "round2-n2d",
+  "score": 0.819,
+  "reward": 0.0,
+  "depth": 3,
+  "metrics": {
+   "verdict_accuracy": 0.627,
+   "evidence_recall": 0.833,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.967,
+   "structure": 1.0,
+   "claim_recall": 0.627,
+   "tag_overlap": 0.65
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "10"
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "judge",
+    "text": "If the claim is inaccurate or unverifiable, explicitly label it as 'inaccurate' or 'unverifiable' in addition to the standard labels."
+   },
+   {
+    "op": "replace_in_prompt",
+    "prompt": "claims",
+    "old": "Write your reasoning first, briefly.",
+    "new": "Write your reasoning first, briefly. Also, ensure the claim covers a distinct, verifiable point."
+   }
+  ]
+ },
+ {
+  "id": "round2-n5r",
+  "parent": "round2-n2d",
+  "score": 0.9547,
+  "reward": 0.1357,
+  "depth": 3,
+  "metrics": {
+   "verdict_accuracy": 0.92,
+   "evidence_recall": 1.0,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.933,
+   "structure": 1.0,
+   "claim_recall": 0.92,
+   "tag_overlap": 0.65
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "12"
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "planner",
+    "text": "If the content is dense or likely to contain multiple factual assertions, ensure the claim_budget is set to the maximum allowed limit to maximize fact-checking coverage."
+   },
+   {
+    "op": "toggle_step",
+    "step": "claims",
+    "enabled": true
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "judge",
+    "text": "If the evidence is unverifiable or contradicts the claim, you must explicitly state 'unverifiable' or 'contradicted' in your reasoning, even if you cite no passages."
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "judge",
+    "text": "If the claim is inaccurate or unverifiable, explicitly label it as 'inaccurate' or 'unverifiable' in addition to the standard labels."
+   },
+   {
+    "op": "replace_in_prompt",
+    "prompt": "claims",
+    "old": "Write your reasoning first, briefly.",
+    "new": "Write your reasoning first, briefly. Also, ensure the claim covers a distinct, verifiable point."
+   }
+  ]
+ },
+ {
+  "id": "round2-n7a",
+  "parent": "round2-n5a",
+  "score": 0.9312,
+  "reward": 0.0,
+  "depth": 4,
+  "metrics": {
+   "verdict_accuracy": 0.88,
+   "evidence_recall": 0.95,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.933,
+   "structure": 1.0,
+   "claim_recall": 0.88,
+   "tag_overlap": 0.65
+  },
+  "edits": [
+   {
+    "op": "toggle_step",
+    "step": "claims",
+    "enabled": true
+   },
+   {
+    "op": "replace_in_prompt",
+    "prompt": "claims",
+    "old": "Write your reasoning first, briefly.",
+    "new": "Write your reasoning first, briefly. Then, meticulously review every turn for statements that are verifiable facts, statistics, predictions, or explicit opinions. Ensure complex sentences are split into atomic claims. Only output claims that are truly checkable."
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "summarizer",
+    "text": "Ensure the summary explicitly addresses the main themes discussed by each speaker and clearly outlines the key outcomes or opinions shared."
+   }
+  ]
+ },
+ {
+  "id": "round2-n7b",
+  "parent": "round2-n5a",
+  "score": 0.9547,
+  "reward": 0.0235,
+  "depth": 4,
+  "metrics": {
+   "verdict_accuracy": 0.92,
+   "evidence_recall": 1.0,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.933,
+   "structure": 1.0,
+   "claim_recall": 0.92,
+   "tag_overlap": 0.65
+  },
+  "edits": [
+   {
+    "op": "replace_in_prompt",
+    "prompt": "judge",
+    "old": "Compare the claim with the evidence passages and pick a label. Synthesize the evidence to determine if th",
+    "new": "Compare the claim with the evidence passages and pick a label. Synthesize the evidence to determine if the claim is supported, contradicted, outdated, insufficient, or unverifiable. Cite the ids of the passages you used. Prefer high-reliability sources and the knowledge base. Write your reasoning first, briefly."
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "claims",
+    "text": "If a claim is unverifiable or anecdotal, assess it carefully; if it cannot be checked, label it as 'anecdote' or ensure it is dropped if it doesn't serve a factual purpose for fact-checking."
+   }
+  ]
+ },
+ {
+  "id": "round2-n8a",
+  "parent": "round2-n1r",
+  "score": 0.9453,
+  "reward": -0.0094,
+  "depth": 2,
+  "metrics": {
+   "verdict_accuracy": 0.88,
+   "evidence_recall": 1.0,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.967,
+   "structure": 1.0,
+   "claim_recall": 0.88,
+   "tag_overlap": 0.65
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "12"
+   },
+   {
+    "op": "replace_in_prompt",
+    "prompt": "claims",
+    "old": "Write your reasoning first, briefly.\nEnsure that every claim extracted by this step is passed to the factcheck step if it is deemed fact-checkable.",
+    "new": "Write your reasoning first, briefly. Before outputting claims, review all candidate turns to ensure no potentially checkable statements are missed. Ensure that every claim extracted by this step is passed to the factcheck step if it is deemed fact-checkable."
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "planner",
+    "text": "When deciding the claim_budget, prioritize covering all statements that could lead to a claim, even if they don't immediately suggest recent events, prices, or statistics. Be aggressive in budgeting claims to prevent missing critical points, especially when recent events, prices, or statistics are mentioned."
+   }
+  ]
+ }
+]

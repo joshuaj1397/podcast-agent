@@ -116,14 +116,15 @@ class Node:
 
 
 class Evo:
-    def __init__(self, base: HarnessSpec, settings: Settings, round_dir: Path, group: int, evolver_model: str | None):
+    def __init__(self, base: HarnessSpec, settings: Settings, round_dir: Path, group: int, evolver_model: str | None,
+                 episodes: list[str] = FITNESS_EPISODES):
         self.base = base
         self.settings = settings
         self.round_dir = round_dir
         self.group = group
         evolver_settings = replace(settings, model_override=evolver_model or settings.model_override)
         self.factory = AgentFactory(base, evolver_settings)
-        self.files = [f for f in split_files("search") if f.stem.split("_")[0] in FITNESS_EPISODES]
+        self.files = [f for f in split_files("search") if f.stem.split("_")[0] in episodes]
         self.nodes: dict[str, Node] = {}
         self.traj = (round_dir / "trajectories.jsonl").open("a", encoding="utf-8")
         self.calls = 0
@@ -146,6 +147,7 @@ class Evo:
         node = Node(spec.version, parent.id if parent else None, spec, score, metrics, fails, edits,
                     round(score - parent.score, 4) if parent else 0.0, parent.depth + 1 if parent else 0)
         self.nodes[node.id] = node
+        harness.dump(spec, self.round_dir / "nodes" / f"{node.id}.yaml")  # every node, to re-evaluate later
         log.print(f"  node {node.id}: V̂={score:.3f}" + (f" (r={node.reward:+.3f})" if parent else "")
                   + f" [{time.time() - t0:.0f}s]  {metrics}")
         return node
@@ -229,7 +231,7 @@ class Evo:
 
 def failures(scores: list[EpisodeScore]) -> list[str]:
     """Turn eval details into short, actionable failure lines for the Proposer."""
-    out = []
+    out, budget = [], []
     for s in scores:
         for c in s.details["claims"]:
             if c["pred_status"] is None:
@@ -241,23 +243,27 @@ def failures(scores: list[EpisodeScore]) -> list[str]:
         if s.metrics["evidence_recall"] < 1:
             out.append(f"{s.episode_id}: cited evidence missed the gold source for some claims")
         out += [f"{s.episode_id}: structure: {p}" for p in s.details["problems"]]
+        if s.details.get("claims_over_budget"):  # listed first: the proposer sees only the first lines
+            budget.append(f"{s.episode_id}: {s.details['claims_over_budget']} extracted claims were not fact-checked "
+                       f"because the planner's claim_budget was {s.details['claim_budget']}")
         if s.details["extra_predicted_claims"]:
             out.append(f"{s.episode_id}: {s.details['extra_predicted_claims']} extra claims not in gold")
-    return out
+    return budget + out
 
 
 async def run_search(harness_path: Path, rounds: int = 1, iterations: int = 6, group: int = 4,
-                     evolver_model: str | None = None, seed: int = 0) -> Node:
+                     evolver_model: str | None = None, seed: int = 0, first_round: int = 1,
+                     episodes: list[str] = FITNESS_EPISODES, out: Path = Path("harness/evolved.yaml")) -> Node:
     base = harness.load(harness_path)
     settings = Settings()
     rng = random.Random(seed)
     best: Node | None = None
-    for r in range(1, rounds + 1):
+    for r in range(first_round, first_round + rounds):
         round_dir = RUNS_DIR / f"round{r}"
-        round_dir.mkdir(parents=True, exist_ok=True)
+        (round_dir / "nodes").mkdir(parents=True, exist_ok=True)
         (round_dir / "trajectories.jsonl").unlink(missing_ok=True)
-        evo = Evo(base, settings, round_dir, group, evolver_model)
-        log.rule(f"Evo² round {r}: {iterations} expansions × {group} proposals on {FITNESS_EPISODES}")
+        evo = Evo(base, settings, round_dir, group, evolver_model, episodes)
+        log.rule(f"Evo² round {r}: {iterations} expansions × {group} proposals on {episodes}")
         root = await evo.add_node(base.model_copy(update={"version": f"round{r}-root"}), None, [])
         for it in range(1, iterations + 1):
             parent = evo.sample_parent(rng)
@@ -271,7 +277,7 @@ async def run_search(harness_path: Path, rounds: int = 1, iterations: int = 6, g
         log.rule(f"round {r}: root V̂={root.score:.3f} → best {best.id} V̂={best.score:.3f} "
                  f"({len(evo.nodes)} nodes, {evo.calls} evolver calls)")
         if best.score > root.score:
-            harness.dump(best.spec.model_copy(update={"version": f"evolved-r{r}"}), "harness/evolved.yaml")
-            log.print(f"wrote harness/evolved.yaml from {best.id}: {genome.diff(base, best.spec)}")
+            harness.dump(best.spec.model_copy(update={"version": f"evolved-r{r}"}), out)
+            log.print(f"wrote {out} from {best.id}: {genome.diff(base, best.spec)}")
         base = best.spec
     return best

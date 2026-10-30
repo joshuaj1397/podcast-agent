@@ -61,7 +61,7 @@ uv run pytest                                     # offline tests (FakeLlm, no O
 | `podcast-agent run <files or dirs> [-H harness.yaml] [--only factcheck] [-e ep004] [--model ollama_chat/gemma4:e4b] [--no-cache] [-v]` | Process transcripts; write `out/<ep>/report.{json,md}` and `trace.jsonl` |
 | `podcast-agent eval [--split heldout\|search\|all] [-H harness.yaml]` | Run and score against `eval/gold/`; writes `eval/RESULTS.md` |
 | `podcast-agent kb-search "mars sample return" [--method tfidf] [--kind web]` | Query the knowledge base the way the research agent does |
-| `podcast-agent evo run --iterations 12 --group 4` | Evo² tree search over harness edits |
+| `podcast-agent evo run --iterations 12 --group 4 [--evolver-model ...] [--episodes s01,s03] [--first-round 2] [--out h.yaml]` | Evo² tree search over harness edits |
 
 Input formats: the JSON format of the samples, or text lines like `[00:02:14] Host: ...` with optional `# title: ...` header lines (see `data/heldout/ep004_mars_noisy.txt`).
 
@@ -88,7 +88,7 @@ transcript ──► ingest ──► PLANNER agent ──► plan validated by 
 | plan | **Planner** `LlmAgent` (`output_schema=Plan`) | Sees an episode profile (length, claim candidates, numbers, noise) and chooses steps, claim budget, whether to use web search, and a summary focus. Code enforces invariants and logs every correction (`planner omitted X; inserting`). |
 | summarize | **Summarizer** `LlmAgent` | Critic checks 200–300 words; re-prompts with the exact word count. |
 | notes | **Notes** `LlmAgent` | Quotes are picked **by turn id** from a TF-IDF shortlist; text and timestamp are copied from the transcript by code, so quotes cannot be hallucinated. TF-IDF keyword hints for tags. |
-| claims | **Claims** `LlmAgent` | A regex pre-filter shortlists turns (numbers, entities, claim words); the model writes self-contained claims and types them: factual / statistic / prediction / anecdote / opinion. Opinions are dropped, and so are claims about the show itself ("Sarah is hosting the podcast"). |
+| claims | **Claims** `LlmAgent` | A regex pre-filter shortlists turns (numbers, entities, claim words); the model writes self-contained claims and types them: factual / statistic / prediction / anecdote / opinion. Opinions are dropped, and so are claims about the show itself ("Sarah is hosting the podcast"). If several candidate turns yield no claims at all, the critic asks again (a `"` inside the reasoning can end the JSON string early and force an empty list). |
 | fact-check | **Research** `LlmAgent` with tools + **Judge** `LlmAgent` | Predictions and anecdotes → ❓ by rule. Otherwise: (1) the research agent searches in a ReAct loop; a `before_tool_callback` blocks repeated queries and enforces the search budget, and a BM25 backstop also searches the claim text itself. (2) The judge labels the evidence `supported / contradicted / outdated / insufficient`, sampled N times. (3) If the KB could not settle the claim and the plan had web search off, the agent **escalates** to web search and judges again. (4) A **numeric check** in code turns "supported" into ⚠ when the claim's numbers match none in the cited evidence. |
 | render | code | JSON + Markdown report; `trace.jsonl` with every plan, thought, action, observation and result |
 
@@ -132,7 +132,7 @@ Both are deliberately broad (a fact-check desk's KB), not tuned to the sample ep
 
 `V̂ = 0.40·verdict accuracy + 0.15·evidence recall + 0.10·quote validity + 0.20·summary key-point coverage + 0.15·structure`
 
-**Held-out results** (5 episodes, 25 gold claims, never used for search or training; Gemma 4 E2B via Ollama). Full tables, every claim, and bootstrap confidence intervals: [`eval/RESULTS.md`](eval/RESULTS.md).
+**Held-out results** (5 episodes, 25 gold claims, never used for search or training; Gemma 4 E2B via Ollama unless noted). Full tables, every claim, and bootstrap confidence intervals: [`eval/RESULTS.md`](eval/RESULTS.md).
 
 | Configuration | V̂ | Verdict acc. | Evidence recall | Quote validity | Key points | Structure | Claim recall |
 |---|---|---|---|---|---|---|---|
@@ -141,8 +141,11 @@ Both are deliberately broad (a fact-check desk's KB), not tuned to the sample ep
 | Evo² round-1 harness (`harness/evolved.yaml`) | **0.887** | 0.74 | 0.94 | 1.00 | 1.00 | 1.00 | 0.82 |
 | Base harness · task-model LoRA (`podcast-exec:r1`) | 0.869 | 0.71 | 0.94 | 1.00 | 0.97 | 1.00 | 0.79 |
 | Base harness · its exact control (`podcast-base:q8r`) | 0.887 | 0.74 | 0.94 | 1.00 | 1.00 | 1.00 | 0.82 |
+| **Evo² round-2 harness** (`harness/evolved_r2.yaml`) | **0.924** | 0.82 | 0.96 | 1.00 | 1.00 | 1.00 | 0.87 |
+| Base harness · Gemma 4 E4B | 0.849 | 0.69 | 0.85 | 1.00 | 0.97 | 1.00 | 0.75 |
+| Evo² round-2 harness · Gemma 4 E4B | 0.802 | 0.60 | 0.76 | 1.00 | 1.00 | 1.00 | 0.65 |
 
-On the 10 search episodes the default harness scores 0.890 (0.883 with the numeric check off).
+On the 10 search episodes the default harness scores 0.890 (0.883 with the numeric check off) and the round-2 harness 0.916. Averaged over three seeds, the round-2 harness gains +0.023 on held-out (0.873 → 0.896) and +0.012 on the search split (0.900 → 0.912); both confidence intervals include 0.
 
 **Retrieval, BM25 vs TF-IDF** (no LLM; gold evidence among 228 KB + web documents; all 57 gold claims with evidence):
 
@@ -156,9 +159,10 @@ The two tie on clean queries, and BM25 holds up better on noisy ones; with this 
 How to read this:
 
 - **Structure is solved by construction.** Quotes are always verbatim with the right timestamps, summaries are 200–300 words, there are exactly 5 takeaways, and every key point is covered. This comes from schema-constrained decoding, the critic loop and copy-by-id.
-- **Fact-checking is the hard part for a 2B model** (verdict accuracy 0.71–0.74). Most remaining errors are claims the extractor merges or misses, and *outdated* statistics the judge calls "supported" because the evidence is about the same subject.
+- **Fact-checking is the hard part for a 2B model** (verdict accuracy 0.71–0.82). Most remaining errors are claims the extractor merges or misses, and *outdated* statistics the judge calls "supported" because the evidence is about the same subject.
 - **The bigger wins were agent design, not tuning.** Two changes lifted held-out V̂ from 0.839 to 0.877 (measured just before and after adding them): escalating to web search when the KB can't settle a claim, and dropping claims about the show itself. The **numeric check** (code that turns "supported" into ⚠ when the claim's numbers match none in the evidence) adds a little on both splits and has never flipped a correct verdict. I designed these three after reading held-out errors, so the search-split numbers are the cleaner evidence for them.
-- **Every difference between configurations is within noise.** With 5 episodes / 25 claims, one claim is ±0.04 verdict accuracy, and every paired bootstrap interval in `eval/RESULTS.md` touches zero. Read the deltas as directional.
+- **The bigger model scored lower.** Gemma 4 E4B is below E2B on both splits with either harness. Its claim extraction is all-or-nothing (one held-out episode lost every claim), and every harness choice had been made with E2B. The harness Evo² evolved *for* E4B helps E2B instead (details in [`docs/evo2.md`](docs/evo2.md#results)).
+- **Every difference between configurations is within noise.** With 5 episodes / 25 claims, one claim is ±0.04 verdict accuracy. Re-running with other seeds moves held-out V̂ by about ±0.03 (the round-2 harness scored 0.924, 0.864 and 0.901 on seeds 7–9). `eval/RESULTS.md` has paired bootstrap intervals and the seed table. Read the deltas as directional.
 
 ---
 
@@ -167,7 +171,7 @@ How to read this:
 [Evo²](https://arxiv.org/abs/2610.13025) improves an agent by searching over its harness with an *evolver* model, and then training that evolver on its own search trajectories. No code was released with the paper, so [`evo/`](evo/) implements it from the paper on one 8 GB laptop GPU, with one extension: the task model is fine-tuned too. Full write-up: [`docs/evo2.md`](docs/evo2.md).
 
 - **Genome and edits** (`evo/genome.py`): the harness YAML, and a small validated edit language (`set_param`, `replace_in_prompt`, `append_to_prompt`, `toggle_step`, `add_guardrail`). Malformed edits get reward −0.1.
-- **Tree search** (`evo/search.py`): one evolver model (Gemma 4 E2B) in two ADK roles. The **Proposer** writes 4 edit sets per parent; the **Reflector** keeps them or writes a revised set. Parents are sampled with `w(h) = ε + |V̂(h) − ½|`, and the reward is `V̂(child) − V̂(parent)`. Fitness is the eval score on 4 **search** episodes; held-out episodes are never used.
+- **Tree search** (`evo/search.py`): one evolver model (Gemma 4 E2B) in two ADK roles. The **Proposer** writes 4 edit sets per parent; the **Reflector** keeps them or writes a revised set. Parents are sampled with `w(h) = ε + |V̂(h) − ½|`, and the reward is `V̂(child) − V̂(parent)`. Fitness is the eval score on **search** episodes (4 in round 1; 5 in round 2, with the other 5 for validation); held-out episodes are never used. Every node's harness is saved under `evo/runs/<round>/nodes/`.
 - **Training** (`evo/lora.py`, 4-bit LoRA on the RTX 5060):
   - Evolver: SFT on edits that improved fitness, plus well-formed edits rejection-sampled from the base evolver. Then GRPO over the logged groups (off-policy, ratio-clipped, KL to the base).
   - Task model: rejection-sampling fine-tuning on the best harness's own outputs on the search split. Only outputs that passed the critic **and** agree with gold labels are kept: 135 of 157.
@@ -181,11 +185,16 @@ How to read this:
 | ...the same harness on held-out episodes | 0.877 | 0.887 (within noise) |
 | Evolver: well-formed edit sets on 2 held-out parent harnesses (64 samples each, vs its exact q8 control) | 11/64 (17 %) | **42/64 (66 %)**, Fisher p < 10⁻⁷ |
 | Task model (RFT LoRA) on held-out, vs its exact q8 control | 0.887 | 0.869 (no gain; within noise) |
+| Round 2 (trained evolver, E4B task model), fitness on 5 search episodes | 0.819 | **0.955** |
+| ...on 5 search episodes the search did not use (E4B) | 0.840 | 0.957 |
+| ...the round-2 harness on held-out with E2B (seed 7 / mean of 3 seeds) | 0.877 / 0.873 | **0.924** / 0.896 |
+| Evolver edit sets that were well-formed during the search (proposer) | 7/48 (round 1) | 15/32 (round 2) |
 
 What worked, and what didn't:
 
 - **The harness search found a real but small improvement.** It raised `claims.candidate_max` from 25 to 40, which lets more claim candidates reach the extractor. It held up on unseen episodes, but within noise.
 - **Training the evolver is the clearest effect.** It more than doubled the share of well-formed edits, which is what makes the next search round cheaper.
+- **Round 2 found the biggest harness gain, because the evolver could see the problem.** E4B's planner set claim budgets of 3–4, so extracted claims were never checked. Once the failure feedback said "3 extracted claims were not fact-checked because the planner's claim_budget was 3" instead of only "claim not extracted", the trained evolver's first proposal added a planner instruction to budget for every checkable statement. It held up on unused search episodes and transfers to E2B, though the held-out gain averaged over seeds (+0.023) is within noise.
 - **A 2B evolver writes mostly malformed edits, and padded its valid ones with junk.** It appended a stray `notes` line to a prompt and added `judge` as a guardrail; both are visible in `harness/evolved.yaml`, which I left exactly as the search produced it. That led to two fixes in the evolver's *own* interface: a discriminated-union JSON schema (Ollama's grammar then only allows the fields each op uses) and a minimum length for appended text. That's the paper's point in miniature: the evolver's harness matters as much as its weights.
 - **Fine-tuning the task model on its own filtered outputs (135 examples) did not help.** A first comparison suggested +0.08, but that control had been converted from the original checkpoint, which keeps 60 unused KV-shared tensors, so it was not the same model. Against an exact control (the base re-saved through the identical path), the LoRA is slightly worse, within noise. Self-distillation on this little data mostly re-teaches what the model already does.
 - At this scale, off-policy GRPO on 24 examples and SFT on 11 demonstrate the loop end to end; they are not a converged result.
@@ -197,7 +206,7 @@ What worked, and what didn't:
 ```
 src/podcast_agent/   cli.py pipeline.py agent_factory.py tools.py factcheck.py critic.py
                      ingest.py retrieval.py llm.py trace.py render.py models.py harness.py evaluate.py
-harness/             base.yaml (the genome)  evolved.yaml (Evo² output)
+harness/             base.yaml (the genome)  evolved.yaml, evolved_r2.yaml (Evo² rounds 1 and 2)
 data/heldout/        ep001–ep005 (eval only)      data/search/  s01–s10 (Evo² fitness)
 kb/                  facts.jsonl  search_corpus.jsonl
 eval/                gold/*.yaml  RESULTS.md
@@ -212,7 +221,8 @@ tests/               offline tests (FakeLlm)
 | Want to… | Do this |
 |---|---|
 | Change a prompt, budget, k, samples | edit `harness/base.yaml` (or copy it and pass `-H my.yaml`) |
-| Use a bigger model | `--model ollama_chat/gemma4:e4b` (or set `model:` in the harness) |
+| Use the best harness | `-H harness/evolved_r2.yaml` (Evo² round 2: higher claim budgets) |
+| Use a bigger model | `--model ollama_chat/gemma4:e4b` (or set `model:` in the harness); it scored lower than E2B here |
 | Re-run only fact-checking | `podcast-agent run data/heldout -e ep004 --only factcheck` |
 | Add a knowledge-base fact | append a line to `kb/facts.jsonl`; check with `podcast-agent kb-search "..."` |
 | Add an output field | add it to `models.Report`, fill it in `pipeline.assemble`, print it in `render.py` |
