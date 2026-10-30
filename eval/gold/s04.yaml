@@ -1,0 +1,35 @@
+episode_id: s04
+summary_key_points:
+  - ["ransomware"]
+  - ["colonial pipeline"]
+  - ["mgm", "help desk", "social engineering"]
+  - ["backup"]
+  - ["never pay", "pay the ransom", "ransom payment", "paying"]
+  - ["multi-factor", "mfa"]
+expected_tags: ["cybersecurity", "ransomware", "data breaches", "incident response"]
+claims:
+  - ts: "00:28"
+    text: "Colonial Pipeline shut down the largest US fuel pipeline in May 2021 and paid about $4.4 million in bitcoin"
+    type: factual
+    verdict: verified
+    evidence_ids: ["kb-043", "web-027"]
+  - ts: "00:56"
+    text: "The 2023 MGM Resorts attackers got in by calling the IT help desk while impersonating an employee"
+    type: factual
+    verdict: verified
+    evidence_ids: ["web-028"]
+  - ts: "01:22"
+    text: "Ransomware payments set another all-time record in 2024, higher than 2023"
+    type: statistic
+    verdict: inaccurate
+    evidence_ids: ["kb-044", "web-029"]
+  - ts: "01:46"
+    text: "The latest IBM average cost of a data breach is $4.88 million, the highest ever"
+    type: statistic
+    verdict: inaccurate
+    evidence_ids: ["kb-045", "web-030"]
+  - ts: "02:12"
+    text: "A logistics client was back online in 48 hours thanks to offline backups and paid nothing"
+    type: anecdote
+    verdict: unverifiable
+    evidence_ids: []

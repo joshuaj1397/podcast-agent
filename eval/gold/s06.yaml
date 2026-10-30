@@ -1,0 +1,39 @@
+episode_id: s06
+summary_key_points:
+  - ["e-commerce", "online shopping", "online sales"]
+  - ["cart abandonment", "abandoned cart"]
+  - ["cyber monday"]
+  - ["temu"]
+  - ["physical stores", "showroom", "in-store"]
+expected_tags: ["retail", "e-commerce", "consumer behavior", "checkout optimization"]
+claims:
+  - ts: "00:35"
+    text: "E-commerce is about 16% of total US retail sales according to the Census Bureau"
+    type: statistic
+    verdict: verified
+    evidence_ids: ["kb-050", "web-034"]
+  - ts: "01:02"
+    text: "Cyber Monday is roughly a $10 billion day for US online sales"
+    type: statistic
+    verdict: inaccurate
+    evidence_ids: ["kb-052", "web-035"]
+  - ts: "01:26"
+    text: "About seven in ten online shopping carts are abandoned before checkout"
+    type: statistic
+    verdict: verified
+    evidence_ids: ["kb-051"]
+  - ts: "01:45"
+    text: "Adding Apple Pay cut one client's cart abandonment by a third"
+    type: anecdote
+    verdict: unverifiable
+    evidence_ids: []
+  - ts: "02:11"
+    text: "Temu is owned by Alibaba"
+    type: factual
+    verdict: inaccurate
+    evidence_ids: ["web-036"]
+  - ts: "02:55"
+    text: "By 2030 most physical stores will be showrooms"
+    type: prediction
+    verdict: unverifiable
+    evidence_ids: []

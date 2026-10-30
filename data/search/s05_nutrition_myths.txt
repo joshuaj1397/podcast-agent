@@ -1,0 +1,21 @@
+# episode_id: s05
+# title: Food Fact or Fiction
+# host: Sofia Mendes
+# guests: James Whitaker
+# recorded: 2025-01-15
+[00:00:03] Host: Hi and welcome to Plate Check, I'm Sofia Mendes. With me is registered dietitian James Whitaker.
+[00:00:10] Guest: Hey Sofia, thanks for having me.
+[00:00:15] Host: Let's start easy. Water. Everybody knows you need eight glasses of plain water a day, that's, like, the official science.
+[00:00:27] Guest: Um, I'd say hydration needs vary a lot from person to person.
+[00:00:34] Host: Okay, next. Bacon. Is it really, you know, that bad?
+[00:00:40] Guest: So in 2015 the World Health Organization's cancer agency classified processed meat as a Group 1 carcinogen, same category as tobacco smoke, though that's about how strong the evidence is, not how dangerous it is.
+[00:01:02] Host: Yikes. Okay, carrots. My grandma always said carrots give you night vision, and that's literally why British pilots could shoot down bombers at night in World War Two.
+[00:01:15] Guest: Ha, your grandma and the Royal Air Farce have a lot in common.
+[00:01:22] Host: What about sugar on food labels, is that, like, new?
+[00:01:28] Guest: Fairly new. Nutrition labels in the US now have to list added sugars separately, and the big manufacturers had to switch over by January 2020.
+[00:01:42] Host: Okay, confession. I cut out bread for a month last year and lost twelve pounds. So carbs are the enemy, right?
+[00:01:52] Guest: I mean, everyone's different. I wouldn't demonize a whole food group.
+[00:02:00] Host: Fair enough. Last one, breakfast. Most important meal of the day?
+[00:02:06] Guest: Honestly I think it's the most over-hyped meal of the day. Eat when you're hungry.
+[00:02:15] Host: Love it. Thanks James.
+[00:02:18] Guest: Thanks Sofia.

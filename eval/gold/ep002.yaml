@@ -1,0 +1,25 @@
+episode_id: ep002
+summary_key_points:
+  - ["x-ray", "radiology", "diagnostics", "imaging"]
+  - ["fda", "regulatory", "regulation"]
+  - ["privacy", "bias"]
+  - ["triage", "chatbot"]
+  - ["pandemic", "covid", "digital health"]
+  - ["clinician", "assistive", "final call", "human"]
+expected_tags: ["ai in healthcare", "medical diagnostics", "regulation", "data privacy", "digital health"]
+claims:
+  - ts: "00:55"
+    text: "Some hospitals use AI to read X-rays or flag urgent cases"
+    type: factual
+    verdict: verified
+    evidence_ids: ["kb-005", "web-002"]
+  - ts: "01:15"
+    text: "The FDA reviews AI medical systems before they are used"
+    type: factual
+    verdict: verified
+    evidence_ids: ["kb-004", "kb-005", "web-002"]
+  - ts: "03:30"
+    text: "The pandemic accelerated digital health adoption"
+    type: factual
+    verdict: verified
+    evidence_ids: ["kb-006", "web-003"]

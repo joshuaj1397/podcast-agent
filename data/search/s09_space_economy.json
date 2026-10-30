@@ -1,0 +1,126 @@
+{
+  "episode_id": "s09",
+  "title": "The New Space Economy",
+  "host": "Hannah Wright",
+  "guests": [
+    "Raj Mehta",
+    "Olivia Grant"
+  ],
+  "recorded": "2024-09-18",
+  "transcript": [
+    {
+      "timestamp": "00:00",
+      "speaker": "Hannah",
+      "section": "Introduction",
+      "text": "Welcome to Launch Window, I'm Hannah Wright. Today we're talking money and rockets with space investor Raj Mehta and aerospace engineer Olivia Grant."
+    },
+    {
+      "timestamp": "00:14",
+      "speaker": "Raj",
+      "section": "Introduction",
+      "text": "Thanks Hannah, excited to be here."
+    },
+    {
+      "timestamp": "00:20",
+      "speaker": "Olivia",
+      "section": "Introduction",
+      "text": "Hi everyone."
+    },
+    {
+      "timestamp": "00:28",
+      "speaker": "Hannah",
+      "section": "The Market",
+      "text": "How big is the space business right now?"
+    },
+    {
+      "timestamp": "00:35",
+      "speaker": "Raj",
+      "section": "The Market",
+      "text": "The global space economy is around $570 billion a year, and most of that is commercial, not government."
+    },
+    {
+      "timestamp": "00:55",
+      "speaker": "Hannah",
+      "section": "The Market",
+      "text": "What changed to make it so commercial?"
+    },
+    {
+      "timestamp": "01:01",
+      "speaker": "Olivia",
+      "section": "The Market",
+      "text": "Reusability. SpaceX landed its first orbital-class Falcon 9 booster back in December 2015, and that rewrote launch economics."
+    },
+    {
+      "timestamp": "01:20",
+      "speaker": "Hannah",
+      "section": "The Moon",
+      "text": "And the Moon is back in fashion."
+    },
+    {
+      "timestamp": "01:26",
+      "speaker": "Raj",
+      "section": "The Moon",
+      "text": "It is, but it's still an exclusive club. Only the US, Russia and China have ever landed on the Moon."
+    },
+    {
+      "timestamp": "01:45",
+      "speaker": "Olivia",
+      "section": "The Moon",
+      "text": "The commercial landers are where it gets interesting for me. That's where the risk-taking is."
+    },
+    {
+      "timestamp": "02:00",
+      "speaker": "Hannah",
+      "section": "Low Earth Orbit",
+      "text": "What about the space station?"
+    },
+    {
+      "timestamp": "02:06",
+      "speaker": "Olivia",
+      "section": "Low Earth Orbit",
+      "text": "People forget that the International Space Station has had humans on board continuously since November 2000."
+    },
+    {
+      "timestamp": "02:25",
+      "speaker": "Hannah",
+      "section": "Startups",
+      "text": "Raj, what's it like raising money for space startups?"
+    },
+    {
+      "timestamp": "02:31",
+      "speaker": "Raj",
+      "section": "Startups",
+      "text": "When we pitched our first satellite startup in 2019, three investors literally laughed us out of the room. Now those same firms call us."
+    },
+    {
+      "timestamp": "02:50",
+      "speaker": "Hannah",
+      "section": "Predictions",
+      "text": "Predictions?"
+    },
+    {
+      "timestamp": "02:56",
+      "speaker": "Olivia",
+      "section": "Predictions",
+      "text": "Starship will land astronauts on the Moon by 2026."
+    },
+    {
+      "timestamp": "03:12",
+      "speaker": "Raj",
+      "section": "Predictions",
+      "text": "I'm more cautious. I think regulation will be the real bottleneck, not the hardware."
+    },
+    {
+      "timestamp": "03:25",
+      "speaker": "Hannah",
+      "section": "Closing",
+      "text": "Raj, Olivia, thank you both for joining Launch Window."
+    },
+    {
+      "timestamp": "03:32",
+      "speaker": "Olivia",
+      "section": "Closing",
+      "text": "Thanks Hannah."
+    }
+  ]
+}

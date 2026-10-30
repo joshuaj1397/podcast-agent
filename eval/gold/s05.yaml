@@ -1,0 +1,34 @@
+episode_id: s05
+summary_key_points:
+  - ["water", "hydration"]
+  - ["processed meat", "carcinogen", "bacon"]
+  - ["carrot", "night vision"]
+  - ["added sugar", "nutrition label", "food label"]
+  - ["breakfast"]
+expected_tags: ["nutrition", "food myths", "health", "diet"]
+claims:
+  - ts: "00:00:15"
+    text: "Science says you need eight glasses of plain water a day"
+    type: factual
+    verdict: inaccurate
+    evidence_ids: ["kb-047", "web-031"]
+  - ts: "00:00:40"
+    text: "In 2015 the WHO's cancer agency classified processed meat as a Group 1 carcinogen"
+    type: factual
+    verdict: verified
+    evidence_ids: ["kb-048", "web-032"]
+  - ts: "00:01:02"
+    text: "Carrots give you night vision, which is why British pilots could shoot down bombers at night in WWII"
+    type: factual
+    verdict: inaccurate
+    evidence_ids: ["web-033"]
+  - ts: "00:01:28"
+    text: "US nutrition labels must list added sugars, with large manufacturers required to comply by January 2020"
+    type: factual
+    verdict: verified
+    evidence_ids: ["kb-049"]
+  - ts: "00:01:42"
+    text: "Sofia lost twelve pounds after cutting out bread for a month"
+    type: anecdote
+    verdict: unverifiable
+    evidence_ids: []

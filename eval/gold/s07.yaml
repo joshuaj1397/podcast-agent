@@ -1,0 +1,39 @@
+episode_id: s07
+summary_key_points:
+  - ["hottest year", "warmest year", "1.5"]
+  - ["renewable"]
+  - ["solar", "china"]
+  - ["co2", "carbon dioxide", "parts per million"]
+  - ["fusion"]
+expected_tags: ["climate change", "renewable energy", "solar power", "energy transition"]
+claims:
+  - ts: "00:28"
+    text: "2024 was the hottest year on record and the first calendar year more than 1.5C above pre-industrial levels"
+    type: factual
+    verdict: verified
+    evidence_ids: ["kb-054", "web-037"]
+  - ts: "01:10"
+    text: "Renewables are under 20% of the world's electricity"
+    type: statistic
+    verdict: inaccurate
+    evidence_ids: ["kb-055", "web-038"]
+  - ts: "01:46"
+    text: "China installed more than half of the world's new solar capacity in 2023"
+    type: statistic
+    verdict: verified
+    evidence_ids: ["kb-056"]
+  - ts: "02:11"
+    text: "Atmospheric CO2 is around 350 parts per million"
+    type: statistic
+    verdict: inaccurate
+    evidence_ids: ["kb-057", "web-039"]
+  - ts: "02:36"
+    text: "Rooftop solar cut the institute's electric bill by about 40%"
+    type: anecdote
+    verdict: unverifiable
+    evidence_ids: []
+  - ts: "03:01"
+    text: "Commercial fusion plants will supply power to the grid by 2035"
+    type: prediction
+    verdict: unverifiable
+    evidence_ids: []

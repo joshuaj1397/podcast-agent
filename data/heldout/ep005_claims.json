@@ -1,0 +1,198 @@
+{
+  "episode_id": "ep005",
+  "title": "Tech & Media Myths Debunked",
+  "host": "Rachel Kim",
+  "guests": [
+    "Omar Haddad",
+    "Dr. Nina Alvarez"
+  ],
+  "recorded": "2025-11-04",
+  "transcript": [
+    {
+      "timestamp": "00:00",
+      "speaker": "Rachel",
+      "section": "Introduction",
+      "text": "Welcome to Signal & Noise. I'm Rachel Kim, and today is myth-busting day: the tech and media 'facts' everyone repeats at dinner parties. With me are tech reporter Omar Haddad and cognitive scientist Dr. Nina Alvarez."
+    },
+    {
+      "timestamp": "00:18",
+      "speaker": "Omar",
+      "section": "Introduction",
+      "text": "Thanks Rachel. I've got a whole folder of things my relatives forward me, so this is therapy."
+    },
+    {
+      "timestamp": "00:26",
+      "speaker": "Nina",
+      "section": "Introduction",
+      "text": "And I'm here to defend the human brain from the internet."
+    },
+    {
+      "timestamp": "00:35",
+      "speaker": "Rachel",
+      "section": "Streaming & Audio",
+      "text": "Let's start with streaming. Omar, how big is Netflix these days, really?"
+    },
+    {
+      "timestamp": "00:44",
+      "speaker": "Omar",
+      "section": "Streaming & Audio",
+      "text": "Huge. Netflix finished 2024 with just over 300 million paid memberships worldwide, and that was the last full-year count before they stopped publishing subscriber numbers."
+    },
+    {
+      "timestamp": "01:05",
+      "speaker": "Rachel",
+      "section": "Streaming & Audio",
+      "text": "And music? It feels like everyone is on Spotify."
+    },
+    {
+      "timestamp": "01:12",
+      "speaker": "Omar",
+      "section": "Streaming & Audio",
+      "text": "Spotify has about 400 million monthly active users, which is basically everyone with a smartphone in the West."
+    },
+    {
+      "timestamp": "01:30",
+      "speaker": "Rachel",
+      "section": "Social Media",
+      "text": "Okay, social. Is Facebook dying? My teenagers say it's dead."
+    },
+    {
+      "timestamp": "01:38",
+      "speaker": "Omar",
+      "section": "Social Media",
+      "text": "Not even close. Facebook still has around 2 billion monthly users. People just don't post as much as they used to."
+    },
+    {
+      "timestamp": "01:58",
+      "speaker": "Nina",
+      "section": "Social Media",
+      "text": "Which I'd argue is healthier for everyone, honestly."
+    },
+    {
+      "timestamp": "02:10",
+      "speaker": "Rachel",
+      "section": "Brain Myths",
+      "text": "Nina, your turn. What's the myth that annoys you most?"
+    },
+    {
+      "timestamp": "02:20",
+      "speaker": "Nina",
+      "section": "Brain Myths",
+      "text": "The idea that we only use ten percent of our brains. It's completely false: brain imaging shows activity across virtually the whole brain over the course of a normal day."
+    },
+    {
+      "timestamp": "02:42",
+      "speaker": "Rachel",
+      "section": "Brain Myths",
+      "text": "So that movie lied to me. Great."
+    },
+    {
+      "timestamp": "02:48",
+      "speaker": "Omar",
+      "section": "Brain Myths",
+      "text": "Speaking of attention, though, the average human attention span is now eight seconds, shorter than a goldfish's. Microsoft research found that, and it's why every clip we post has to be tiny."
+    },
+    {
+      "timestamp": "03:05",
+      "speaker": "Nina",
+      "section": "Brain Myths",
+      "text": "Whatever the exact number, every app on your phone is designed to win those seconds. That part I'll happily believe."
+    },
+    {
+      "timestamp": "03:20",
+      "speaker": "Rachel",
+      "section": "Tech History",
+      "text": "Quick-fire tech history round. Omar, when did the iPhone come out?"
+    },
+    {
+      "timestamp": "03:28",
+      "speaker": "Omar",
+      "section": "Tech History",
+      "text": "The first iPhone went on sale in June 2007. Steve Jobs had unveiled it that January."
+    },
+    {
+      "timestamp": "03:40",
+      "speaker": "Rachel",
+      "section": "Tech History",
+      "text": "And YouTube?"
+    },
+    {
+      "timestamp": "03:45",
+      "speaker": "Omar",
+      "section": "Tech History",
+      "text": "Google bought YouTube in 2006 for $1.65 billion, and people thought that was a crazy price at the time."
+    },
+    {
+      "timestamp": "04:02",
+      "speaker": "Rachel",
+      "section": "Tech History",
+      "text": "And the web itself?"
+    },
+    {
+      "timestamp": "04:08",
+      "speaker": "Omar",
+      "section": "Tech History",
+      "text": "The web is younger than people think. Tim Berners-Lee invented it at CERN in 1999."
+    },
+    {
+      "timestamp": "04:22",
+      "speaker": "Nina",
+      "section": "Tech History",
+      "text": "That makes me feel very old and very young at the same time."
+    },
+    {
+      "timestamp": "04:30",
+      "speaker": "Rachel",
+      "section": "Tech History",
+      "text": "Last one for this round. Twitter is X now. When did that happen?"
+    },
+    {
+      "timestamp": "04:36",
+      "speaker": "Omar",
+      "section": "Tech History",
+      "text": "Elon Musk rebranded Twitter as X in July 2023, and in my opinion the brand has never recovered."
+    },
+    {
+      "timestamp": "04:55",
+      "speaker": "Rachel",
+      "section": "The Business of Media",
+      "text": "Omar, you came up in print journalism. What did that collapse look like from the inside?"
+    },
+    {
+      "timestamp": "05:02",
+      "speaker": "Omar",
+      "section": "The Business of Media",
+      "text": "At the regional paper where I worked in 2009, our print ad revenue fell by half in a single year. We lost a third of the newsroom by Christmas."
+    },
+    {
+      "timestamp": "05:25",
+      "speaker": "Nina",
+      "section": "The Business of Media",
+      "text": "That's brutal. And I suspect it's not over for a lot of outlets."
+    },
+    {
+      "timestamp": "05:30",
+      "speaker": "Rachel",
+      "section": "Predictions",
+      "text": "Predictions, then. Where is all of this headed?"
+    },
+    {
+      "timestamp": "05:38",
+      "speaker": "Nina",
+      "section": "Predictions",
+      "text": "By 2030, more than half of everything posted online will be generated by AI. I'd bet money on it."
+    },
+    {
+      "timestamp": "05:55",
+      "speaker": "Omar",
+      "section": "Predictions",
+      "text": "I think long-form audio is the most trustworthy medium we've got, because you can hear when someone is bluffing."
+    },
+    {
+      "timestamp": "06:10",
+      "speaker": "Rachel",
+      "section": "Closing",
+      "text": "On that note, thank you Omar and Nina. And listeners: check before you forward. See you next week on Signal & Noise."
+    }
+  ]
+}

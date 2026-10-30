@@ -1,0 +1,23 @@
+# episode_id: s10
+# title: Chips, Phones and the Silicon Squeeze
+# host: Nate Fischer
+# guests: Dr. Mei Tanaka
+# recorded: 2025-10-14
+[00:00:03] Nate: Welcome to Silicon Weekly, I'm Nate Fischer, and today Dr. Mei Tanaka is here to talk chips and phones.
+[00:00:11] Mei: Thanks Nate, good to be here.
+[00:00:15] Nate: Start with the basics. Who actually makes the really advanced chips?
+[00:00:21] Mei: Mostly one company. T S M C in Taiwan makes roughly 90 percent of the world's most advanced chips.
+[00:00:35] Nate: Which is a, uh, a geopolitical headache.
+[00:00:40] Mei: A massive one, yeah.
+[00:00:44] Nate: And then there's Moore's law, which says the number of transistors on a chip doubles every single year.
+[00:00:55] Mei: It's slowed down a lot lately, but the whole industry still kind of plans around it.
+[00:01:05] Nate: Phones. Is the market growing again?
+[00:01:10] Mei: It is. About 1.24 billion smartphones shipped worldwide in 2024, the first growth after two down years.
+[00:01:25] Nate: And the AI chip boom, I mean, Nvidia's sitting at about a three trillion dollar market cap right now.
+[00:01:36] Mei: Um, it's, it's an incredible run either way.
+[00:01:42] Nate: I upgraded my phone last month and honestly the battery lasts, like, twice as long as my old one.
+[00:01:52] Mei: Better chips and better battery chemistry both help there.
+[00:02:00] Nate: Last question, will we ever get the cutting-edge chips made in the US?
+[00:02:05] Mei: Slowly. I think the money's there, but the workforce isn't yet.
+[00:02:15] Nate: Thanks Mei.
+[00:02:18] Mei: Thanks Nate.

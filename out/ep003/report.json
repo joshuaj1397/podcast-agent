@@ -1,0 +1,173 @@
+{
+  "episode_id": "ep003",
+  "title": "Bootstrapping vs Fundraising — Which Path Wins?",
+  "host": "Lena Torres",
+  "guests": [
+    "Samir Gupta",
+    "Emily Rogers"
+  ],
+  "recorded": null,
+  "source": "data/heldout/ep003_bootstrapping.json",
+  "summary": "Host Lena Torres explored the debate between bootstrapping and fundraising to determine the optimal path for a venture. Guest Samir Gupta shared his experience bootstrapping companies from scratch, arguing that this method enforces discipline by forcing founders to focus on revenue and profitability early on, avoiding distractions from chasing venture capital metrics. He cited an example of building a SaaS company that reached break-even in eighteen months while maintaining total control. Conversely, Emily Rogers, who has experience raising multiple funding rounds, emphasized that venture capital is beneficial when a market is time-sensitive, allowing companies to capture opportunities before competitors. Emily contrasted Samir's experience by mentioning a fintech startup she advised that raised seed funding to scale quickly and secured market leadership within two years.\n\nThe discussion moved toward guiding founders on making this decision. Samir suggested that founders should bootstrap if their market is niche, defensible, and already generating revenue early on. Emily, however, advised raising capital if the space is fast-moving and competitive, requiring rapid scaling of talent or product. The trade-offs associated with each path were also discussed: bootstrapping leads to slower growth and full control but involves less risk from investors. In contrast, venture capital offers faster growth and resources but comes at the cost of diluted control and potential pressure for quick exits. Ultimately, Lena Torres concluded that the best path for a founder depends heavily on the specific market type and the founder's priorities regarding control versus speed.",
+  "takeaways": [
+    "Bootstrapping enforces discipline by focusing early on revenue and profitability.",
+    "VC funding is useful for capturing time-sensitive markets before competitors.",
+    "Bootstrapping is best suited for niche, defensible, and early revenue-generating markets.",
+    "Raising capital is advisable in fast-moving, competitive spaces requiring rapid scale.",
+    "Bootstrapping offers full control but results in slower growth and less investor risk."
+  ],
+  "quotes": [
+    {
+      "turn_id": "T05",
+      "ts": "01:05",
+      "speaker": "Samir Gupta",
+      "text": "Bootstrapping forces discipline. You focus on revenue and profitability early. No distractions from chasing VC metrics."
+    },
+    {
+      "turn_id": "T08",
+      "ts": "02:10",
+      "speaker": "Samir Gupta",
+      "text": "I built a SaaS with no outside capital; we reached break-even in 18 months. We had total control."
+    },
+    {
+      "turn_id": "T11",
+      "ts": "03:15",
+      "speaker": "Samir Gupta",
+      "text": "If your market is niche, defensible, and revenue-generating early, bootstrap."
+    },
+    {
+      "turn_id": "T12",
+      "ts": "03:40",
+      "speaker": "Emily Rogers",
+      "text": "If it’s a fast-moving, competitive space and you need talent or product scale fast, raise."
+    },
+    {
+      "turn_id": "T15",
+      "ts": "04:40",
+      "speaker": "Emily Rogers",
+      "text": "VC: faster growth, resources, but you dilute control and may face pressure for quick exits."
+    }
+  ],
+  "tags": [
+    "bootstrapping",
+    "venture capital",
+    "founder path",
+    "market strategy",
+    "growth",
+    "control"
+  ],
+  "fact_checks": [
+    {
+      "claim": "VC money helps capture a time-sensitive market before competitors.",
+      "turn_id": "T06",
+      "ts": "01:30",
+      "speaker": "Emily Rogers",
+      "type": "factual",
+      "status": "unverifiable",
+      "symbol": "❓",
+      "verification": "Unverifiable (no evidence found that addresses the claim)",
+      "confidence": 0.5,
+      "reasoning": "The claim states that VC money helps capture a time-sensitive market before competitors. However, the provided evidence consists of mock market data for Nvidia, Norway EV market share, Earth-Mars distance, Bitcoin price, and two general web articles about carrots and teen screen time. None of this evidence directly supports or contradicts the specific claim about VC money and time-sensitive markets.",
+      "method": "judged",
+      "labels": [
+        "insufficient",
+        "insufficient",
+        "insufficient"
+      ],
+      "queries": [
+        "search_kb: emily rogers vc money time-sensitive market"
+      ],
+      "evidence": [
+        {
+          "id": "kb-067",
+          "title": "Nvidia market value",
+          "source": "Market data (mock)",
+          "date": "2025-07-10",
+          "reliability": "kb",
+          "text": "Nvidia became the first public company to reach a market value of 4 trillion US dollars in July 2025, about a year after it first passed 3 trillion in June 2024.",
+          "url": null
+        },
+        {
+          "id": "kb-037",
+          "title": "Norway EV market share",
+          "source": "Norwegian Road Federation (mock)",
+          "date": "2025-01-02",
+          "reliability": "kb",
+          "text": "Battery-electric cars made up 88.9% of new passenger car registrations in Norway in 2024, the highest share of any country.",
+          "url": null
+        },
+        {
+          "id": "kb-014",
+          "title": "Earth-Mars distance and travel time",
+          "source": "NASA (mock DB)",
+          "date": "2023-06-01",
+          "reliability": "kb",
+          "text": "The distance between Earth and Mars ranges from roughly 55 million km at the closest approaches to about 400 million km when the planets are on opposite sides of the Sun. Typical transfer flights take six to nine months.",
+          "url": null
+        },
+        {
+          "id": "kb-023",
+          "title": "Bitcoin price in 2025",
+          "source": "Market data (mock)",
+          "date": "2025-12-31",
+          "reliability": "kb",
+          "text": "Bitcoin set a new all-time high of roughly 126,000 US dollars in early October 2025 before a sharp pullback in the following weeks.",
+          "url": null
+        },
+        {
+          "id": "web-069",
+          "title": "Carrots really do help you see in the dark",
+          "source": "wellness-buzz.test",
+          "date": "2018-02-20",
+          "reliability": "low",
+          "text": "Your grandma was right: load up on carrots and you'll see better at night, just like the WWII pilots who ate them before missions.",
+          "url": "https://wellness-buzz.test/carrots-night-vision"
+        },
+        {
+          "id": "web-150",
+          "title": "Teens and screen time: new survey",
+          "source": "social-signal.test",
+          "date": "2024-03-11",
+          "reliability": "medium",
+          "text": "A survey of US teenagers found many feel they spend too much time on their phones, though most say social media helps them feel connected.",
+          "url": "https://social-signal.test/2024/teens-screen-time"
+        }
+      ]
+    },
+    {
+      "claim": "Samir Gupta built a SaaS with no outside capital that reached break-even in 18 months and retained total control.",
+      "turn_id": "T08",
+      "ts": "02:10",
+      "speaker": "Samir Gupta",
+      "type": "anecdote",
+      "status": "unverifiable",
+      "symbol": "❓",
+      "verification": "Unverifiable (a personal anecdote with no public record)",
+      "confidence": 0.4,
+      "reasoning": "a personal anecdote with no public record",
+      "method": "rule",
+      "labels": [],
+      "queries": [],
+      "evidence": []
+    }
+  ],
+  "plan": {
+    "reasoning": "The episode has claim candidates, so I need to run the 'claims' and 'factcheck' steps. Since there is one turn with a number, and the claim count is 3, I will set a claim budget of 3 and set use_web_search to true as it's good practice when claims are present.",
+    "steps": [
+      "summarize",
+      "claims",
+      "factcheck",
+      "notes"
+    ],
+    "claim_budget": 3,
+    "use_web_search": true,
+    "summary_focus": "The episode compares the strategies of bootstrapping versus fundraising to determine the winning path for a venture."
+  },
+  "degraded": [],
+  "harness_version": "base",
+  "model": "ollama_chat/gemma4:e2b",
+  "stats": {
+    "seconds": 0.1,
+    "cache_hits": 9.0
+  }
+}

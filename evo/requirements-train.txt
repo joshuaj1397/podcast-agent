@@ -1,0 +1,16 @@
+# Evo² training dependencies. Kept out of the main Docker image.
+# Install (Blackwell GPUs need the cu128 torch build):
+#   uv venv .venv-train --python 3.12
+#   uv pip install --python .venv-train -r evo/requirements-train.txt --index-strategy unsafe-best-match
+#   uv pip install --python .venv-train --reinstall torch --index-url https://download.pytorch.org/whl/cu128
+--extra-index-url https://download.pytorch.org/whl/cu128
+torch>=2.7
+transformers>=4.57
+peft>=0.17
+accelerate>=1.10
+bitsandbytes>=0.48
+datasets>=3
+huggingface_hub
+pyyaml
+pydantic>=2.7
+safetensors

@@ -1,0 +1,35 @@
+episode_id: s10
+summary_key_points:
+  - ["tsmc", "t s m c"]
+  - ["moore's law", "moore"]
+  - ["smartphone"]
+  - ["nvidia"]
+  - ["geopolitical", "taiwan"]
+  - ["workforce", "made in the us", "us manufacturing"]
+expected_tags: ["semiconductors", "smartphones", "ai chips", "supply chain"]
+claims:
+  - ts: "00:00:21"
+    text: "TSMC makes roughly 90% of the world's most advanced chips"
+    type: statistic
+    verdict: verified
+    evidence_ids: ["kb-064", "web-047"]
+  - ts: "00:00:44"
+    text: "Moore's law says transistor counts on a chip double every year"
+    type: factual
+    verdict: inaccurate
+    evidence_ids: ["kb-065", "web-048"]
+  - ts: "00:01:10"
+    text: "About 1.24 billion smartphones shipped worldwide in 2024, the first growth after two down years"
+    type: statistic
+    verdict: verified
+    evidence_ids: ["kb-066", "web-049"]
+  - ts: "00:01:25"
+    text: "Nvidia's market cap is about three trillion dollars"
+    type: statistic
+    verdict: inaccurate
+    evidence_ids: ["kb-067", "web-050"]
+  - ts: "00:01:42"
+    text: "Nate's new phone battery lasts twice as long as his old one"
+    type: anecdote
+    verdict: unverifiable
+    evidence_ids: []

@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+*.pyc
+.cache/
+.pytest_cache/
+.env
+evo/checkpoints/
+evo/gguf/
+*.gguf
+*.safetensors
+.terraform/
+*.tfstate*
+.terraform.lock.hcl
+evo/merged/
+evo/data/
+.venv-train/
+# not for the public repo: the assignment brief and internal planning notes
+FDE Take Home Assignment.pdf
+PLAN.md

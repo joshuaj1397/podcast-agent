@@ -1,0 +1,20 @@
+episode_id: ep001
+summary_key_points:
+  - ["remote work", "remote-first", "distributed"]
+  - ["async", "asynchronous"]
+  - ["documentation", "handbook"]
+  - ["outcomes over hours", "outcomes", "deliverables"]
+  - ["loneliness", "isolation", "connection", "retreats"]
+  - ["culture", "trust"]
+expected_tags: ["remote work", "company culture", "async communication", "productivity", "documentation"]
+claims:
+  - ts: "01:20"
+    text: "GitLab, Automattic and Doist have written handbooks documenting how they work"
+    type: factual
+    verdict: verified
+    evidence_ids: ["kb-001", "kb-002", "web-001"]
+  - ts: "05:00"
+    text: "Remote-first companies will dominate talent acquisition"
+    type: prediction
+    verdict: unverifiable
+    evidence_ids: []

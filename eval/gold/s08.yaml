@@ -1,0 +1,35 @@
+episode_id: s08
+summary_key_points:
+  - ["tiktok", "tick tock"]
+  - ["instagram", "insta gram"]
+  - ["threads"]
+  - ["facebook"]
+  - ["algorithm"]
+  - ["brands", "every platform", "consistent"]
+expected_tags: ["social media", "tiktok", "algorithms", "digital marketing"]
+claims:
+  - ts: "00:00:19"
+    text: "TikTok passed one billion monthly users in September 2021"
+    type: statistic
+    verdict: verified
+    evidence_ids: ["kb-059", "web-040"]
+  - ts: "00:00:30"
+    text: "Instagram has about one billion monthly users"
+    type: statistic
+    verdict: inaccurate
+    evidence_ids: ["kb-060", "web-042"]
+  - ts: "00:00:46"
+    text: "Threads got 100 million sign-ups in about five days"
+    type: statistic
+    verdict: verified
+    evidence_ids: ["web-041"]
+  - ts: "00:00:58"
+    text: "Facebook started out as a Stanford-only network"
+    type: factual
+    verdict: inaccurate
+    evidence_ids: ["kb-061", "web-043"]
+  - ts: "00:01:25"
+    text: "Chris's niece spends six hours a day on TikTok"
+    type: anecdote
+    verdict: unverifiable
+    evidence_ids: []

@@ -1,0 +1,40 @@
+# episode_id: ep004
+# title: Red Planet Rumors
+# host: Jamie Ortiz
+# guests: Dr. Lena Park
+# recorded: 2025-02-10
+[00:00:05] Host: Welcome back to Orbit Hour, I'm Jamie Ortiz, and, uh, today we've got planetary scientist Dr. Lena Park here to talk about, like, all things Mars.
+[00:00:16] Guest: Thanks Jamie, um, it's great to be here. Mars is kind of having a moment right now.
+[00:00:23] Host: It really is. So before we get to the, the news, you know, remind people what we actually have up there right now.
+[00:00:31] Guest: Sure, so the big one is the Perseverance rover. It, uh, landed in Jezebel Crater in February 2021 and it's been drilling rock cores ever since.
+[00:00:45] Host: Jezebel Crater. That's a, that's a pretty metal name for a crater.
+[00:00:49] Guest: Ha, it's a gorgeous spot, honestly, the pictures are, like, unreal.
+[00:00:56] Host: And the little helicopter, um, Ingenuity, what's it up to these days?
+[00:01:01] Guest: Oh, Ingenuity is still flying, it's done, like, about fifty flights now and NASSA keeps extending the mission.
+[00:01:13] Host: That's wild for a, you know, a little drone on another planet.
+[00:01:18] Guest: Honestly it's the coolest thing NASA has done in a decade, I will die on that hill.
+[00:01:26] Host: Ha, noted. So what's the, uh, the mood like in the community right now?
+[00:01:31] Guest: Busy. My old lab mate works at JPL and she says the Mars team has been working, like, weekends since last summer.
+[00:01:43] Host: Wow. Okay so, um, I wanna get to the headline, uh, the headline thing.
+[00:01:49] Guest: Yeah, go for it.
+[00:01:52] Host: But first, quick, uh, quick shout out to everyone who sent in questions, you guys are, like, the best.
+[00:02:03] Guest: They really are, the questions this week were, um, really sharp.
+[00:02:14] Host: So, um, Nasa recently announced something about a new Mars mission.
+[00:02:18] Guest: Yes, it's launching in early 2026 — they're planning to bring back samples.
+[00:02:27] Host: Which is, uh, which is huge. Like, actual pieces of Mars on, on
+[00:02:31] Host: Earth. That's the dream, right?
+[00:02:35] Guest: It's the dream. I mean, those, um, those sealed tubes are kind of the whole point of the rover, you know.
+[00:02:46] Host: And is, uh, is Starship gonna be part of that, or?
+[00:02:51] Guest: I mean, I think Starship could change everything for Mars, but, uh, I'd wait and see.
+[00:03:02] Host: Fair. Okay, total pivot, because our producer will not stop texting me about it. Crypto.
+[00:03:09] Guest: Oh no. (laughs)
+[00:03:12] Host: You follow bit coin at all?
+[00:03:15] Guest: A little, like, from a distance. Bit coin went over a hundred thousand dollars for the first time back in early December, which, um, nobody in my department saw coming.
+[00:03:29] Host: Right, and I'm telling you, bit coin will reach $200K by 2025. Like, before the year's out.
+[00:03:37] Guest: I'm a planetary scientist, Jamie, I, uh, I can't help you there.
+[00:03:42] Host: Ha, okay, okay. Back to space. Anything you're, like, watching for this year?
+[00:03:50] Guest: Honestly just the, uh, the weather reports from Mars. The dust storms out there are no joke.
+[00:03:59] Host: Love it. Where can people follow your, um, your work?
+[00:04:04] Guest: I'm on most of the socials, just search Lena Park planetary, uh, planetary science.
+[00:04:12] Host: Perfect. Dr. Lena Park, thank you so much.
+[00:04:15] Guest: Thanks Jamie, this was fun.

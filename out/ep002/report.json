@@ -1,0 +1,206 @@
+{
+  "episode_id": "ep002",
+  "title": "AI in Healthcare: Hype or Reality?",
+  "host": "David Chen",
+  "guests": [
+    "Dr. Priya Patel",
+    "Alex Moore"
+  ],
+  "recorded": null,
+  "source": "data/heldout/ep002_ai_healthcare.json",
+  "summary": "In this episode of Tech Health Today, host David Chen explores the complex landscape of Artificial Intelligence in healthcare, aiming to distinguish between hype and reality. Dr. Priya Patel and Alex Moore discuss the practical applications and inherent limitations of AI in the medical field. They confirmed that AI is being used in areas like reading X-rays and flagging urgent cases, but emphasized that these tools are assistive, not replacements for clinicians (T05). Dr. Patel noted that tangible patient-facing applications include smart triage chatbots on hospital websites to help patients determine next steps before seeing a doctor (T08). \n\nHowever, the speakers highlighted significant barriers to widespread adoption. Alex Moore pointed out that regulatory hurdles, specifically FDA reviews, mean full autonomy is not imminent (T06). Furthermore, data privacy and the potential for bias in AI, which learns from potentially skewed clinical data, are major concerns (T09). Despite these challenges, the driving forces behind AI adoption include efficiency gains, such as providing faster reads and reducing errors for clinicians (T11), and the acceleration of digital health adoption spurred by the pandemic (T12). \n\nThe conversation looked toward the future, with Dr. Patel mentioning the potential for AI copilots that suggest treatment plans, stressing that a human will always retain the final decision-making authority (T14). Alex Moore concluded that interoperability between systems is crucial for AI to function effectively (T15). Ultimately, the consensus reached by David Chen was that while AI is powerful, the path forward requires cautious optimism.",
+  "takeaways": [
+    "AI is currently assistive in healthcare, such as reading X-rays, rather than replacing clinicians.",
+    "Significant regulatory barriers, overseen by the FDA, prevent full autonomy for AI systems.",
+    "Data privacy and inherent bias in clinical data present major hurdles for AI adoption.",
+    "Hospitals are adopting AI primarily for efficiency and to provide support to clinicians.",
+    "Future applications involve AI copilots that suggest treatment plans, requiring human final approval."
+  ],
+  "quotes": [
+    {
+      "turn_id": "T05",
+      "ts": "00:55",
+      "speaker": "Dr. Priya Patel",
+      "text": "Yes. Some hospitals use AI for reading X-rays or flagging urgent cases. But it’s assistive, not replacing clinicians."
+    },
+    {
+      "turn_id": "T06",
+      "ts": "01:15",
+      "speaker": "Alex Moore",
+      "text": "And the regulatory barriers are huge. The FDA reviews these systems carefully, so full autonomy isn’t happening anytime soon."
+    },
+    {
+      "turn_id": "T09",
+      "ts": "02:20",
+      "speaker": "Alex Moore",
+      "text": "Data privacy and bias are major hurdles. AI learns from existing clinical data, which may be skewed."
+    },
+    {
+      "turn_id": "T14",
+      "ts": "04:15",
+      "speaker": "Dr. Priya Patel",
+      "text": "Yes, AI copilots that suggest treatment plans, but a human will always make the final call."
+    },
+    {
+      "turn_id": "T16",
+      "ts": "05:10",
+      "speaker": "David Chen",
+      "text": "Thanks, Priya and Alex. And thanks to our listeners. AI is powerful, but cautious optimism is the way forward."
+    }
+  ],
+  "tags": [
+    "ai in healthcare",
+    "clinical adoption",
+    "medical ethics",
+    "diagnostics",
+    "fda regulation"
+  ],
+  "fact_checks": [
+    {
+      "claim": "Some hospitals use AI for reading X-rays or flagging urgent cases.",
+      "turn_id": "T05",
+      "ts": "00:55",
+      "speaker": "Dr. Priya Patel",
+      "type": "factual",
+      "status": "verified",
+      "symbol": "✅",
+      "verification": "True (confirmed by FDA AI-enabled device list (mock summary) [kb-005])",
+      "confidence": 0.97,
+      "reasoning": "The claim states that some hospitals use AI for reading X-rays or flagging urgent cases. Evidence [kb-005] states that typical tools detect findings on chest X-rays, CT scans and mammograms or flag suspected urgent cases, such as brain bleeds, for prioritized review by a radiologist. This directly supports the claim.",
+      "method": "judged",
+      "labels": [
+        "supported",
+        "supported",
+        "supported"
+      ],
+      "queries": [
+        "search_kb: hospitals use ai for reading x-rays"
+      ],
+      "evidence": [
+        {
+          "id": "kb-005",
+          "title": "Radiology dominates authorized AI medical devices",
+          "source": "FDA AI-enabled device list (mock summary)",
+          "date": "2025-07-10",
+          "reliability": "kb",
+          "text": "The FDA's public list of AI-enabled medical devices passed 1,000 authorizations by 2025, and roughly three quarters are in radiology. Typical tools detect findings on chest X-rays, CT scans and mammograms or flag suspected urgent cases, such as brain bleeds, for prioritized review by a radiologist.",
+          "url": null
+        }
+      ]
+    },
+    {
+      "claim": "The FDA reviews AI systems carefully, and full autonomy is not happening anytime soon.",
+      "turn_id": "T06",
+      "ts": "01:15",
+      "speaker": "Alex Moore",
+      "type": "factual",
+      "status": "verified",
+      "symbol": "✅",
+      "verification": "True (confirmed by FDA (mock DB) [kb-004])",
+      "confidence": 0.97,
+      "reasoning": "The claim states that the FDA reviews AI systems carefully and that full autonomy is not happening anytime soon. Evidence [kb-004] confirms that AI-enabled software that meets the definition of a medical device must be authorized by the US FDA before it is marketed through clearance pathways. This supports the idea that the FDA reviews these systems carefully. The evidence does not directly state that full autonomy is not happening anytime soon, but the rigorous authorization process implies caution.",
+      "method": "judged",
+      "labels": [
+        "supported",
+        "supported",
+        "supported"
+      ],
+      "queries": [
+        "search_kb: fda reviews ai systems autonomy"
+      ],
+      "evidence": [
+        {
+          "id": "kb-004",
+          "title": "FDA authorization of AI-enabled medical devices",
+          "source": "FDA (mock DB)",
+          "date": "2024-12-04",
+          "reliability": "kb",
+          "text": "AI-enabled software that meets the definition of a medical device must be authorized by the US FDA before it is marketed, through 510(k) clearance, De Novo classification or premarket approval. In December 2024 the FDA finalized guidance on predetermined change control plans that lets makers pre-specify how an AI model will be updated after authorization.",
+          "url": null
+        }
+      ]
+    },
+    {
+      "claim": "The pandemic accelerated digital health adoption, including AI tools.",
+      "turn_id": "T12",
+      "ts": "03:30",
+      "speaker": "Alex Moore",
+      "type": "factual",
+      "status": "unverifiable",
+      "symbol": "❓",
+      "verification": "Unverifiable (no evidence found that addresses the claim)",
+      "confidence": 0.4,
+      "reasoning": "The claim states that the pandemic accelerated digital health adoption, including AI tools. The evidence includes information about the surge in telehealth during the pandemic (kb-006) and the FDA's authorization of AI-enabled medical devices (kb-004). While the evidence confirms the acceleration of digital health (telehealth) and the existence of regulated AI medical devices, there is no direct evidence explicitly linking the pandemic to the acceleration of *AI tool* adoption in the context of the claim. The evidence supports the existence of AI medical devices and the acceleration of *telehealth*, but not definitively the acceleration of *AI tool* adoption as a whole.",
+      "method": "judged",
+      "labels": [
+        "insufficient",
+        "supported",
+        "insufficient"
+      ],
+      "queries": [
+        "search_kb: alex moore ai in healthcare"
+      ],
+      "evidence": [
+        {
+          "id": "kb-004",
+          "title": "FDA authorization of AI-enabled medical devices",
+          "source": "FDA (mock DB)",
+          "date": "2024-12-04",
+          "reliability": "kb",
+          "text": "AI-enabled software that meets the definition of a medical device must be authorized by the US FDA before it is marketed, through 510(k) clearance, De Novo classification or premarket approval. In December 2024 the FDA finalized guidance on predetermined change control plans that lets makers pre-specify how an AI model will be updated after authorization.",
+          "url": null
+        },
+        {
+          "id": "kb-006",
+          "title": "Pandemic-era surge in telehealth",
+          "source": "McKinsey / HHS ASPE (mock summary)",
+          "date": "2021-12-03",
+          "reliability": "kb",
+          "text": "Telehealth use in the US surged during the COVID-19 pandemic. By mid-2021 telehealth utilization had stabilized at about 38 times its pre-pandemic level, and Medicare telehealth visits rose from roughly 840,000 in 2019 to 52.7 million in 2020.",
+          "url": null
+        }
+      ]
+    },
+    {
+      "claim": "AI copilots suggest treatment plans, but a human makes the final call.",
+      "turn_id": "T14",
+      "ts": "04:15",
+      "speaker": "Dr. Priya Patel",
+      "type": "factual",
+      "status": "unverifiable",
+      "symbol": "❓",
+      "verification": "Unverifiable (no evidence found that addresses the claim)",
+      "confidence": 0.5,
+      "reasoning": "The claim states that AI copilots suggest treatment plans, but a human makes the final call. The provided evidence does not contain any information about Dr. Priya Patel's statement or the role of AI copilots in treatment planning versus human oversight. Therefore, the claim cannot be verified or refuted with the given evidence.",
+      "method": "judged",
+      "labels": [
+        "insufficient",
+        "insufficient",
+        "insufficient"
+      ],
+      "queries": [
+        "search_kb: dr. priya patel ai copilots treatment plans"
+      ],
+      "evidence": []
+    }
+  ],
+  "plan": {
+    "reasoning": "The episode profile indicates there are 5 claim candidates, so I need to run 'claims' and 'factcheck'. Since no specific context about the nature of these claims is provided, I will proceed with the standard pipeline order: summarize, notes, claims, factcheck.",
+    "steps": [
+      "summarize",
+      "notes",
+      "claims",
+      "factcheck"
+    ],
+    "claim_budget": 5,
+    "use_web_search": false,
+    "summary_focus": "The episode discusses the reality versus the hype surrounding Artificial Intelligence in healthcare."
+  },
+  "degraded": [],
+  "harness_version": "base",
+  "model": "ollama_chat/gemma4:e2b",
+  "stats": {
+    "seconds": 0.3,
+    "cache_hits": 24.0
+  }
+}

@@ -1,0 +1,34 @@
+episode_id: s01
+summary_key_points:
+  - ["ad-supported", "ad tier", "advertising", "ads"]
+  - ["netflix"]
+  - ["prime video", "amazon"]
+  - ["connected tv", "ctv", "linear"]
+  - ["measurement", "brand recall"]
+expected_tags: ["streaming", "advertising", "connected tv", "media buying"]
+claims:
+  - ts: "00:32"
+    text: "Netflix launched its Basic with Ads plan in November 2022"
+    type: factual
+    verdict: verified
+    evidence_ids: ["kb-034", "web-017"]
+  - ts: "00:56"
+    text: "Prime Video turned on ads by default in January 2024, with a $2.99 monthly fee to remove them"
+    type: factual
+    verdict: verified
+    evidence_ids: ["web-018"]
+  - ts: "01:22"
+    text: "Netflix's ad tier has about 5 million monthly active users globally"
+    type: statistic
+    verdict: inaccurate
+    evidence_ids: ["kb-035", "web-019"]
+  - ts: "02:12"
+    text: "A CPG client's CTV-only flight produced a 30% lift in brand recall versus linear"
+    type: anecdote
+    verdict: unverifiable
+    evidence_ids: []
+  - ts: "03:02"
+    text: "Within five years linear TV will be under 10% of US video ad spend"
+    type: prediction
+    verdict: unverifiable
+    evidence_ids: []

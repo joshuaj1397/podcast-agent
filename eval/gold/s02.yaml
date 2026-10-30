@@ -1,0 +1,39 @@
+episode_id: s02
+summary_key_points:
+  - ["electric vehicle", "electric car", "evs"]
+  - ["17 million", "one in five", "20%"]
+  - ["norway"]
+  - ["battery", "batteries"]
+  - ["charging"]
+expected_tags: ["electric vehicles", "automotive", "clean energy", "consumer adoption"]
+claims:
+  - ts: "00:20"
+    text: "Electric cars are only about 5% of global car sales"
+    type: statistic
+    verdict: inaccurate
+    evidence_ids: ["kb-036", "web-020"]
+  - ts: "00:32"
+    text: "Global electric car sales topped 17 million in 2024, more than one in five new cars"
+    type: statistic
+    verdict: verified
+    evidence_ids: ["kb-036", "web-020"]
+  - ts: "01:00"
+    text: "Almost 89% of new cars sold in Norway in 2024 were fully electric"
+    type: statistic
+    verdict: verified
+    evidence_ids: ["kb-037", "web-021"]
+  - ts: "01:18"
+    text: "An EV battery typically needs replacing after about three years"
+    type: factual
+    verdict: inaccurate
+    evidence_ids: ["kb-038", "web-022"]
+  - ts: "01:35"
+    text: "Karen's EV is past 60,000 miles with almost no range loss"
+    type: anecdote
+    verdict: unverifiable
+    evidence_ids: []
+  - ts: "02:52"
+    text: "Half of all new cars sold in the US will be electric by 2030"
+    type: prediction
+    verdict: unverifiable
+    evidence_ids: []

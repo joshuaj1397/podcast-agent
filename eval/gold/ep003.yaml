@@ -1,0 +1,19 @@
+episode_id: ep003
+summary_key_points:
+  - ["bootstrap"]
+  - ["venture capital", "vc", "fundraising", "raise"]
+  - ["discipline", "profitability", "revenue"]
+  - ["control", "dilution", "dilute"]
+  - ["niche", "competitive", "market type", "time-sensitive"]
+expected_tags: ["startups", "bootstrapping", "venture capital", "entrepreneurship", "fundraising"]
+claims:
+  - ts: "02:10"
+    text: "Samir's SaaS reached break-even in 18 months with no outside capital"
+    type: anecdote
+    verdict: unverifiable
+    evidence_ids: []
+  - ts: "02:35"
+    text: "A fintech startup Emily advised raised seed funding and secured market leadership within two years"
+    type: anecdote
+    verdict: unverifiable
+    evidence_ids: []

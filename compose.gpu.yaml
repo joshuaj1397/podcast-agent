@@ -1,0 +1,10 @@
+# NVIDIA GPU for the Ollama container (needs the NVIDIA Container Toolkit / Docker Desktop WSL2 GPU support).
+services:
+  ollama:
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]

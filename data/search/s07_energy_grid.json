@@ -1,0 +1,119 @@
+{
+  "episode_id": "s07",
+  "title": "Power Shift: Renewables and the Grid",
+  "host": "Elena Rossi",
+  "guests": [
+    "Dr. Sam Okafor"
+  ],
+  "recorded": "2025-09-10",
+  "transcript": [
+    {
+      "timestamp": "00:00",
+      "speaker": "Elena",
+      "section": "Introduction",
+      "text": "Welcome to Climate Desk. I'm Elena Rossi, and today I'm talking energy transition with climate scientist Dr. Sam Okafor."
+    },
+    {
+      "timestamp": "00:12",
+      "speaker": "Sam",
+      "section": "Introduction",
+      "text": "Thanks Elena, glad to be here."
+    },
+    {
+      "timestamp": "00:20",
+      "speaker": "Elena",
+      "section": "Where We Are",
+      "text": "Let's start with temperature. How bad was last year?"
+    },
+    {
+      "timestamp": "00:28",
+      "speaker": "Sam",
+      "section": "Where We Are",
+      "text": "2024 was the hottest year on record, and the first calendar year where the global average went more than 1.5 degrees Celsius above pre-industrial levels."
+    },
+    {
+      "timestamp": "00:50",
+      "speaker": "Elena",
+      "section": "Where We Are",
+      "text": "Does that mean the Paris goals are dead?"
+    },
+    {
+      "timestamp": "00:56",
+      "speaker": "Sam",
+      "section": "Where We Are",
+      "text": "I'd call it a warning shot, not a death certificate. But it should scare policymakers."
+    },
+    {
+      "timestamp": "01:10",
+      "speaker": "Elena",
+      "section": "Clean Power",
+      "text": "On the clean energy side, I feel like renewables are still a rounding error. They're under 20% of the world's electricity."
+    },
+    {
+      "timestamp": "01:25",
+      "speaker": "Sam",
+      "section": "Clean Power",
+      "text": "I hear that all the time, and I think the growth curve is the story people keep missing."
+    },
+    {
+      "timestamp": "01:40",
+      "speaker": "Elena",
+      "section": "Clean Power",
+      "text": "Who's building the most?"
+    },
+    {
+      "timestamp": "01:46",
+      "speaker": "Sam",
+      "section": "Clean Power",
+      "text": "China, by a mile. China installed more than half of all the new solar capacity in the world in 2023."
+    },
+    {
+      "timestamp": "02:05",
+      "speaker": "Elena",
+      "section": "The Atmosphere",
+      "text": "And where are carbon dioxide levels these days?"
+    },
+    {
+      "timestamp": "02:11",
+      "speaker": "Sam",
+      "section": "The Atmosphere",
+      "text": "We're at around 350 parts per million of CO2 in the atmosphere, which is the level scientists were warning about decades ago."
+    },
+    {
+      "timestamp": "02:30",
+      "speaker": "Elena",
+      "section": "Local Action",
+      "text": "Is anything working at the local level?"
+    },
+    {
+      "timestamp": "02:36",
+      "speaker": "Sam",
+      "section": "Local Action",
+      "text": "At our institute we put solar panels on the roof two years ago and our electric bill dropped about 40%."
+    },
+    {
+      "timestamp": "02:55",
+      "speaker": "Elena",
+      "section": "Predictions",
+      "text": "What's the next big thing?"
+    },
+    {
+      "timestamp": "03:01",
+      "speaker": "Sam",
+      "section": "Predictions",
+      "text": "Commercial fusion plants will be supplying power to the grid by 2035."
+    },
+    {
+      "timestamp": "03:20",
+      "speaker": "Elena",
+      "section": "Closing",
+      "text": "We'll hold you to that. Sam Okafor, thanks for joining Climate Desk."
+    },
+    {
+      "timestamp": "03:28",
+      "speaker": "Sam",
+      "section": "Closing",
+      "text": "My pleasure, Elena."
+    }
+  ]
+}

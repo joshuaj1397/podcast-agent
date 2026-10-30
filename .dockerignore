@@ -1,0 +1,11 @@
+.venv
+.cache
+.git
+out
+evo
+infra
+docs
+tests
+scripts
+*.pdf
+**/__pycache__

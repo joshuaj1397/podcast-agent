@@ -1,0 +1,40 @@
+episode_id: s09
+summary_key_points:
+  - ["space economy", "commercial space", "space business"]
+  - ["reusability", "reusable", "falcon 9", "spacex"]
+  - ["moon", "lunar"]
+  - ["space station"]
+  - ["investor", "startup"]
+  - ["starship", "regulation"]
+expected_tags: ["space industry", "commercial space", "investing", "moon exploration"]
+claims:
+  - ts: "00:35"
+    text: "The global space economy is around $570 billion a year, mostly commercial"
+    type: statistic
+    verdict: verified
+    evidence_ids: ["kb-019"]
+  - ts: "01:01"
+    text: "SpaceX landed its first orbital-class Falcon 9 booster in December 2015"
+    type: factual
+    verdict: verified
+    evidence_ids: ["kb-018", "web-044"]
+  - ts: "01:26"
+    text: "Only the US, Russia and China have ever landed on the Moon"
+    type: factual
+    verdict: inaccurate
+    evidence_ids: ["kb-020", "web-045"]
+  - ts: "02:06"
+    text: "The ISS has been continuously occupied since November 2000"
+    type: factual
+    verdict: verified
+    evidence_ids: ["web-046"]
+  - ts: "02:31"
+    text: "Three investors laughed Raj's satellite startup out of the room in 2019"
+    type: anecdote
+    verdict: unverifiable
+    evidence_ids: []
+  - ts: "02:56"
+    text: "Starship will land astronauts on the Moon by 2026"
+    type: prediction
+    verdict: unverifiable
+    evidence_ids: []

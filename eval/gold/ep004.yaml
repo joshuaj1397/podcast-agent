@@ -1,0 +1,44 @@
+episode_id: ep004
+summary_key_points:
+  - ["mars", "red planet"]
+  - ["sample return", "bring back samples", "samples"]
+  - ["perseverance", "rover"]
+  - ["ingenuity", "helicopter"]
+  - ["bitcoin", "bit coin", "crypto"]
+expected_tags: ["space exploration", "nasa", "mars", "cryptocurrency"]
+claims:
+  - ts: "00:00:31"
+    text: "The Perseverance rover landed in Jezero Crater in February 2021"
+    type: factual
+    verdict: verified
+    evidence_ids: ["kb-012", "web-006"]
+  - ts: "00:01:01"
+    text: "The Ingenuity helicopter is still flying on Mars, with about fifty flights so far"
+    type: factual
+    verdict: inaccurate
+    evidence_ids: ["kb-013", "web-007"]
+  - ts: "00:01:31"
+    text: "A JPL contact says the Mars team has been working weekends since last summer"
+    type: anecdote
+    verdict: unverifiable
+    evidence_ids: []
+  - ts: "00:02:18"
+    text: "NASA's new Mars mission launches in early 2026"
+    type: factual
+    verdict: verified
+    evidence_ids: ["kb-010", "web-004"]
+  - ts: "00:02:18"
+    text: "The new Mars mission will bring back samples"
+    type: factual
+    verdict: inaccurate
+    evidence_ids: ["kb-011", "kb-010", "web-005", "web-004"]
+  - ts: "00:03:15"
+    text: "Bitcoin rose above $100,000 for the first time in early December 2024"
+    type: statistic
+    verdict: verified
+    evidence_ids: ["kb-022", "web-008"]
+  - ts: "00:03:29"
+    text: "Bitcoin will reach $200K by 2025"
+    type: prediction
+    verdict: unverifiable
+    evidence_ids: []

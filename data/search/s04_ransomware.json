@@ -1,0 +1,119 @@
+{
+  "episode_id": "s04",
+  "title": "Ransomware: Who Pays and Why",
+  "host": "Priya Nair",
+  "guests": [
+    "Ben Kowalski"
+  ],
+  "recorded": "2025-08-05",
+  "transcript": [
+    {
+      "timestamp": "00:00",
+      "speaker": "Priya",
+      "section": "Introduction",
+      "text": "This is Breach Point, I'm Priya Nair. Today: ransomware, who pays, and why it keeps working. My guest is incident responder Ben Kowalski."
+    },
+    {
+      "timestamp": "00:12",
+      "speaker": "Ben",
+      "section": "Introduction",
+      "text": "Thanks Priya. Happy to be here, even if the topic is grim."
+    },
+    {
+      "timestamp": "00:20",
+      "speaker": "Priya",
+      "section": "Landmark Attacks",
+      "text": "Take us back to the attack that woke everyone up."
+    },
+    {
+      "timestamp": "00:28",
+      "speaker": "Ben",
+      "section": "Landmark Attacks",
+      "text": "Colonial Pipeline, May 2021. The company shut down the biggest fuel pipeline in the US and paid roughly $4.4 million in bitcoin to the attackers."
+    },
+    {
+      "timestamp": "00:50",
+      "speaker": "Priya",
+      "section": "Landmark Attacks",
+      "text": "And the casino one everyone talks about?"
+    },
+    {
+      "timestamp": "00:56",
+      "speaker": "Ben",
+      "section": "Landmark Attacks",
+      "text": "MGM Resorts in 2023. The attackers got in by calling the IT help desk and pretending to be an employee. No fancy zero-day needed."
+    },
+    {
+      "timestamp": "01:15",
+      "speaker": "Priya",
+      "section": "The Money",
+      "text": "So are ransom payments still going up?"
+    },
+    {
+      "timestamp": "01:22",
+      "speaker": "Ben",
+      "section": "The Money",
+      "text": "Every single year. Ransomware payments set another all-time record in 2024, even higher than 2023."
+    },
+    {
+      "timestamp": "01:40",
+      "speaker": "Priya",
+      "section": "The Money",
+      "text": "What does a breach actually cost a company these days?"
+    },
+    {
+      "timestamp": "01:46",
+      "speaker": "Ben",
+      "section": "The Money",
+      "text": "The latest IBM figure is $4.88 million on average per data breach, the highest it's ever been."
+    },
+    {
+      "timestamp": "02:05",
+      "speaker": "Priya",
+      "section": "Resilience",
+      "text": "How do companies actually survive one of these?"
+    },
+    {
+      "timestamp": "02:12",
+      "speaker": "Ben",
+      "section": "Resilience",
+      "text": "One of our clients, a mid-size logistics firm, got hit last spring and was fully back online in 48 hours because they had offline backups. They didn't pay a cent."
+    },
+    {
+      "timestamp": "02:35",
+      "speaker": "Priya",
+      "section": "Resilience",
+      "text": "Should companies ever pay?"
+    },
+    {
+      "timestamp": "02:42",
+      "speaker": "Ben",
+      "section": "Resilience",
+      "text": "My view is never pay unless lives are at stake. Every payment funds the next attack."
+    },
+    {
+      "timestamp": "03:00",
+      "speaker": "Priya",
+      "section": "Advice",
+      "text": "Top three pieces of advice for the agencies and brands listening?"
+    },
+    {
+      "timestamp": "03:06",
+      "speaker": "Ben",
+      "section": "Advice",
+      "text": "Multi-factor authentication everywhere, train your help desk to verify callers, and actually test your restores."
+    },
+    {
+      "timestamp": "03:20",
+      "speaker": "Priya",
+      "section": "Closing",
+      "text": "Ben Kowalski, thank you. Stay safe out there, everyone."
+    },
+    {
+      "timestamp": "03:28",
+      "speaker": "Ben",
+      "section": "Closing",
+      "text": "Thanks Priya."
+    }
+  ]
+}

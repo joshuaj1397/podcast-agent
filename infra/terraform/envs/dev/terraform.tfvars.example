@@ -1,0 +1,35 @@
+# Copy to terraform.tfvars and adjust. Never commit real account ids or emails you don't want public.
+
+region      = "us-east-1"
+project     = "podcast-agent"
+environment = "dev"
+
+# Base model on Bedrock. Check the exact id (and whether an inference profile is needed) in the region:
+#   aws bedrock list-foundation-models --by-provider google --query "modelSummaries[].modelId"
+bedrock_model_id = "google.gemma-4-e2b"
+
+# Knowledge base: OpenSearch Serverless (true) or in-process BM25 over a KB snapshot in S3 (false, cheapest).
+enable_opensearch = true
+# kb_writer_arns  = ["arn:aws:iam::123456789012:role/podcast-agent-ci-deploy"]
+
+# LoRA task model on SageMaker (GPU). Leave false until an Evo² round has produced an approved model package.
+enable_lora_endpoint = false
+# lora_image_uri         = "763104351884.dkr.ecr.us-east-1.amazonaws.com/djl-inference:<lmi-vllm-tag>"
+# lora_model_data_s3_uri = "s3://podcast-agent-dev-ml-artifacts-123456789012/models/task-model/r1/"
+# lora_model_version     = "r1"
+# lora_instance_type     = "ml.g6.xlarge"
+
+# Workers
+image_tag          = "bootstrap" # CI: -var image_tag=$GITHUB_SHA
+min_workers        = 0
+max_workers        = 5
+worker_concurrency = 2
+
+# Networking: no NAT unless a real external web-search API is used.
+enable_nat_gateway = false
+az_count           = 2
+
+# Alerts and cost
+alert_emails                   = ["oncall@example.com"]
+monthly_budget_usd             = 500
+cost_per_episode_threshold_usd = 0.10

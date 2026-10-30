@@ -1,0 +1,35 @@
+episode_id: s03
+summary_key_points:
+  - ["recovery"]
+  - ["lactic acid", "soreness"]
+  - ["sleep"]
+  - ["marathon", "kipchoge", "kip choge"]
+  - ["ice bath", "cold water"]
+  - ["hydration", "sweat"]
+expected_tags: ["sports science", "recovery", "sleep", "running"]
+claims:
+  - ts: "00:00:17"
+    text: "Muscle soreness a day or two after exercise is caused by lactic acid build-up"
+    type: factual
+    verdict: inaccurate
+    evidence_ids: ["kb-040", "web-023"]
+  - ts: "00:00:50"
+    text: "In a Stanford study, basketball players who slept about ten hours a night improved sprint times and free-throw shooting"
+    type: factual
+    verdict: verified
+    evidence_ids: ["web-026"]
+  - ts: "00:01:10"
+    text: "Kipchoge ran a sub-two-hour marathon (1:59:40) in Vienna in 2019, which was not an official record"
+    type: factual
+    verdict: verified
+    evidence_ids: ["web-024"]
+  - ts: "00:01:24"
+    text: "The official men's marathon world record is still Kipchoge's 2:01:09 from Berlin"
+    type: factual
+    verdict: inaccurate
+    evidence_ids: ["kb-041", "web-025"]
+  - ts: "00:01:40"
+    text: "Marcus's college team did ice baths after every practice and nobody pulled a hamstring"
+    type: anecdote
+    verdict: unverifiable
+    evidence_ids: []

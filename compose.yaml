@@ -1,0 +1,45 @@
+# docker compose up -d ollama && docker compose run --rm agent run data/heldout
+# GPU: docker compose -f compose.yaml -f compose.gpu.yaml ...
+services:
+  ollama:
+    image: ollama/ollama:0.40.13
+    volumes:
+      - ollama:/root/.ollama
+    ports:
+      - "11435:11434" # 11435 on the host so it does not clash with a native Ollama on 11434
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  # One-shot: pulls the model into the ollama volume if it is missing (no-op when present).
+  model-pull:
+    image: ollama/ollama:0.40.13
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    entrypoint: ["ollama", "pull", "${OLLAMA_MODEL:-gemma4:e2b}"]
+    depends_on:
+      ollama:
+        condition: service_healthy
+
+  agent:
+    build: .
+    image: podcast-agent:latest
+    environment:
+      OLLAMA_API_BASE: ${OLLAMA_API_BASE:-http://ollama:11434}
+      PODCAST_MODEL: ${PODCAST_MODEL:-}
+    depends_on:
+      model-pull:
+        condition: service_completed_successfully
+    volumes:
+      - ./data:/app/data:ro
+      - ./kb:/app/kb:ro
+      - ./harness:/app/harness:ro
+      - ./out:/app/out
+      - ./eval:/app/eval
+      - llm-cache:/app/.cache
+
+volumes:
+  ollama:
+  llm-cache:

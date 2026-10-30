@@ -1,0 +1,23 @@
+# episode_id: s08
+# title: Feeds, Algorithms and Attention
+# host: Chris Taylor
+# guests: Jordan Lee
+# recorded: 2025-07-08
+[00:00:02] Chris: Yo, welcome to Scroll Culture, I'm Chris Taylor, and, uh, with me today is social strategist Jordan Lee.
+[00:00:09] Jordan: Hey, um, thanks for having me.
+[00:00:13] Chris: So like, let's just start with the giant. Tick Tock. How big is it, actually?
+[00:00:19] Jordan: So Tick Tock passed a billion monthly users back in 2021, they announced that in, like, September.
+[00:00:30] Chris: And Insta gram's at about a billion monthly users too, right around there.
+[00:00:36] Jordan: Uh, yeah, they're, they're in the same league for sure.
+[00:00:41] Chris: What happened with Threads? That launch was, you know, nuts.
+[00:00:46] Jordan: Threads got a hundred million sign-ups in about five days. Fastest app ever to do that at the time.
+[00:00:58] Chris: Fun fact, Facebook started out as a Stanford-only thing back in the day.
+[00:01:06] Jordan: Uh, something like that, college kids anyway.
+[00:01:12] Chris: Brands keep asking me if they should be on, like, every platform.
+[00:01:17] Jordan: Honestly, no. Pick two, go deep, and, um, be consistent.
+[00:01:25] Chris: My niece spends, like, six hours a day on Tick Tock. Six hours.
+[00:01:31] Jordan: That's, uh, that's a lot of For You page.
+[00:01:36] Chris: Last thing, the algorithms. Good or bad?
+[00:01:40] Jordan: They're, they're mirrors, you know. They show you what you already, um, what you already want.
+[00:01:50] Chris: Deep. Alright, Jordan, thanks man.
+[00:01:53] Jordan: Thanks Chris.

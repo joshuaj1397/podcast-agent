@@ -1,0 +1,114 @@
+{
+  "episode_id": "s06",
+  "title": "Cart Abandonment: Retail's Online Reckoning",
+  "host": "Laura Chen",
+  "guests": [
+    "Victor Mensah",
+    "Dana Price"
+  ],
+  "recorded": "2025-04-22",
+  "transcript": [
+    {
+      "timestamp": "00:00",
+      "speaker": "Laura",
+      "section": "Introduction",
+      "text": "Welcome to Shelf Life, the retail podcast. I'm Laura Chen, and today I have e-commerce consultant Victor Mensah and retail analyst Dana Price."
+    },
+    {
+      "timestamp": "00:14",
+      "speaker": "Victor",
+      "section": "Introduction",
+      "text": "Thanks Laura, great to be back."
+    },
+    {
+      "timestamp": "00:20",
+      "speaker": "Dana",
+      "section": "Introduction",
+      "text": "Hi everyone, happy to be here."
+    },
+    {
+      "timestamp": "00:28",
+      "speaker": "Laura",
+      "section": "Market Size",
+      "text": "Let's start with the big picture. How big is online shopping, really?"
+    },
+    {
+      "timestamp": "00:35",
+      "speaker": "Dana",
+      "section": "Market Size",
+      "text": "Smaller than people assume. E-commerce is only about 16% of total US retail sales, according to the Census Bureau."
+    },
+    {
+      "timestamp": "00:55",
+      "speaker": "Laura",
+      "section": "Market Size",
+      "text": "And the holiday peak?"
+    },
+    {
+      "timestamp": "01:02",
+      "speaker": "Victor",
+      "section": "Market Size",
+      "text": "Cyber Monday is roughly a $10 billion day for US online sales. That's the number every retailer plans around."
+    },
+    {
+      "timestamp": "01:20",
+      "speaker": "Laura",
+      "section": "Checkout",
+      "text": "What's the biggest headache for online stores?"
+    },
+    {
+      "timestamp": "01:26",
+      "speaker": "Dana",
+      "section": "Checkout",
+      "text": "Abandoned carts. About seven in ten online shopping carts never make it to checkout."
+    },
+    {
+      "timestamp": "01:45",
+      "speaker": "Victor",
+      "section": "Checkout",
+      "text": "We fixed a big chunk of that at one client. We cut their cart abandonment by a third just by adding Apple Pay at checkout."
+    },
+    {
+      "timestamp": "02:05",
+      "speaker": "Laura",
+      "section": "New Players",
+      "text": "What about the new players, like Temu?"
+    },
+    {
+      "timestamp": "02:11",
+      "speaker": "Dana",
+      "section": "New Players",
+      "text": "Temu is the one to watch. It's owned by Alibaba, which is how it can undercut everyone on price."
+    },
+    {
+      "timestamp": "02:30",
+      "speaker": "Victor",
+      "section": "New Players",
+      "text": "I think its growth is built on ad spend, not loyalty. When the ads stop, the customers go."
+    },
+    {
+      "timestamp": "02:48",
+      "speaker": "Laura",
+      "section": "The Future of Stores",
+      "text": "So where do physical stores end up?"
+    },
+    {
+      "timestamp": "02:55",
+      "speaker": "Victor",
+      "section": "The Future of Stores",
+      "text": "By 2030, most physical stores will be showrooms. You'll browse in person and the order will ship from a warehouse."
+    },
+    {
+      "timestamp": "03:15",
+      "speaker": "Dana",
+      "section": "The Future of Stores",
+      "text": "I disagree. People still love the in-store experience, and the best retailers are leaning into it."
+    },
+    {
+      "timestamp": "03:30",
+      "speaker": "Laura",
+      "section": "Closing",
+      "text": "A friendly disagreement to end on. Victor, Dana, thank you both for joining Shelf Life."
+    }
+  ]
+}

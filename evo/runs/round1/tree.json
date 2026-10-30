@@ -1,0 +1,444 @@
+[
+ {
+  "id": "round1-root",
+  "parent": null,
+  "score": 0.7306,
+  "reward": 0.0,
+  "depth": 0,
+  "metrics": {
+   "verdict_accuracy": 0.517,
+   "evidence_recall": 0.604,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.917,
+   "structure": 1.0,
+   "claim_recall": 0.808,
+   "tag_overlap": 0.688
+  },
+  "edits": []
+ },
+ {
+  "id": "round1-n2d",
+  "parent": "round1-root",
+  "score": 0.7506,
+  "reward": 0.02,
+  "depth": 1,
+  "metrics": {
+   "verdict_accuracy": 0.567,
+   "evidence_recall": 0.604,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.917,
+   "structure": 1.0,
+   "claim_recall": 0.808,
+   "tag_overlap": 0.688
+  },
+  "edits": [
+   {
+    "op": "toggle_step",
+    "path": "claims.candidate_max",
+    "value": ">— 50",
+    "prompt": "claims",
+    "old": "claims.candidate_max = 25",
+    "new": "claims.candidate_max = 50",
+    "text": "claims",
+    "step": "claims",
+    "enabled": true
+   },
+   {
+    "op": "set_param",
+    "path": "factcheck.sample_temperature",
+    "value": "0.2",
+    "prompt": "summarizer",
+    "old": "factcheck.sample_temperature = 0.7",
+    "new": "factcheck.sample_temperature = 0.2",
+    "text": "summarizer",
+    "step": "factcheck",
+    "enabled": true
+   },
+   {
+    "op": "append_to_prompt",
+    "path": "claims.candidate_max",
+    "value": "Ensure that every claim extracted is self-contained and directly verifiable against the evidence provided. Pay close attention to claims that describe physical symptoms or personal experiences, as these often require special handling.",
+    "prompt": "claims",
+    "old": "Write your reasoning first, briefly.",
+    "new": "Write your reasoning first, briefly.\nEnsure that every claim extracted is self-contained and directly verifiable against the evidence provided. Pay close attention to claims that describe physical symptoms or personal experiences, as these often require special handling.",
+    "text": "claims",
+    "step": "claims",
+    "enabled": true
+   }
+  ]
+ },
+ {
+  "id": "round1-n3d",
+  "parent": "round1-root",
+  "score": 0.7306,
+  "reward": 0.0,
+  "depth": 1,
+  "metrics": {
+   "verdict_accuracy": 0.517,
+   "evidence_recall": 0.604,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.917,
+   "structure": 1.0,
+   "claim_recall": 0.808,
+   "tag_overlap": 0.688
+  },
+  "edits": [
+   {
+    "op": "toggle_step",
+    "path": "claims.candidate_max",
+    "prompt": "claims",
+    "old": "claims.candidate_max = 25",
+    "new": "claims.candidate_max = 40",
+    "text": "claims",
+    "step": "claims",
+    "enabled": true
+   },
+   {
+    "op": "append_to_prompt",
+    "path": "notes.quote_candidates",
+    "value": "30",
+    "prompt": "notes",
+    "old": "quote_ids: {quotes_min}-{quotes_max} turn ids of the most quotable, self-contained lines for social media.",
+    "new": "quote_ids: {quotes_min}-30 turn ids of the most quotable, self-contained lines for social media.",
+    "text": "notes",
+    "step": "claims",
+    "enabled": true
+   },
+   {
+    "op": "append_to_prompt",
+    "path": "claims.candidate_max",
+    "value": "40",
+    "prompt": "claims",
+    "old": "claims.candidate_max = 25",
+    "new": "claims.candidate_max = 40",
+    "text": "claims",
+    "step": "claims",
+    "enabled": true
+   }
+  ]
+ },
+ {
+  "id": "round1-n3r",
+  "parent": "round1-root",
+  "score": 0.7306,
+  "reward": 0.0,
+  "depth": 1,
+  "metrics": {
+   "verdict_accuracy": 0.517,
+   "evidence_recall": 0.604,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.917,
+   "structure": 1.0,
+   "claim_recall": 0.808,
+   "tag_overlap": 0.688
+  },
+  "edits": [
+   {
+    "op": "toggle_step",
+    "path": "claims.candidate_max",
+    "value": "40",
+    "prompt": "claims",
+    "old": "claims.candidate_max = 25",
+    "new": "claims.candidate_max = 40",
+    "text": "claims",
+    "step": "claims",
+    "enabled": true
+   },
+   {
+    "op": "append_to_prompt",
+    "path": "notes.quote_candidates",
+    "value": "30",
+    "prompt": "notes",
+    "old": "quote_ids: {quotes_min}-{quotes_max} turn ids of the most quotable, self-contained lines for social media.",
+    "new": "quote_ids: {quotes_min}-30 turn ids of the most quotable, self-contained lines for social media.",
+    "text": "notes",
+    "step": "claims",
+    "enabled": true
+   }
+  ]
+ },
+ {
+  "id": "round1-n5b",
+  "parent": "round1-n3d",
+  "score": 0.7306,
+  "reward": 0.0,
+  "depth": 2,
+  "metrics": {
+   "verdict_accuracy": 0.517,
+   "evidence_recall": 0.604,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.917,
+   "structure": 1.0,
+   "claim_recall": 0.808,
+   "tag_overlap": 0.625
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "claims.candidate_max",
+    "value": "40",
+    "prompt": "claims",
+    "old": "claims.candidate_max = 25",
+    "new": "claims.candidate_max = 40",
+    "text": "claims",
+    "step": "claims",
+    "enabled": true
+   },
+   {
+    "op": "replace_in_prompt",
+    "path": "claims.candidate_max",
+    "value": "claims",
+    "prompt": "claims",
+    "old": "Write your reasoning first, briefly.\nclaims",
+    "new": "Write your reasoning first, briefly. Ensure you attempt to extract every distinct, checkable assertion from the transcript. Split compound statements into separate claims where appropriate to maximize coverage.",
+    "text": "claims",
+    "step": "claims",
+    "enabled": true
+   },
+   {
+    "op": "append_to_prompt",
+    "path": "claims.candidate_max",
+    "value": "30",
+    "prompt": "notes",
+    "old": "notes.quote_candidates = 15",
+    "new": "notes.quote_candidates = 30",
+    "text": "notes",
+    "step": "claims",
+    "enabled": true
+   }
+  ]
+ },
+ {
+  "id": "round1-n5c",
+  "parent": "round1-n3d",
+  "score": 0.7306,
+  "reward": 0.0,
+  "depth": 2,
+  "metrics": {
+   "verdict_accuracy": 0.517,
+   "evidence_recall": 0.604,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.917,
+   "structure": 1.0,
+   "claim_recall": 0.808,
+   "tag_overlap": 0.625
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "claims.candidate_max",
+    "value": "40",
+    "prompt": "claims",
+    "old": "claims.candidate_max = 25",
+    "new": "claims.candidate_max = 40",
+    "text": "claims",
+    "step": "claims",
+    "enabled": true
+   },
+   {
+    "op": "append_to_prompt",
+    "path": "notes.quote_candidates",
+    "value": "30",
+    "prompt": "notes",
+    "old": "notes.quote_candidates = 15",
+    "new": "notes.quote_candidates = 30",
+    "text": "notes",
+    "step": "claims",
+    "enabled": true
+   }
+  ]
+ },
+ {
+  "id": "round1-n5r",
+  "parent": "round1-n3d",
+  "score": 0.7506,
+  "reward": 0.02,
+  "depth": 2,
+  "metrics": {
+   "verdict_accuracy": 0.567,
+   "evidence_recall": 0.604,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.917,
+   "structure": 1.0,
+   "claim_recall": 0.808,
+   "tag_overlap": 0.625
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "claims.candidate_max",
+    "value": "40",
+    "prompt": "claims",
+    "old": "claims.candidate_max = 25",
+    "new": "claims.candidate_max = 40",
+    "text": "claims",
+    "step": "claims",
+    "enabled": true
+   },
+   {
+    "op": "append_to_prompt",
+    "path": "notes.quote_candidates",
+    "value": "30",
+    "prompt": "notes",
+    "old": "notes.quote_candidates = 15",
+    "new": "notes.quote_candidates = 30",
+    "text": "notes",
+    "step": "claims",
+    "enabled": true
+   },
+   {
+    "op": "set_param",
+    "path": "factcheck.verdict_samples",
+    "value": "5",
+    "prompt": "judge",
+    "old": "factcheck.verdict_samples = 3",
+    "new": "factcheck.verdict_samples = 5",
+    "text": "judge",
+    "step": "factcheck",
+    "enabled": true
+   }
+  ]
+ },
+ {
+  "id": "round1-n7c",
+  "parent": "round1-n5c",
+  "score": 0.7306,
+  "reward": 0.0,
+  "depth": 3,
+  "metrics": {
+   "verdict_accuracy": 0.517,
+   "evidence_recall": 0.604,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.917,
+   "structure": 1.0,
+   "claim_recall": 0.808,
+   "tag_overlap": 0.625
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "notes.quote_candidates",
+    "value": "25",
+    "prompt": "notes",
+    "old": "notes.quote_candidates = 15",
+    "new": "notes.quote_candidates = 25",
+    "text": "notes",
+    "step": "claims",
+    "enabled": true
+   },
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "10",
+    "prompt": "planner",
+    "old": "claim_budget: how many claims to fact-check (more candidates and numbers -> higher budget).",
+    "new": "claim_budget: how many claims to fact-check (more candidates and numbers -> higher budget).",
+    "text": "planner",
+    "step": "claims",
+    "enabled": true
+   },
+   {
+    "op": "append_to_prompt",
+    "path": "notes.quote_candidates",
+    "value": "Add an instruction to explicitly encourage extraction of non-obvious claims.",
+    "prompt": "notes",
+    "old": "notes.quote_candidates: {quotes_min}-{quotes_max} turn ids of the most quotable, self-contained lines for social media. Prefer vivid, insightful lines from guests; avoid greetings and questions.",
+    "new": "notes.quote_candidates: {quotes_min}-{quotes_max} turn ids of the most quotable, self-contained lines for social media. Prefer vivid, insightful lines from guests; avoid greetings and questions. Additionally, ensure extraction of substantive claims from the discussion.",
+    "text": "notes",
+    "step": "claims",
+    "enabled": true
+   }
+  ]
+ },
+ {
+  "id": "round1-n8a",
+  "parent": "round1-n3d",
+  "score": 0.7956,
+  "reward": 0.065,
+  "depth": 2,
+  "metrics": {
+   "verdict_accuracy": 0.658,
+   "evidence_recall": 0.604,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.958,
+   "structure": 1.0,
+   "claim_recall": 0.85,
+   "tag_overlap": 0.625
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "claims.candidate_max",
+    "value": "40",
+    "prompt": "claims",
+    "old": "claims.candidate_max = 25",
+    "new": "claims.candidate_max = 40",
+    "text": "claims",
+    "step": "claims",
+    "enabled": true
+   },
+   {
+    "op": "append_to_prompt",
+    "path": "notes.quote_candidates",
+    "value": "30",
+    "prompt": "notes",
+    "old": "notes.quote_candidates = 15",
+    "new": "notes.quote_candidates = 30",
+    "text": "notes",
+    "step": "claims",
+    "enabled": true
+   },
+   {
+    "op": "add_guardrail",
+    "path": "notes.quote_candidates",
+    "value": "Ensure quote candidates are increased to capture more potential social highlights, as indicated by previous evaluation failures.",
+    "prompt": "notes",
+    "old": "",
+    "new": "Ensure quote candidates are increased to capture more potential social highlights, as indicated by previous evaluation failures.",
+    "text": "notes",
+    "step": "claims",
+    "enabled": true
+   }
+  ]
+ },
+ {
+  "id": "round1-n10b",
+  "parent": "round1-n5c",
+  "score": 0.7967,
+  "reward": 0.0661,
+  "depth": 3,
+  "metrics": {
+   "verdict_accuracy": 0.658,
+   "evidence_recall": 0.667,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.917,
+   "structure": 1.0,
+   "claim_recall": 0.808,
+   "tag_overlap": 0.562
+  },
+  "edits": [
+   {
+    "op": "append_to_prompt",
+    "path": "notes.quote_candidates",
+    "value": "25",
+    "prompt": "notes",
+    "old": "notes.quote_candidates = 15",
+    "new": "notes.quote_candidates = 25",
+    "text": "notes",
+    "step": "claims",
+    "enabled": true
+   },
+   {
+    "op": "add_guardrail",
+    "path": "notes.quote_candidates",
+    "value": "The system must cite the specific evidence passages for every claim decision.",
+    "prompt": "judge",
+    "old": "You are a careful fact-checker. Today is {today}. The episode was recorded on {recorded}. Compare the claim with the evidence passages and pick a label: - supported: the evidence confirms the claim. - contradicted: the evidence says something different (other numbers, dates, names or facts). - outdated: the claim was true once but the evidence shows newer information has replaced it. - insufficient: the evidence does not address the claim. Cite the ids of the passages you used. Prefer high-reliability sources and the knowledge base. Write your reasoning first, briefly.",
+    "new": "You are a careful fact-checker. Today is {today}. The episode was recorded on {recorded}. Compare the claim with the evidence passages and pick a label: - supported: the evidence confirms the claim. - contradicted: the evidence says something different (other numbers, dates, names or facts). - outdated: the claim was true once but the evidence shows newer information has replaced it. - insufficient: the evidence does not address the claim. Cite the ids of the passages you used. Prefer high-reliability sources and the knowledge base. **For all decisions, you must explicitly cite the turn IDs of the passages used.** Write your reasoning first, briefly.",
+    "text": "judge",
+    "step": "factcheck",
+    "enabled": true
+   }
+  ]
+ }
+]
