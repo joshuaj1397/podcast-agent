@@ -26,6 +26,18 @@ CLAIM_HINT = re.compile(
 )
 CAPITALIZED = re.compile(r"(?<![.!?]\s)(?<!^)\b[A-Z][a-zA-Z]+")
 
+SHOW_META = re.compile(r"\b(podcast|episode|listeners?|tuning in|hosting|host of|the show|this show|joining (us|me))\b",
+                       re.I)
+
+
+def is_show_meta(claim: str, ep: Episode) -> bool:
+    """A claim about the show itself ("Sarah Johnson is hosting the podcast"): names a speaker and talks about the
+    show. Statistics about podcasts in general ("half of adults listen to podcasts") name no speaker and are kept."""
+    names = {w.lower() for n in [ep.host, *ep.guests] for w in re.findall(r"[A-Za-z]{3,}", n)} - {"the"}
+    words = {w.lower() for w in re.findall(r"[A-Za-z]+", claim)}
+    return bool(names & words) and bool(SHOW_META.search(claim))
+
+
 STATUS_OF_LABEL = {"supported": "verified", "contradicted": "inaccurate", "outdated": "inaccurate",
                    "insufficient": "unverifiable"}
 RELIABILITY_WEIGHT = {"kb": 1.0, "high": 0.85, "medium": 0.6, "low": 0.3}

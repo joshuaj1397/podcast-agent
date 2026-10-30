@@ -22,6 +22,7 @@ from podcast_agent.config import Settings
 from podcast_agent.harness import HarnessSpec
 
 from . import genome
+from .genome import parent_prompts
 from .search import PROPOSER, ProposalOut
 
 ROUND = Path("evo/runs/round1")
@@ -42,13 +43,6 @@ def node_specs(round_dir: Path, base: HarnessSpec) -> dict[str, HarnessSpec]:
     for node_id in by_id:
         spec_of(node_id)
     return specs
-
-
-def parent_prompts(round_dir: Path, split: str) -> list[tuple[str, str]]:
-    rows = [json.loads(line) for line in (round_dir / "trajectories.jsonl").read_text(encoding="utf-8").splitlines()]
-    prompts = {(r["parent_id"], r["prompt"]) for r in rows if r["role"] == "proposer"}
-    ordered = sorted(prompts)
-    return [p for i, p in enumerate(ordered) if (i % 3 == 2) == (split == "eval")]
 
 
 async def sample(model: str | None, split: str, n: int, out: Path, seed0: int) -> dict:

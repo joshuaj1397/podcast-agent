@@ -198,14 +198,20 @@ class Pipeline:
                 claims.append(c.model_dump())
         dropped = [c for c in claims if c["type"] in self.spec.factcheck.drop_types]
         claims = [c for c in claims if c["type"] not in self.spec.factcheck.drop_types]
+        if self.spec.claims.drop_show_meta:
+            meta = [c for c in claims if factcheck.is_show_meta(c["claim"], s.ep)]
+            claims = [c for c in claims if c not in meta]
+            for c in meta:
+                self.trace.log("claim_dropped", "claims", claim=c, reason="about the show itself")
         # Checkable facts first, then predictions/anecdotes; keep transcript order within each group.
         claims.sort(key=lambda c: c["type"] in self.spec.factcheck.unverifiable_types)
         over = claims[s.plan.claim_budget:]
         s.claims = claims[: s.plan.claim_budget]
         for c in dropped:
             self.trace.log("claim_dropped", "claims", claim=c, reason="opinion")
-        self.trace.result("claims", f"{len(s.claims)} claims to check ({len(dropped)} opinions dropped, "
-                                    f"{len(over)} over budget)")
+        n_meta = len(meta) if self.spec.claims.drop_show_meta else 0
+        self.trace.result("claims", f"{len(s.claims)} claims to check ({len(dropped)} opinions and {n_meta} "
+                                    f"about-the-show dropped, {len(over)} over budget)")
         for c in s.claims:
             self.trace.log("claim", "claims", **c)
 
@@ -244,10 +250,27 @@ class Pipeline:
                         self.trace.log("backstop_hit", "factcheck", id=doc.id)
                     guard.add(doc)
         evidence = dict(list(guard.hits.items())[: self.spec.retrieval.max_evidence])
+        result = await self.judge(claim, turn, evidence, guard.queries, s)
+
+        # 3. Escalate: the KB could not settle it and the plan kept web search off -> search the web, judge again.
+        if result.status == "unverifiable" and fc.escalate_to_web and fc.web_search and not s.plan.use_web_search:
+            web = [d for d, _ in self.retriever.web.search(claim["claim"], self.spec.retrieval.k,
+                                                            self.spec.retrieval.method) if d.id not in evidence]
+            if web:
+                self.trace.warn(f"KB evidence insufficient; escalating to web search: {[d.id for d in web]}")
+                for doc in web:
+                    self.trace.observation("factcheck", f"{doc.id} {doc.title} ({doc.date}, {doc.reliability})")
+                kept = dict(list(evidence.items())[: max(0, self.spec.retrieval.max_evidence - len(web))])
+                result = await self.judge(claim, turn, kept | {d.id: d for d in web},
+                                          guard.queries + [f"search_web: {claim['claim'].lower()} (escalation)"], s)
+        return result
+
+    async def judge(self, claim: dict, turn: Turn, evidence: dict, queries: list[str],
+                    s: EpisodeState) -> FactCheckResult:
+        """Structured verdict over the evidence, sampled N times for self-consistency."""
+        fc = self.spec.factcheck
         if not evidence:
             return factcheck.rule_result(claim, turn, self.spec, "no evidence found", method="fallback")
-
-        # 2. Judge: structured verdict over the evidence, sampled N times for self-consistency.
         ev_text = "\n".join(f"[{d.id}] {d.source}, {'as of' if d.kind == 'kb' else 'published'} {d.date}, "
                             f"reliability {d.reliability}: {d.title}. {d.text}" for d in evidence.values())
         judge_msg = (f"Claim: {claim['claim']}\nSaid by {turn.speaker}: \"{turn.text}\"\n"
@@ -266,7 +289,7 @@ class Pipeline:
             return factcheck.rule_result(claim, turn, self.spec, "judge failed", method="fallback")
         if len(samples) > 1:
             self.trace.observation("judge", f"samples: {[x['label'] for x in samples]}")
-        return factcheck.judged_result(claim, turn, samples, evidence, guard.queries, self.spec)
+        return factcheck.judged_result(claim, turn, samples, evidence, queries, self.spec)
 
     # ------------------------------------------------------------ helpers
 

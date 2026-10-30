@@ -16,6 +16,7 @@ Edit ops:
 from __future__ import annotations
 
 import json
+from pathlib import Path
 from typing import Any, Literal
 
 from pydantic import BaseModel, ValidationError
@@ -37,6 +38,8 @@ PARAMS: dict[str, tuple[type, Any, Any]] = {
     "factcheck.web_search": (bool, None, None),
     "factcheck.backstop_search": (bool, None, None),
     "factcheck.numeric_check": (bool, None, None),
+    "factcheck.escalate_to_web": (bool, None, None),
+    "claims.drop_show_meta": (bool, None, None),
     "notes.quote_candidates": (int, 5, 25),
     "claims.candidate_max": (int, 5, 40),
 }
@@ -170,3 +173,11 @@ def _brief(v: Any, n: int = 80) -> str:
     s = json.dumps(v) if not isinstance(v, str) else v
     s = " ".join(s.split())
     return s if len(s) <= n else s[: n - 1] + "…"
+
+
+def parent_prompts(round_dir: Path, split: str) -> list[tuple[str, str]]:
+    """(parent id, proposer prompt) pairs of a search round, split 2:1 into train / eval. Eval parents are held out
+    from evolver training (train_evolver.py drops their trajectories) and used to measure edit validity."""
+    rows = [json.loads(line) for line in (round_dir / "trajectories.jsonl").read_text(encoding="utf-8").splitlines()]
+    prompts = {(r["parent_id"], r["prompt"]) for r in rows if r["role"] == "proposer"}
+    return [p for i, p in enumerate(sorted(prompts)) if (i % 3 == 2) == (split == "eval")]

@@ -51,6 +51,8 @@ class FactCheck(_Strict):
     web_search: bool = True
     backstop_search: bool = Field(True, description="also BM25-search the claim text itself, so recall "
                                   "does not depend on the model's query wording")
+    escalate_to_web: bool = Field(True, description="if KB evidence leaves a claim ❓ and the plan had web "
+                                  "search off, search the web for that claim and judge again")
     numeric_check: bool = Field(True, description="downgrade 'supported' to ⚠ when the claim's numbers match none "
                                 "in the cited evidence")
     web_fail_rate: float = Field(0.0, ge=0.0, le=1.0, description="mock search fault injection")
@@ -76,6 +78,8 @@ class Notes(_Strict):
 
 class Claims(_Strict):
     candidate_max: int = 25
+    drop_show_meta: bool = Field(True, description="drop claims about the show itself that name the host/guests "
+                                 "('X is hosting the podcast', 'X thanked listeners')")
 
 
 class Prompts(_Strict):

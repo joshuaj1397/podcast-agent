@@ -1,0 +1,77 @@
+{
+ "harness": "base",
+ "model": "ollama_chat/gemma4:e2b",
+ "mean_score": 0.8767,
+ "metrics": {
+  "verdict_accuracy": 0.7234,
+  "evidence_recall": 0.9156,
+  "quote_validity": 1.0,
+  "keypoint_coverage": 1.0,
+  "structure": 1.0,
+  "claim_recall": 0.7987,
+  "tag_overlap": 0.67
+ },
+ "episodes": {
+  "ep001": {
+   "score": 1.0,
+   "verdict_accuracy": 1.0,
+   "evidence_recall": 1.0,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 1.0,
+   "structure": 1.0,
+   "claim_recall": 1.0,
+   "tag_overlap": 0.8
+  },
+  "ep002": {
+   "score": 1.0,
+   "verdict_accuracy": 1.0,
+   "evidence_recall": 1.0,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 1.0,
+   "structure": 1.0,
+   "claim_recall": 1.0,
+   "tag_overlap": 0.6
+  },
+  "ep003": {
+   "score": 0.8,
+   "verdict_accuracy": 0.5,
+   "evidence_recall": 1.0,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 1.0,
+   "structure": 1.0,
+   "claim_recall": 0.5,
+   "tag_overlap": 0.4
+  },
+  "ep004": {
+   "score": 0.7986,
+   "verdict_accuracy": 0.5714,
+   "evidence_recall": 0.8,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 1.0,
+   "structure": 1.0,
+   "claim_recall": 0.8571,
+   "tag_overlap": 0.75
+  },
+  "ep005": {
+   "score": 0.7849,
+   "verdict_accuracy": 0.5455,
+   "evidence_recall": 0.7778,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 1.0,
+   "structure": 1.0,
+   "claim_recall": 0.6364,
+   "tag_overlap": 0.8
+  }
+ },
+ "retrieval": {
+  "bm25_claim_recall@1": 0.722,
+  "bm25_claim_recall@3": 1.0,
+  "tfidf_claim_recall@1": 0.778,
+  "tfidf_claim_recall@3": 1.0,
+  "bm25_turn_recall@1": 0.778,
+  "bm25_turn_recall@3": 1.0,
+  "tfidf_turn_recall@1": 0.833,
+  "tfidf_turn_recall@3": 1.0,
+  "claims": 18
+ }
+}

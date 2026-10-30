@@ -56,8 +56,48 @@ uv run python -m evo.sample --split eval --n 4 --model ollama_chat/podcast-evolv
 
 ## Results
 
-EVO_RESULTS_PLACEHOLDER
+All agent numbers come from the same code and the same final evaluation run ([`eval/RESULTS.md`](../eval/RESULTS.md)).
+
+**1. Harness search (round 1).** 12 expansions × 4 proposals, plus a Reflector call per expansion, gave 10 tree nodes.
+
+| | |
+|---|---|
+| Fitness V̂ on the 4 search episodes | root 0.731 → best 0.797 (+0.066) |
+| What the best node changed | `claims.candidate_max` 25 → 40 (more claim candidates reach the extractor), plus junk edits (below) |
+| Same harness on the 5 held-out episodes | 0.877 → 0.887; the paired bootstrap CI touches 0 |
+| Proposer edit sets that were well-formed | 7 / 48 (15 %) |
+| Reflector revisions that were well-formed | 3 / 12 |
+
+**2. Evolver training (SFT + off-policy GRPO).**
+
+| | |
+|---|---|
+| SFT data | 4 positive-reward edits from the search (proposer + reflector) + 7 well-formed edits rejection-sampled from the base evolver on *train* parents |
+| GRPO data | proposer groups from the search with non-zero reward variance; trajectories of the held-out *eval* parents are excluded |
+| Training | 4-bit LoRA r=16, 3 SFT epochs (loss 0.43 → 0.2) then 1 GRPO epoch; a few minutes on the RTX 5060 |
+VALIDITY_TABLE_PLACEHOLDER
+
+**3. Task-model training (rejection-sampling fine-tuning).**
+
+| | |
+|---|---|
+| Data | 157 sub-agent outputs recorded by running the best harness on the 10 search episodes; 135 kept (all planner/summarizer/notes/claims outputs that passed the critic, plus the 95/117 judge samples whose verdict matches gold) |
+| Training | 4-bit LoRA r=16, 2 epochs |
+| Held-out V̂, base harness | exact q8 control 0.887 → LoRA 0.869 |
+| Held-out V̂, evolved harness | exact q8 control 0.879 → LoRA 0.869 |
+
+The task-model LoRA did not help: it was slightly worse, within noise.
 
 ## What we learned
 
-LEARNED_PLACEHOLDER
+- **Measure against an exact control.** The first comparison of the task-model LoRA showed +0.08. That control had been converted to GGUF from the original checkpoint, which still contains the k/v projections of the 20 KV-shared layers (601 tensors). The merged LoRA models were re-saved through transformers, which drops those unused tensors (541). llama.cpp then ran two subtly different models. Re-saving the base through the identical path gave the real answer: no gain.
+- **Watch for evaluation leakage in self-improvement loops.** The edit-validity eval uses parent prompts from the search. The first evolver checkpoint had been trained with GRPO on *all* search trajectories, including those prompts, so it was retrained with the eval parents held out before the reported numbers were taken.
+- **A small evolver needs a well-designed interface.** With one flat edit schema, Gemma 4 E2B filled every field of every edit, copied text from the parameter listing into `old`, and padded valid edits with junk ("notes", "judge"). A discriminated-union schema, so constrained decoding only allows each op's own fields, plus a minimum-length rule, fixed most of that before any training. Training then raised validity further. The evolver's harness matters as much as its weights, which is the paper's thesis.
+- **Self-distillation with little data mostly re-teaches what the model already does.** 135 filtered examples from the model's own outputs did not move held-out quality. A stronger teacher (a larger model's outputs, or human-corrected verdicts from the review queue) is the obvious next data source.
+- **The fitness set is the bottleneck.** With 4 episodes (about 20 claims) one claim is ±0.02 V̂, so the search climbs partly on noise. The next steps are more search episodes, repeated evaluations of promising nodes, and an acceptance threshold above the noise floor.
+
+## Implementation notes
+
+- 8 GB VRAM: the 2.35B-parameter per-layer embedding table of Gemma 4 E2B stays on the CPU. accelerate's offload hook would copy the whole 4.4 GiB table to the GPU on every forward pass, which overflowed into shared memory and made one step take minutes. `evo/lora.py` removes the hook and runs the lookup on CPU, so a 4k-token step takes a few seconds with a peak of 6.3 GiB.
+- Loss is computed only on completion tokens, with `logits_to_keep`, because the 262k vocabulary makes full logits huge. The grammar-forced opening `{` is excluded, and completions use the same 2-space JSON layout that Ollama's JSON mode produces.
+- Ollama 0.40 on Windows imports safetensors only with its MLX runtime, which is unavailable there, and it has dropped LoRA adapters. Tuned models are therefore merged, converted with llama.cpp's `convert_hf_to_gguf.py` (q8_0) and registered with `ollama create`. Comparisons use a base converted the same way, never the stock `gemma4:e2b`.

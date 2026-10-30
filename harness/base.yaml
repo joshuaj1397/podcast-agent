@@ -28,6 +28,7 @@ factcheck:
   drop_types: [opinion]
   web_search: true
   backstop_search: true # also BM25-search the claim text itself (recall safety net for weak queries)
+  escalate_to_web: true # KB left the claim ❓ and web search was planned off -> search the web, judge again
   numeric_check: true   # 'supported' but the claim's numbers match none in the cited evidence -> ⚠
   web_fail_rate: 0.0    # mock search fault injection
   unverifiable_confidence_cap: 0.5
@@ -49,6 +50,7 @@ notes:
 
 claims:
   candidate_max: 25
+  drop_show_meta: true  # drop "X is hosting the podcast" / "X thanked listeners" style claims
 
 prompts:
   planner: |

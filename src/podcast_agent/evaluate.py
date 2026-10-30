@@ -134,19 +134,29 @@ def mean_score(scores: list[EpisodeScore]) -> float:
 # ---------------------------------------------------------------- retrieval: BM25 vs TF-IDF
 
 
-def retrieval_report(settings: Settings, split: str, k: int = 3) -> dict[str, float]:
-    """Recall@k of the gold evidence when searching with the gold claim text, per method (no LLM involved)."""
+def retrieval_report(settings: Settings, split: str) -> dict[str, float]:
+    """Recall@1/@3 of the gold evidence per method (no LLM involved), with two kinds of query:
+    the clean gold claim text, and the raw transcript turn the claim was said in (noisier, more realistic)."""
+    from .harness import load as load_harness
+
     retriever = get_retriever(str(settings.kb_dir))
-    hits: dict[str, list[bool]] = {"bm25": [], "tfidf": []}
+    spec = load_harness("harness/base.yaml")
+    hits: dict[str, list[bool]] = {}
+    claims = 0
     for f in split_files(split):
         gold = load_gold(re.split(r"[_.]", f.name)[0])
+        turns = {t.ts: t.text for t in ingest.load(f, spec).turns}
         for g in (gold or {}).get("claims", []):
             if not g.get("evidence_ids"):
                 continue
-            for method in hits:
-                found = {d.id for d, _ in retriever.all.search(g["text"], k, method)}
-                hits[method].append(bool(found & set(g["evidence_ids"])))
-    return {f"{m}_recall@{k}": round(_mean(v, 0.0), 3) for m, v in hits.items()} | {"claims": len(hits["bm25"])}
+            claims += 1
+            for query_kind, query in (("claim", g["text"]), ("turn", turns.get(g["ts"], g["text"]))):
+                for method in ("bm25", "tfidf"):
+                    ranked = [d.id for d, _ in retriever.all.search(query, 3, method)]
+                    for k in (1, 3):
+                        hits.setdefault(f"{method}_{query_kind}_recall@{k}", []).append(
+                            bool(set(ranked[:k]) & set(g["evidence_ids"])))
+    return {key: round(_mean(v, 0.0), 3) for key, v in hits.items()} | {"claims": claims}
 
 
 def write_results(path: Path, spec: HarnessSpec, scores: list[EpisodeScore], retrieval: dict,
@@ -167,11 +177,13 @@ def write_results(path: Path, spec: HarnessSpec, scores: list[EpisodeScore], ret
     if scores:
         lines.append("| **mean** | **%.3f** | " % mean_score(scores)
                      + " | ".join(f"{statistics.mean(s.metrics[c] for s in scores):.2f}" for c in cols) + " |")
-    lines += ["", "## Retrieval (gold claim text → gold evidence, no LLM)", "",
-              "| method | Recall@3 |", "|---|---|",
-              f"| BM25 | {retrieval.get('bm25_recall@3', 0):.3f} |",
-              f"| TF-IDF | {retrieval.get('tfidf_recall@3', 0):.3f} |",
-              "", f"{retrieval.get('claims', 0)} gold claims with evidence.", ""]
+    r = retrieval
+    lines += ["", "## Retrieval: query → gold evidence in KB + mock web (no LLM)", "",
+              "| method | claim text R@1 | claim text R@3 | raw turn R@1 | raw turn R@3 |", "|---|---|---|---|---|"]
+    for method, label in (("bm25", "BM25"), ("tfidf", "TF-IDF")):
+        lines.append(f"| {label} | " + " | ".join(f"{r.get(f'{method}_{q}_recall@{k}', 0):.3f}"
+                                                  for q in ("claim", "turn") for k in (1, 3)) + " |")
+    lines += ["", f"{r.get('claims', 0)} gold claims with evidence.", ""]
     lines += ["## Claim matching details", ""]
     for s in scores:
         lines.append(f"**{s.episode_id}** (extra predicted claims: {s.details['extra_predicted_claims']})")

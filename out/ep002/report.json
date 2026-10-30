@@ -126,21 +126,31 @@
       "ts": "03:30",
       "speaker": "Alex Moore",
       "type": "factual",
-      "status": "unverifiable",
-      "symbol": "❓",
-      "verification": "Unverifiable (no evidence found that addresses the claim)",
-      "confidence": 0.4,
-      "reasoning": "The claim states that the pandemic accelerated digital health adoption, including AI tools. The evidence includes information about the surge in telehealth during the pandemic (kb-006) and the FDA's authorization of AI-enabled medical devices (kb-004). While the evidence confirms the acceleration of digital health (telehealth) and the existence of regulated AI medical devices, there is no direct evidence explicitly linking the pandemic to the acceleration of *AI tool* adoption in the context of the claim. The evidence supports the existence of AI medical devices and the acceleration of *telehealth*, but not definitively the acceleration of *AI tool* adoption as a whole.",
+      "status": "verified",
+      "symbol": "✅",
+      "verification": "True (confirmed by example-news.test [web-003], FDA (mock DB) [kb-004], healthtech-wire.test [web-078])",
+      "confidence": 0.97,
+      "reasoning": "The claim states that the pandemic accelerated digital health adoption, including AI tools. The evidence supports this by showing that telehealth use soared during the pandemic and stayed elevated, permanently accelerating digital health adoption (web-003). Additionally, there is evidence related to AI in healthcare, such as FDA authorization guidance for AI-enabled medical devices (kb-004) and hospitals setting up AI governance committees to vet clinical AI tools (web-078).",
       "method": "judged",
       "labels": [
-        "insufficient",
         "supported",
-        "insufficient"
+        "supported",
+        "supported"
       ],
       "queries": [
-        "search_kb: alex moore ai in healthcare"
+        "search_kb: alex moore ai in healthcare",
+        "search_web: the pandemic accelerated digital health adoption, including ai tools. (escalation)"
       ],
       "evidence": [
+        {
+          "id": "web-003",
+          "title": "Telehealth use soared during the pandemic and stayed elevated",
+          "source": "example-news.test",
+          "date": "2021-07-09",
+          "reliability": "high",
+          "text": "COVID-19 pushed patients and doctors onto video visits almost overnight. Analysts estimate telehealth use settled at roughly 38 times its pre-pandemic level, permanently accelerating digital health adoption.",
+          "url": "https://example-news.test/health/telehealth-after-covid"
+        },
         {
           "id": "kb-004",
           "title": "FDA authorization of AI-enabled medical devices",
@@ -151,13 +161,13 @@
           "url": null
         },
         {
-          "id": "kb-006",
-          "title": "Pandemic-era surge in telehealth",
-          "source": "McKinsey / HHS ASPE (mock summary)",
-          "date": "2021-12-03",
-          "reliability": "kb",
-          "text": "Telehealth use in the US surged during the COVID-19 pandemic. By mid-2021 telehealth utilization had stabilized at about 38 times its pre-pandemic level, and Medicare telehealth visits rose from roughly 840,000 in 2019 to 52.7 million in 2020.",
-          "url": null
+          "id": "web-078",
+          "title": "Hospitals set up AI governance committees",
+          "source": "healthtech-wire.test",
+          "date": "2024-10-22",
+          "reliability": "medium",
+          "text": "Health systems are creating committees to vet clinical AI tools before deployment, checking for bias, safety monitoring and vendor transparency.",
+          "url": "https://healthtech-wire.test/2024/ai-governance"
         }
       ]
     },
@@ -171,7 +181,7 @@
       "symbol": "❓",
       "verification": "Unverifiable (no evidence found that addresses the claim)",
       "confidence": 0.5,
-      "reasoning": "The claim states that AI copilots suggest treatment plans, but a human makes the final call. The provided evidence does not contain any information about Dr. Priya Patel's statement or the role of AI copilots in treatment planning versus human oversight. Therefore, the claim cannot be verified or refuted with the given evidence.",
+      "reasoning": "The provided evidence does not contain any information regarding the claim that AI copilots suggest treatment plans but a human makes the final call. The evidence is focused on FDA authorizations for AI medical devices, the types of devices authorized (radiology), Netflix plans, ISS presence, changes in duty-free treatment, and a fitness tip.",
       "method": "judged",
       "labels": [
         "insufficient",
@@ -179,7 +189,8 @@
         "insufficient"
       ],
       "queries": [
-        "search_kb: dr. priya patel ai copilots treatment plans"
+        "search_kb: dr. priya patel ai copilots treatment plans",
+        "search_web: ai copilots suggest treatment plans, but a human makes the final call. (escalation)"
       ],
       "evidence": []
     }
@@ -200,7 +211,7 @@
   "harness_version": "base",
   "model": "ollama_chat/gemma4:e2b",
   "stats": {
-    "seconds": 0.3,
-    "cache_hits": 24.0
+    "seconds": 0.2,
+    "cache_hits": 30.0
   }
 }

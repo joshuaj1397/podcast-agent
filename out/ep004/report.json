@@ -235,7 +235,7 @@
   "harness_version": "base",
   "model": "ollama_chat/gemma4:e2b",
   "stats": {
-    "seconds": 0.3,
+    "seconds": 0.2,
     "cache_hits": 24.0
   }
 }

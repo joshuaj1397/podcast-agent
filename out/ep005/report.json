@@ -88,11 +88,11 @@
       "ts": "01:12",
       "speaker": "Omar Haddad",
       "type": "statistic",
-      "status": "verified",
-      "symbol": "✅",
-      "verification": "True (confirmed by Spotify earnings (mock summary) [kb-031])",
+      "status": "inaccurate",
+      "symbol": "⚠",
+      "verification": "Possibly inaccurate (contradicted by Spotify earnings (mock summary) [kb-031])",
       "confidence": 0.85,
-      "reasoning": "The claim states that Spotify has about 400 million monthly active users. Evidence [kb-031] states that Spotify reported 675 million monthly active users at the end of 2024. This evidence supports the claim.",
+      "reasoning": "The claim states that Spotify has about 400 million monthly active users. Evidence [kb-031] states that Spotify reported 675 million monthly active users at the end of 2024. This evidence supports the claim. [numeric check: the claim says 4e+08 but the cited evidence says 6.75e+08, 2.63e+08; marked ⚠]",
       "method": "judged",
       "labels": [
         "supported",
@@ -280,56 +280,30 @@
       "ts": "03:45",
       "speaker": "Omar Haddad",
       "type": "factual",
-      "status": "unverifiable",
-      "symbol": "❓",
-      "verification": "Unverifiable (no evidence found that addresses the claim)",
-      "confidence": 0.5,
-      "reasoning": "The claim states that Google bought YouTube in 2006 for $1.65 billion. The provided evidence does not contain any information about Google's acquisition of YouTube or the price paid for it.",
+      "status": "verified",
+      "symbol": "✅",
+      "verification": "True (confirmed by example-news.test [web-010])",
+      "confidence": 0.95,
+      "reasoning": "The claim states that Google bought YouTube in 2006 for $1.65 billion. The evidence from [web-010] states that 'Google agreed to acquire video-sharing site YouTube for 1.65 billion US dollars' published in 2006. This directly supports the claim.",
       "method": "judged",
       "labels": [
-        "insufficient",
-        "insufficient",
-        "insufficient"
+        "supported",
+        "supported",
+        "supported"
       ],
       "queries": [
-        "search_kb: google bought youtube 2006 price"
+        "search_kb: google bought youtube 2006 price",
+        "search_web: google bought youtube in 2006 for $1.65 billion. (escalation)"
       ],
       "evidence": [
         {
-          "id": "kb-027",
-          "title": "YouTube founding",
-          "source": "Tech history (mock summary)",
-          "date": "2020-01-01",
-          "reliability": "kb",
-          "text": "YouTube was founded in February 2005 by Chad Hurley, Steve Chen and Jawed Karim; the first video, 'Me at the zoo', was uploaded on 23 April 2005.",
-          "url": null
-        },
-        {
-          "id": "kb-023",
-          "title": "Bitcoin price in 2025",
-          "source": "Market data (mock)",
-          "date": "2025-12-31",
-          "reliability": "kb",
-          "text": "Bitcoin set a new all-time high of roughly 126,000 US dollars in early October 2025 before a sharp pullback in the following weeks.",
-          "url": null
-        },
-        {
-          "id": "kb-061",
-          "title": "Facebook's founding",
-          "source": "Tech history (mock summary)",
-          "date": "2024-02-04",
-          "reliability": "kb",
-          "text": "Facebook, originally 'TheFacebook', was launched by Mark Zuckerberg and classmates in February 2004 for Harvard students. It expanded to Stanford, Columbia and Yale in March 2004 and opened to the general public in September 2006.",
-          "url": null
-        },
-        {
-          "id": "kb-059",
-          "title": "TikTok reaches one billion users",
-          "source": "TikTok (mock DB)",
-          "date": "2021-09-27",
-          "reliability": "kb",
-          "text": "TikTok said in September 2021 that it had passed 1 billion monthly active users worldwide.",
-          "url": null
+          "id": "web-010",
+          "title": "Google to buy YouTube for 1.65 billion dollars",
+          "source": "example-news.test",
+          "date": "2006-10-09",
+          "reliability": "high",
+          "text": "Google agreed to acquire video-sharing site YouTube for 1.65 billion US dollars in stock, its largest deal to date. The 20-month-old start-up will continue to operate independently.",
+          "url": "https://example-news.test/archive/2006/google-youtube-deal"
         }
       ]
     }
@@ -350,7 +324,7 @@
   "harness_version": "base",
   "model": "ollama_chat/gemma4:e2b",
   "stats": {
-    "seconds": 0.5,
-    "cache_hits": 44.0
+    "seconds": 0.3,
+    "cache_hits": 47.0
   }
 }

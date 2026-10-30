@@ -1,0 +1,843 @@
+──────────────────────────────────────────────────── ep001 · The Future of Remote Work ─────────────────────────────────────────────────────
+
+▶ plan planner agent decides steps and budgets
+  planner raw: { "reasoning": "The episode has claim candidates, so I need to run claims and fact-checking. Since the topic is about the 
+future of remote work, and there are claim candidates, I will prioritize summarizing the discussion, followed by checking the claims, and 
+then taking notes.", "steps": [ "summarize", "claims", "factcheck", "notes" ], "claim_budget": 6, "use_web_search": false, "summary_focus": 
+"The episode discusses the future trends and implications of remote work models." }
+  Thought (planner): The episode has claim candidates, so I need to run claims and fact-checking. Since the topic is about the future of 
+remote work, and there are claim candidates, I will prioritize summarizing the discussion, followed by checking the claims, and then taking 
+notes.
+PLAN             
+┌───┬───────────┐
+│ # │ step      │
+├───┼───────────┤
+│ 1 │ summarize │
+│ 2 │ claims    │
+│ 3 │ factcheck │
+│ 4 │ notes     │
+└───┴───────────┘
+  claim_budget=6  use_web_search=False
+  summary_focus: The episode discusses the future trends and implications of remote work models.
+
+▶ summarize summarizer agent
+  summarizer raw: {"reasoning": "The user wants a summary of the provided podcast transcript for show notes. The summary must be 200-300 
+words, cover core themes, key discussions, and speaker opinions, be in plain prose, and follow the 2-3 paragraph structure. I need to 
+identify the host and guests and strictly use only the provided transcript evidence. I will structure the summary around the evolution of 
+remote work, the cultural requirements for success, productivity measurement, and future predictions. I will ensure I attribute points to 
+the correct speakers by ID where necessary.","summary": "In this episode of Work Reimagined, host Sarah Johnson discusses the future of 
+remote work, moving beyond the simple idea of working from anywhere to explore the necessary cultural shifts for successful remote ope…
+  Thought (summarizer): The user wants a summary of the provided podcast transcript for show notes. The summary must be 200-300 words, cover
+core themes, key discussions, and speaker opinions, be in plain prose, and follow the 2-3 paragraph structure. I need to identify the host 
+and guests and strictly use only the provided transcript evidence. I will structure the summary around the evolution of remote work, the 
+cultur…
+  ✓ summary: 212 words
+
+▶ claims claims agent over 6 candidate turns (regex pre-filter)
+  claims raw: {"reasoning": "The user wants me to identify checkable claims from the provided podcast transcript turns and classify them by 
+type. I need to focus on statements that can be verified against public facts, such as dates, events, statistics, or specific 
+actions/products mentioned. I will review each candidate turn to extract these claims.", "claims": [{"turn_id": "T01", "claim": "Sarah 
+Johnson is hosting the podcast Work Reimagined.", "type": "factual"}, {"turn_id": "T01", "claim": "The discussion is focused on remote work 
+in 2025 and beyond.", "type": "opinion"}, {"turn_id": "T04", "claim": "Remote work involves an async-first culture, documentation, and 
+autonomy, which requires structured processes and trust.", "type": "opinion"}, {"turn_id": "T06", "claim": "GitLab, Automattic, and Doist…
+  Thought (claims): The user wants me to identify checkable claims from the provided podcast transcript turns and classify them by type. I 
+need to focus on statements that can be verified against public facts, such as dates, events, statistics, or specific actions/products 
+mentioned. I will review each candidate turn to extract these claims.
+  ✓ 4 claims to check (2 opinions and 2 about-the-show dropped, 0 over budget)
+
+▶ factcheck 4 claims: research agent (tools) -> judge agent (samples)
+
+▶ claim 1/4 [factual] GitLab, Automattic, and Doist have written handbooks for everything. (Mark Rivera 01:20)
+  Action: search_kb('GitLab Automattic Doist handbooks')
+  Observation: kb-001 GitLab public handbook (2024-06-01) | kb-002 Distributed companies publishing remote-work guidance (2024-05-01)
+  researcher raw: The evidence indicates that GitLab maintains a public company handbook, and Automattic and Doist have published written 
+guides on how they work remotely.
+  Thought (researcher): The evidence indicates that GitLab maintains a public company handbook, and Automattic and Doist have published 
+written guides on how they work remotely.
+  judge raw: { "reasoning": "The claim states that GitLab, Automattic, and Doist have written handbooks for everything. The evidence 
+supports this by stating that GitLab maintains a public company handbook documenting processes, values, and the remote operating model, and 
+that Automattic and Doist have published written guides on how they work remotely, emphasizing written documentation.", "label": 
+"supported", "evidence_ids": [ "kb-001", "kb-002" ] }
+  Thought (judge): The claim states that GitLab, Automattic, and Doist have written handbooks for everything. The evidence supports this by 
+stating that GitLab maintains a public company handbook documenting processes, values, and the remote operating model, and that Automattic 
+and Doist have published written guides on how they work remotely, emphasizing written documentation. -> supported ['kb-001', 'kb-002']
+  judge raw: { "reasoning": "The claim states that GitLab, Automattic, and Doist have written handbooks for everything. The evidence 
+supports this by mentioning that GitLab maintains a public company handbook documenting processes, values, and the remote operating model, 
+and that Automattic and Doist have published written guides on how they work remotely, emphasizing written documentation. This aligns with 
+the claim.", "label": "supported", "evidence_ids": [ "kb-001", "kb-002" ] }
+  judge raw: { "reasoning": "The claim states that GitLab, Automattic, and Doist have written handbooks for everything. The evidence 
+supports this by mentioning that GitLab maintains a public company handbook documenting processes, values, and the remote operating model, 
+where employees are expected to use it. Additionally, the evidence notes that Automattic and Doist have published written guides on how they
+work remotely, emphasizing written documentation. This supports the claim.", "label": "supported", "evidence_ids": [ "kb-001", "kb-002" ] }
+  Observation: samples: ['supported', 'supported', 'supported']
+  ✓ ✅ verified · 0.97 · True (confirmed by GitLab (mock DB) [kb-001], Company blogs (mock summary) [kb-002])
+
+▶ claim 2/4 [prediction] Remote-first companies will dominate talent acquisition. (Mark Rivera 05:00)
+  Thought (factcheck): rule: a prediction about the future -> ❓ without searching
+  ✓ ❓ unverifiable · 0.40 · Unverifiable (a prediction about the future)
+
+▶ claim 3/4 [prediction] Local offices might become optional hubs. (Mark Rivera 05:00)
+  Thought (factcheck): rule: a prediction about the future -> ❓ without searching
+  ✓ ❓ unverifiable · 0.40 · Unverifiable (a prediction about the future)
+
+▶ claim 4/4 [prediction] Async culture will become standard practice. (Mark Rivera 05:00)
+  Thought (factcheck): rule: a prediction about the future -> ❓ without searching
+  ✓ ❓ unverifiable · 0.40 · Unverifiable (a prediction about the future)
+
+▶ notes notes agent: takeaways, quotes, tags
+  notes raw: { "reasoning": "The takeaways focus on the core themes discussed: the definition of modern remote work, the necessary cultural 
+components, productivity measurement, addressing connection, and future predictions. Quote IDs are selected for their insightful statements 
+about the philosophy behind remote work, documentation, and trust, which are central to the discussion. Tags reflect the key concepts 
+mentioned throughout the transcript.", "takeaways": [ "Remote work is defined by an async-first culture, documentation, and autonomy, not 
+just location.", "Companies can build this culture by creating detailed handbooks so employees can self-guide.", "Productivity should be 
+measured by outcomes and deliverables rather than monitoring hours.", "Combating isolation requires intentional efforts lik…
+  Thought (notes): The takeaways focus on the core themes discussed: the definition of modern remote work, the necessary cultural 
+components, productivity measurement, addressing connection, and future predictions. Quote IDs are selected for their insightful statements 
+about the philosophy behind remote work, documentation, and trust, which are central to the discussion. Tags reflect the key concepts 
+mentioned thro…
+  ✓ 5 takeaways, 5 quotes, tags: remote work, async culture, team trust, documentation, work culture
+  ✓ wrote out\ep001/report.json, report.md, trace.jsonl
+ep001 done in 0.7s · ✅ 1 ⚠ 0 ❓ 3
+──────────────────────────────────────────────── ep002 · AI in Healthcare: Hype or Reality? ────────────────────────────────────────────────
+
+▶ plan planner agent decides steps and budgets
+  planner raw: { "reasoning": "The episode profile indicates there are 5 claim candidates, so I need to run 'claims' and 'factcheck'. Since 
+no specific context about the nature of these claims is provided, I will proceed with the standard pipeline order: summarize, notes, claims,
+factcheck.", "steps": [ "summarize", "notes", "claims", "factcheck" ], "claim_budget": 5, "use_web_search": false, "summary_focus": "The 
+episode discusses the reality versus the hype surrounding Artificial Intelligence in healthcare." }
+  Thought (planner): The episode profile indicates there are 5 claim candidates, so I need to run 'claims' and 'factcheck'. Since no 
+specific context about the nature of these claims is provided, I will proceed with the standard pipeline order: summarize, notes, claims, 
+factcheck.
+PLAN             
+┌───┬───────────┐
+│ # │ step      │
+├───┼───────────┤
+│ 1 │ summarize │
+│ 2 │ notes     │
+│ 3 │ claims    │
+│ 4 │ factcheck │
+└───┴───────────┘
+  claim_budget=5  use_web_search=False
+  summary_focus: The episode discusses the reality versus the hype surrounding Artificial Intelligence in healthcare.
+
+▶ summarize summarizer agent
+  summarizer raw: {"reasoning": "The user wants a podcast episode summary for show notes based on the provided transcript. The summary needs
+to be 200-300 words, in 2-3 paragraphs, covering core themes, key discussions, and speaker opinions. I must only use information from the 
+transcript and refer to speakers by their IDs. I will structure the summary around the main topic (AI in healthcare hype vs. reality) and 
+the key points raised by Dr. Priya Patel and Alex Moore, as guided by the host, David Chen.", "summary": "In this episode of Tech Health 
+Today, host David Chen explores the complex landscape of Artificial Intelligence in healthcare, aiming to distinguish between hype and 
+reality. Dr. Priya Patel and Alex Moore discuss the practical applications and inherent limitations of AI in the medical field. …
+  Thought (summarizer): The user wants a podcast episode summary for show notes based on the provided transcript. The summary needs to be 
+200-300 words, in 2-3 paragraphs, covering core themes, key discussions, and speaker opinions. I must only use information from the 
+transcript and refer to speakers by their IDs. I will structure the summary around the main topic (AI in healthcare hype vs. reality) and 
+the key points …
+  ✓ summary: 245 words
+
+▶ notes notes agent: takeaways, quotes, tags
+  notes raw: { "reasoning": "The takeaways focus on the core themes discussed: the current state of AI in healthcare, its limitations, 
+drivers for adoption, and the future direction. The quote IDs are selected for their insightful commentary on the reality versus hype, 
+specific applications, and the necessary cautionary elements. Tags are derived directly from the hints and the content to reflect the main 
+subjects.", "takeaways": [ "AI is currently assistive in healthcare, such as reading X-rays, rather than replacing clinicians.", 
+"Significant regulatory barriers, overseen by the FDA, prevent full autonomy for AI systems.", "Data privacy and inherent bias in clinical 
+data present major hurdles for AI adoption.", "Hospitals are adopting AI primarily for efficiency and to provide support to clinicians.…
+  Thought (notes): The takeaways focus on the core themes discussed: the current state of AI in healthcare, its limitations, drivers for 
+adoption, and the future direction. The quote IDs are selected for their insightful commentary on the reality versus hype, specific 
+applications, and the necessary cautionary elements. Tags are derived directly from the hints and the content to reflect the main subjects.
+  ✓ 5 takeaways, 5 quotes, tags: ai in healthcare, clinical adoption, medical ethics, diagnostics, fda regulation
+
+▶ claims claims agent over 5 candidate turns (regex pre-filter)
+  claims raw: { "reasoning": "I will review each candidate turn to identify statements that can be verified against public facts. I will 
+extract claims that are factual, statistical, predictions, anecdotes, or opinions, and format them according to the instructions.", 
+"claims": [ { "turn_id": "T05", "claim": "Some hospitals use AI for reading X-rays or flagging urgent cases.", "type": "factual" }, { 
+"turn_id": "T06", "claim": "The FDA reviews AI systems carefully, and full autonomy is not happening anytime soon.", "type": "factual" }, { 
+"turn_id": "T12", "claim": "The pandemic accelerated digital health adoption, including AI tools.", "type": "factual" }, { "turn_id": "T14",
+"claim": "AI copilots suggest treatment plans, but a human makes the final call.", "type": "factual" } ] }
+  Thought (claims): I will review each candidate turn to identify statements that can be verified against public facts. I will extract 
+claims that are factual, statistical, predictions, anecdotes, or opinions, and format them according to the instructions.
+  ✓ 4 claims to check (0 opinions and 0 about-the-show dropped, 0 over budget)
+
+▶ factcheck 4 claims: research agent (tools) -> judge agent (samples)
+
+▶ claim 1/4 [factual] Some hospitals use AI for reading X-rays or flagging urgent cases. (Dr. Priya Patel 00:55)
+  Action: search_kb('hospitals use AI for reading X-rays')
+  Observation: kb-005 Radiology dominates authorized AI medical devices (2025-07-10) | kb-004 FDA authorization of AI-enabled medical 
+devices (2024-12-04) | kb-007 WHO guidance on AI ethics in health (2021-06-28)
+  researcher raw: Some hospitals utilize AI for reading X-rays or flagging urgent cases, with these tools being assistive rather than 
+replacing clinicians.
+  Thought (researcher): Some hospitals utilize AI for reading X-rays or flagging urgent cases, with these tools being assistive rather than 
+replacing clinicians.
+  judge raw: { "reasoning": "The claim states that some hospitals use AI for reading X-rays or flagging urgent cases. Evidence [kb-005] 
+states that typical tools detect findings on chest X-rays, CT scans and mammograms or flag suspected urgent cases, such as brain bleeds, for
+prioritized review by a radiologist. This directly supports the claim.", "label": "supported", "evidence_ids": [ "kb-005" ] }
+  Thought (judge): The claim states that some hospitals use AI for reading X-rays or flagging urgent cases. Evidence [kb-005] states that 
+typical tools detect findings on chest X-rays, CT scans and mammograms or flag suspected urgent cases, such as brain bleeds, for prioritized
+review by a radiologist. This directly supports the claim. -> supported ['kb-005']
+  judge raw: { "reasoning": "The claim states that some hospitals use AI for reading X-rays or flagging urgent cases. Evidence [kb-005] 
+explicitly states that typical tools detect findings on chest X-rays, CT scans and mammograms or flag suspected urgent cases, such as brain 
+bleeds, for prioritized review by a radiologist, which supports the claim.", "label": "supported", "evidence_ids": [ "kb-005" ] }
+  judge raw: { "reasoning": "The claim states that some hospitals use AI for reading X-rays or flagging urgent cases. Evidence [kb-005] 
+supports this by stating that typical AI tools detect findings on chest X-rays, CT scans and mammograms or flag suspected urgent cases, such
+as brain bleeds, for prioritized review by a radiologist.", "label": "supported", "evidence_ids": [ "kb-005" ] }
+  Observation: samples: ['supported', 'supported', 'supported']
+  ✓ ✅ verified · 0.97 · True (confirmed by FDA AI-enabled device list (mock summary) [kb-005])
+
+▶ claim 2/4 [factual] The FDA reviews AI systems carefully, and full autonomy is not happening anytime soon. (Alex Moore 01:15)
+  Action: search_kb('FDA reviews AI systems autonomy')
+  Observation: kb-005 Radiology dominates authorized AI medical devices (2025-07-10) | kb-004 FDA authorization of AI-enabled medical 
+devices (2024-12-04) | kb-007 WHO guidance on AI ethics in health (2021-06-28)
+  researcher raw: The search results indicate that the FDA authorizes AI-enabled medical devices through processes like 510(k) clearance, De
+Novo classification, or premarket approval, suggesting a regulatory process is in place, but the provided evidence does not specifically 
+confirm Alex Moore's statement about full autonomy not happening soon.
+  Thought (researcher): The search results indicate that the FDA authorizes AI-enabled medical devices through processes like 510(k) 
+clearance, De Novo classification, or premarket approval, suggesting a regulatory process is in place, but the provided evidence does not 
+specifically confirm Alex Moore's statement about full autonomy not happening soon.
+  judge raw: { "reasoning": "The claim states that the FDA reviews AI systems carefully and that full autonomy is not happening anytime 
+soon. Evidence [kb-004] confirms that AI-enabled software that meets the definition of a medical device must be authorized by the US FDA 
+before it is marketed through clearance pathways. This supports the idea that the FDA reviews these systems carefully. The evidence does not
+directly state that full autonomy is not happening anytime soon, but the rigorous authorization process implies caution.", "label": 
+"supported", "evidence_ids": [ "kb-004" ] }
+  Thought (judge): The claim states that the FDA reviews AI systems carefully and that full autonomy is not happening anytime soon. Evidence
+[kb-004] confirms that AI-enabled software that meets the definition of a medical device must be authorized by the US FDA before it is 
+marketed through clearance pathways. This supports the idea that the FDA reviews these systems carefully. The evidence does not directly 
+state…
+  judge raw: { "reasoning": "The claim states that the FDA reviews AI systems carefully and that full autonomy is not happening anytime 
+soon. The evidence supports the idea that the FDA reviews AI-enabled medical devices (kb-004) and provides guidance on how AI models will be
+updated after authorization (kb-004), which suggests careful review and control. There is no direct evidence in the provided passages 
+stating definitively that 'full autonomy is not happening anytime soon,' but the existence of authorization pathways and change control 
+plans implies regulatory oversight aimed at managing risk.", "label": "supported", "evidence_ids": [ "kb-004", "kb-007" ] }
+  judge raw: { "reasoning": "The claim states that the FDA reviews AI systems carefully and that full autonomy is not happening anytime 
+soon. The evidence confirms that the FDA authorizes AI-enabled medical devices (kb-004) and provides guidance on change control plans for 
+authorized models (kb-004). This suggests careful review and regulation. However, the evidence does not directly confirm the statement that 
+'full autonomy is not happening anytime soon,' but it supports the regulatory aspect of the claim.", "label": "supported", "evidence_ids": [
+"kb-004" ] }
+  Observation: samples: ['supported', 'supported', 'supported']
+  ✓ ✅ verified · 0.97 · True (confirmed by FDA (mock DB) [kb-004])
+
+▶ claim 3/4 [factual] The pandemic accelerated digital health adoption, including AI tools. (Alex Moore 03:30)
+  Action: search_kb('Alex Moore AI in Healthcare')
+  Observation: kb-065 Moore's law (2015-04-19) | kb-004 FDA authorization of AI-enabled medical devices (2024-12-04) | kb-005 Radiology 
+dominates authorized AI medical devices (2025-07-10)
+  researcher raw: I did not find any evidence in the search results to verify the claim made by Alex Moore regarding the pandemic 
+accelerating digital health adoption and AI tools.
+  Thought (researcher): I did not find any evidence in the search results to verify the claim made by Alex Moore regarding the pandemic 
+accelerating digital health adoption and AI tools.
+  judge raw: { "reasoning": "The claim states that the pandemic accelerated digital health adoption, including AI tools. The evidence 
+includes information about the surge in telehealth during the pandemic (kb-006) and the FDA's authorization of AI-enabled medical devices 
+(kb-004). While the evidence confirms the acceleration of digital health (telehealth) and the existence of regulated AI medical devices, 
+there is no direct evidence explicitly linking the pandemic to the acceleration of *AI tool* adoption in the context of the claim. The 
+evidence supports the existence of AI medical devices and the acceleration of *telehealth*, but not definitively the acceleration of *AI 
+tool* adoption as a whole.", "label": "insufficient", "evidence_ids": [ "kb-004", "kb-006" ] }
+  Thought (judge): The claim states that the pandemic accelerated digital health adoption, including AI tools. The evidence includes 
+information about the surge in telehealth during the pandemic (kb-006) and the FDA's authorization of AI-enabled medical devices (kb-004). 
+While the evidence confirms the acceleration of digital health (telehealth) and the existence of regulated AI medical devices, there is no 
+direct …
+  judge raw: { "reasoning": "The claim states that the pandemic accelerated digital health adoption, including AI tools. Evidence [kb-006] 
+explicitly mentions a surge in telehealth use during the COVID-19 pandemic. Evidence [kb-004] discusses FDA authorization for AI-enabled 
+medical devices, and [kb-005] notes the dominance of AI in radiology. While the evidence supports the existence of AI-enabled medical 
+devices and telehealth surges, it does not directly confirm that the *pandemic accelerated digital health adoption, including AI tools* as a
+single cohesive finding. However, the evidence points to the context where this claim might be relevant (telehealth surge and AI device 
+regulation). Since the evidence details specific accelerations in related areas, it partially supports the claim.", "label": …
+  judge raw: { "reasoning": "The claim states that the pandemic accelerated digital health adoption, including AI tools. The evidence 
+includes information about a surge in telehealth during the pandemic [kb-006] and information about the FDA authorizing AI-enabled medical 
+devices [kb-004] and WHO guidance on AI ethics in health [kb-007]. While the evidence supports the existence of AI-enabled medical devices 
+and discussions around AI in health during the relevant timeframe, there is no direct evidence in these passages explicitly stating that the
+pandemic *accelerated* the adoption of digital health *including AI tools* as a whole. However, the evidence points to significant activity 
+in these areas.", "label": "insufficient", "evidence_ids": [ "kb-004", "kb-006", "kb-007" ] }
+  Observation: samples: ['insufficient', 'supported', 'insufficient']
+  ! KB evidence insufficient; escalating to web search: ['web-003', 'web-082', 'web-078']
+  Observation: web-003 Telehealth use soared during the pandemic and stayed elevated (2021-07-09, high)
+  Observation: web-082 Digital health funding cools after 2021 peak (2024-01-10, medium)
+  Observation: web-078 Hospitals set up AI governance committees (2024-10-22, medium)
+  judge raw: { "reasoning": "The claim states that the pandemic accelerated digital health adoption, including AI tools. The evidence 
+supports this by showing that telehealth use soared during the pandemic and stayed elevated, permanently accelerating digital health 
+adoption (web-003). Additionally, there is evidence related to AI in healthcare, such as FDA authorization guidance for AI-enabled medical 
+devices (kb-004) and hospitals setting up AI governance committees to vet clinical AI tools (web-078).", "label": "supported", 
+"evidence_ids": [ "web-003", "kb-004", "web-078" ] }
+  Thought (judge): The claim states that the pandemic accelerated digital health adoption, including AI tools. The evidence supports this by
+showing that telehealth use soared during the pandemic and stayed elevated, permanently accelerating digital health adoption (web-003). 
+Additionally, there is evidence related to AI in healthcare, such as FDA authorization guidance for AI-enabled medical devices (kb-004) and 
+h…
+  judge raw: { "reasoning": "The claim states that the pandemic accelerated digital health adoption, including AI tools. The evidence 
+includes information about telehealth soaring during the pandemic and permanently accelerating digital health adoption [web-003]. It also 
+mentions the FDA's authorization of AI-enabled medical devices [kb-004] and the rise of AI in radiology [kb-005]. While the evidence 
+supports the acceleration of digital health adoption and the existence of AI medical devices, it does not explicitly link the pandemic 
+directly to the acceleration of *AI tools* adoption in the same way it links it to telehealth. However, the evidence points to broader 
+acceleration of digital health adoption, which includes AI. Given the context, the evidence provides supporting points.", "label": "suppo…
+  judge raw: { "reasoning": "The claim states that the pandemic accelerated digital health adoption, including AI tools. Evidence [web-003] 
+explicitly states that 'Telehealth use soared during the pandemic and stayed elevated' and that 'COVID-19 pushed patients and doctors onto 
+video visits almost overnight,' estimating this permanently accelerated digital health adoption. Evidence [kb-004] and [kb-005] discuss the 
+regulation and presence of AI in medical devices, supporting the part about AI tools. Therefore, the evidence supports the claim.", "label":
+"supported", "evidence_ids": [ "web-003", "kb-004", "kb-005" ] }
+  Observation: samples: ['supported', 'supported', 'supported']
+  ✓ ✅ verified · 0.97 · True (confirmed by example-news.test [web-003], FDA (mock DB) [kb-004], healthtech-wire.test [web-078])
+
+▶ claim 4/4 [factual] AI copilots suggest treatment plans, but a human makes the final call. (Dr. Priya Patel 04:15)
+  Action: search_kb('Dr. Priya Patel AI copilots treatment plans')
+  Observation: kb-004 FDA authorization of AI-enabled medical devices (2024-12-04) | kb-005 Radiology dominates authorized AI medical 
+devices (2025-07-10) | kb-034 Netflix ad-supported plan launch (2022-11-03)
+  researcher raw: I did not find any evidence confirming the claim made by Dr. Priya Patel regarding AI copilots suggesting treatment plans 
+while a human makes the final call.
+  Thought (researcher): I did not find any evidence confirming the claim made by Dr. Priya Patel regarding AI copilots suggesting treatment 
+plans while a human makes the final call.
+  judge raw: { "reasoning": "The claim states that AI copilots suggest treatment plans, but a human makes the final call. The provided 
+evidence does not contain any information about Dr. Priya Patel's statement or the role of AI copilots in treatment planning versus human 
+oversight. Therefore, the claim cannot be verified or refuted with the given evidence.", "label": "insufficient", "evidence_ids": [] }
+  Thought (judge): The claim states that AI copilots suggest treatment plans, but a human makes the final call. The provided evidence does 
+not contain any information about Dr. Priya Patel's statement or the role of AI copilots in treatment planning versus human oversight. 
+Therefore, the claim cannot be verified or refuted with the given evidence. -> insufficient []
+  judge raw: { "reasoning": "The claim states that AI copilots suggest treatment plans, but a human makes the final call. The provided 
+evidence does not contain any direct statement from Dr. Priya Patel or any specific information about the division of roles between AI 
+copilots and human clinicians in treatment planning. The evidence focuses on FDA authorizations for AI medical devices, the types of devices
+approved (radiology), and WHO guidance on AI ethics in health.", "label": "insufficient", "evidence_ids": [ "kb-004", "kb-005", "kb-034", 
+"kb-007" ] }
+  judge raw: { "reasoning": "The claim states that AI copilots suggest treatment plans, but a human makes the final call. The provided 
+evidence does not contain information about Dr. Priya Patel's statement or any direct discussion about the roles of AI copilots in 
+suggesting treatment plans versus the final decision-making authority of a human.", "label": "insufficient", "evidence_ids": [] }
+  Observation: samples: ['insufficient', 'insufficient', 'insufficient']
+  ! KB evidence insufficient; escalating to web search: ['web-046', 'web-139', 'web-057']
+  Observation: web-046 24 years of continuous human presence on the ISS (2024-11-02, high)
+  Observation: web-139 US ends duty-free treatment for low-value imports (2025-08-29, high)
+  Observation: web-057 Why lactic acid makes you sore for days (2019-03-02, low)
+  judge raw: { "reasoning": "The provided evidence does not contain any information regarding the claim that AI copilots suggest treatment 
+plans but a human makes the final call. The evidence is focused on FDA authorizations for AI medical devices, the types of devices 
+authorized (radiology), Netflix plans, ISS presence, changes in duty-free treatment, and a fitness tip.", "label": "insufficient", 
+"evidence_ids": [] }
+  Thought (judge): The provided evidence does not contain any information regarding the claim that AI copilots suggest treatment plans but a
+human makes the final call. The evidence is focused on FDA authorizations for AI medical devices, the types of devices authorized 
+(radiology), Netflix plans, ISS presence, changes in duty-free treatment, and a fitness tip. -> insufficient []
+  judge raw: { "reasoning": "The claim states that AI copilots suggest treatment plans, but a human makes the final call. The provided 
+evidence does not contain any information about AI copilots suggesting treatment plans or the roles of humans in making final medical 
+decisions. Therefore, the claim cannot be verified or refuted with the given passages.", "label": "insufficient", "evidence_ids": [] }
+  judge raw: { "reasoning": "The claim states that AI copilots suggest treatment plans, but a human makes the final call. The provided 
+evidence discusses FDA authorization for AI medical devices and the dominance of radiology in authorized AI medical devices (kb-004, 
+kb-005). However, none of the provided evidence directly confirms or denies Dr. Patel's specific statement about the role of AI copilots in 
+suggesting plans versus a human making the final decision in treatment planning.", "label": "insufficient", "evidence_ids": [ "kb-004", 
+"kb-005" ] }
+  Observation: samples: ['insufficient', 'insufficient', 'insufficient']
+  ✓ ❓ unverifiable · 0.50 · Unverifiable (no evidence found that addresses the claim)
+  ✓ wrote out\ep002/report.json, report.md, trace.jsonl
+ep002 done in 0.2s · ✅ 3 ⚠ 0 ❓ 1
+───────────────────────────────────────── ep003 · Bootstrapping vs Fundraising — Which Path Wins? ──────────────────────────────────────────
+
+▶ plan planner agent decides steps and budgets
+  planner raw: { "reasoning": "The episode has claim candidates, so I need to run the 'claims' and 'factcheck' steps. Since there is one 
+turn with a number, and the claim count is 3, I will set a claim budget of 3 and set use_web_search to true as it's good practice when 
+claims are present.", "steps": [ "summarize", "claims", "factcheck", "notes" ], "claim_budget": 3, "use_web_search": true, "summary_focus": 
+"The episode compares the strategies of bootstrapping versus fundraising to determine the winning path for a venture." }
+  Thought (planner): The episode has claim candidates, so I need to run the 'claims' and 'factcheck' steps. Since there is one turn with a 
+number, and the claim count is 3, I will set a claim budget of 3 and set use_web_search to true as it's good practice when claims are 
+present.
+PLAN             
+┌───┬───────────┐
+│ # │ step      │
+├───┼───────────┤
+│ 1 │ summarize │
+│ 2 │ claims    │
+│ 3 │ factcheck │
+│ 4 │ notes     │
+└───┴───────────┘
+  claim_budget=3  use_web_search=True
+  summary_focus: The episode compares the strategies of bootstrapping versus fundraising to determine the winning path for a venture.
+
+▶ summarize summarizer agent
+  summarizer raw: {"reasoning": "The user wants a podcast episode summary for show notes based on the provided transcript. The summary 
+should be 200-300 words, in 2-3 paragraphs, covering core themes, key discussions, and speaker opinions. It must name the host and guests, 
+use only the provided transcript evidence, and avoid bullet points or headings. The internal name is 'summarizer'.", "summary": "Host Lena 
+Torres explored the debate between bootstrapping and fundraising to determine the optimal path for a venture. Guest Samir Gupta shared his 
+experience bootstrapping companies from scratch, arguing that this method enforces discipline by forcing founders to focus on revenue and 
+profitability early on, avoiding distractions from chasing venture capital metrics. He cited an example of building a SaaS comp…
+  Thought (summarizer): The user wants a podcast episode summary for show notes based on the provided transcript. The summary should be 
+200-300 words, in 2-3 paragraphs, covering core themes, key discussions, and speaker opinions. It must name the host and guests, use only 
+the provided transcript evidence, and avoid bullet points or headings. The internal name is 'summarizer'.
+  ✓ summary: 243 words
+
+▶ claims claims agent over 3 candidate turns (regex pre-filter)
+  claims raw: { "reasoning": "I will examine the provided turns for checkable claims. Turn T05 makes a statement about the focus of 
+bootstrapping. Turn T06 makes a statement about the role of VC money in time-sensitive markets. Turn T08 recounts a specific business 
+achievement including a timeframe and outcome.", "claims": [ { "turn_id": "T05", "claim": "Bootstrapping forces founders to focus on revenue
+and profitability early without distractions from chasing VC metrics.", "type": "opinion" }, { "turn_id": "T06", "claim": "VC money helps 
+capture a time-sensitive market before competitors.", "type": "factual" }, { "turn_id": "T08", "claim": "Samir Gupta built a SaaS with no 
+outside capital that reached break-even in 18 months and retained total control.", "type": "anecdote" } ] }
+  Thought (claims): I will examine the provided turns for checkable claims. Turn T05 makes a statement about the focus of bootstrapping. 
+Turn T06 makes a statement about the role of VC money in time-sensitive markets. Turn T08 recounts a specific business achievement including
+a timeframe and outcome.
+  ✓ 2 claims to check (1 opinions and 0 about-the-show dropped, 0 over budget)
+
+▶ factcheck 2 claims: research agent (tools) -> judge agent (samples)
+
+▶ claim 1/2 [factual] VC money helps capture a time-sensitive market before competitors. (Emily Rogers 01:30)
+  Action: search_kb('Emily Rogers VC money time-sensitive market')
+  Observation: kb-067 Nvidia market value (2025-07-10) | kb-037 Norway EV market share (2025-01-02) | kb-014 Earth-Mars distance and travel 
+time (2023-06-01)
+  researcher raw: I did not find any evidence in the knowledge base to verify the claim made by Emily Rogers about VC money helping to 
+capture a time-sensitive market before competitors.
+  Thought (researcher): I did not find any evidence in the knowledge base to verify the claim made by Emily Rogers about VC money helping to
+capture a time-sensitive market before competitors.
+  judge raw: { "reasoning": "The claim states that VC money helps capture a time-sensitive market before competitors. However, the provided 
+evidence consists of mock market data for Nvidia, Norway EV market share, Earth-Mars distance, Bitcoin price, and two general web articles 
+about carrots and teen screen time. None of this evidence directly supports or contradicts the specific claim about VC money and 
+time-sensitive markets.", "label": "insufficient", "evidence_ids": [ "kb-067", "kb-037", "kb-014", "kb-023", "web-069", "web-150" ] }
+  Thought (judge): The claim states that VC money helps capture a time-sensitive market before competitors. However, the provided evidence 
+consists of mock market data for Nvidia, Norway EV market share, Earth-Mars distance, Bitcoin price, and two general web articles about 
+carrots and teen screen time. None of this evidence directly supports or contradicts the specific claim about VC money and time-sensitive 
+marke…
+  judge raw: { "reasoning": "The claim states that VC money helps capture a time-sensitive market before competitors. The provided evidence 
+consists of mock market data, information about the Norwegian EV market, Earth-Mars distances, Bitcoin price data, and general 
+wellness/social media information. None of the provided passages contain information about venture capital (VC) money or its effect on 
+capturing time-sensitive markets.", "label": "insufficient", "evidence_ids": [] }
+  judge raw: { "reasoning": "The claim states that VC money helps capture a time-sensitive market before competitors. The provided evidence 
+consists of mock market data, information about the EV market in Norway, NASA data on Earth-Mars distance, Bitcoin price data, a 
+low-reliability wellness article, and a survey on teen screen time. None of the provided evidence directly discusses the role of VC money in
+capturing time-sensitive markets.", "label": "insufficient", "evidence_ids": [ "kb-067", "kb-037", "kb-014", "kb-023", "web-069", "web-150" 
+] }
+  Observation: samples: ['insufficient', 'insufficient', 'insufficient']
+  ✓ ❓ unverifiable · 0.50 · Unverifiable (no evidence found that addresses the claim)
+
+▶ claim 2/2 [anecdote] Samir Gupta built a SaaS with no outside capital that reached break-even in 18 months and retained total control. 
+(Samir Gupta 02:10)
+  Thought (factcheck): rule: a personal anecdote with no public record -> ❓ without searching
+  ✓ ❓ unverifiable · 0.40 · Unverifiable (a personal anecdote with no public record)
+
+▶ notes notes agent: takeaways, quotes, tags
+  notes raw: { "reasoning": "The takeaways focus on the core arguments for each path and the decision matrix. The quote IDs are selected for
+their strong, self-contained statements about the benefits or trade-offs of bootstrapping versus VC funding. Tags are derived directly from 
+the discussion topics and the provided hints.", "takeaways": [ "Bootstrapping enforces discipline by focusing early on revenue and 
+profitability.", "VC funding is useful for capturing time-sensitive markets before competitors.", "Bootstrapping is best suited for niche, 
+defensible, and early revenue-generating markets.", "Raising capital is advisable in fast-moving, competitive spaces requiring rapid 
+scale.", "Bootstrapping offers full control but results in slower growth and less investor risk." ], "quote_ids": [ "T05", "T08"…
+  Thought (notes): The takeaways focus on the core arguments for each path and the decision matrix. The quote IDs are selected for their 
+strong, self-contained statements about the benefits or trade-offs of bootstrapping versus VC funding. Tags are derived directly from the 
+discussion topics and the provided hints.
+  ✓ 5 takeaways, 5 quotes, tags: bootstrapping, venture capital, founder path, market strategy, growth, control
+  ✓ wrote out\ep003/report.json, report.md, trace.jsonl
+ep003 done in 0.1s · ✅ 0 ⚠ 0 ❓ 2
+──────────────────────────────────────────────────────── ep004 · Red Planet Rumors ─────────────────────────────────────────────────────────
+
+▶ plan planner agent decides steps and budgets
+  planner raw: { "reasoning": "The episode has 15 claim candidates, so I need to run the 'claims' and 'factcheck' steps. Since the profile 
+doesn't specify recent events, prices, or statistics, I will set `use_web_search` to false, and the claim budget will be set based on the 
+number of candidates.", "steps": [ "claims", "factcheck", "summarize", "notes" ], "claim_budget": 15, "use_web_search": false, 
+"summary_focus": "The episode discusses rumors surrounding the Red Planet and expert perspectives on these claims." }
+  Thought (planner): The episode has 15 claim candidates, so I need to run the 'claims' and 'factcheck' steps. Since the profile doesn't 
+specify recent events, prices, or statistics, I will set `use_web_search` to false, and the claim budget will be set based on the number of 
+candidates.
+PLAN             
+┌───┬───────────┐
+│ # │ step      │
+├───┼───────────┤
+│ 1 │ claims    │
+│ 2 │ factcheck │
+│ 3 │ summarize │
+│ 4 │ notes     │
+└───┴───────────┘
+  claim_budget=8  use_web_search=False
+  summary_focus: The episode discusses rumors surrounding the Red Planet and expert perspectives on these claims.
+  ! claim_budget 15 clamped to 8 (limit 8)
+
+▶ claims claims agent over 15 candidate turns (regex pre-filter)
+  claims raw: { "reasoning": "I will examine each candidate turn for checkable claims, focusing on dates, events, missions, and specific 
+figures. I will rewrite any such claim into a short, self-contained sentence and assign an appropriate type (factual, statistic, prediction,
+anecdote, or opinion).", "claims": [ { "turn_id": "T04", "claim": "The Perseverance rover landed in Jezebel Crater in February 2021 and has 
+been drilling rock cores since.", "type": "factual" }, { "turn_id": "T08", "claim": "Ingenuity has completed about fifty flights and NASA is
+extending the mission.", "type": "factual" }, { "turn_id": "T12", "claim": "A Mars team has been working weekends since last summer.", 
+"type": "anecdote" }, { "turn_id": "T18", "claim": "A new Mars mission is launching in early 2026, with plans to bring …
+  Thought (claims): I will examine each candidate turn for checkable claims, focusing on dates, events, missions, and specific figures. I 
+will rewrite any such claim into a short, self-contained sentence and assign an appropriate type (factual, statistic, prediction, anecdote, 
+or opinion).
+  ✓ 6 claims to check (0 opinions and 0 about-the-show dropped, 0 over budget)
+
+▶ factcheck 6 claims: research agent (tools) -> judge agent (samples)
+
+▶ claim 1/6 [factual] The Perseverance rover landed in Jezebel Crater in February 2021 and has been drilling rock cores since. (Dr. Lena 
+Park 00:00:31)
+  Action: search_kb('Perseverance rover Jezebel Crater February 2021')
+  Observation: kb-012 Perseverance rover landing (2024-01-01) | kb-015 Opportunity rover mission (2019-02-13) | kb-027 YouTube founding 
+(2020-01-01)
+  researcher raw: The evidence indicates that the Perseverance rover landed in Jezero Crater on February 18, 2021, and it is drilling rock 
+cores and sealing them in sample tubes.
+  Thought (researcher): The evidence indicates that the Perseverance rover landed in Jezero Crater on February 18, 2021, and it is drilling 
+rock cores and sealing them in sample tubes.
+  judge raw: { "reasoning": "The claim states that the Perseverance rover landed in Jezebel Crater in February 2021 and has been drilling 
+rock cores since. The evidence [kb-012] states that the Perseverance rover landed in Jezero Crater on Mars on February 18, 2021, and that it
+is drilling rock cores. This supports the claim.", "label": "supported", "evidence_ids": [ "kb-012" ] }
+  Thought (judge): The claim states that the Perseverance rover landed in Jezebel Crater in February 2021 and has been drilling rock cores 
+since. The evidence [kb-012] states that the Perseverance rover landed in Jezero Crater on Mars on February 18, 2021, and that it is 
+drilling rock cores. This supports the claim. -> supported ['kb-012']
+  judge raw: { "reasoning": "The claim states that the Perseverance rover landed in Jezebel Crater in February 2021 and has been drilling 
+rock cores since. Evidence [kb-012] confirms that the Perseverance rover landed in Jezero Crater on February 18, 2021, and is drilling rock 
+cores. This supports the claim.", "label": "supported", "evidence_ids": [ "kb-012" ] }
+  judge raw: { "reasoning": "The claim states that the Perseverance rover landed in Jezebel Crater in February 2021 and has been drilling 
+rock cores since. The evidence from [kb-012] states that the Perseverance rover landed in Jezero Crater on Mars on February 18, 2021, and it
+is drilling rock cores. This supports the claim.", "label": "supported", "evidence_ids": [ "kb-012" ] }
+  Observation: samples: ['supported', 'supported', 'supported']
+  ✓ ✅ verified · 0.97 · True (confirmed by NASA (mock DB) [kb-012])
+
+▶ claim 2/6 [factual] Ingenuity has completed about fifty flights and NASA is extending the mission. (Dr. Lena Park 00:01:01)
+  Action: search_kb('Ingenuity flights NASA mission')
+  Observation: kb-013 Ingenuity helicopter mission ends (2024-01-25) | kb-016 Artemis I lunar test flight (2022-12-11) | kb-010 NASA Mars 
+mission schedule (2025-01-28)
+  researcher raw: The search results indicate that NASA's Ingenuity Mars helicopter mission ended in January 2024 after damaging a rotor 
+blade, having completed 72 flights, and it no longer flies.
+  Thought (researcher): The search results indicate that NASA's Ingenuity Mars helicopter mission ended in January 2024 after damaging a 
+rotor blade, having completed 72 flights, and it no longer flies.
+  judge raw: { "reasoning": "The claim states that Ingenuity has completed about fifty flights and NASA is extending the mission. Evidence 
+[kb-013] states that Ingenuity's mission ended in January 2024 after damaging a rotor blade and had completed 72 flights, and it no longer 
+flies. This contradicts the claim that it is still flying and that NASA is extending the mission.", "label": "contradicted", "evidence_ids":
+[ "kb-013" ] }
+  Thought (judge): The claim states that Ingenuity has completed about fifty flights and NASA is extending the mission. Evidence [kb-013] 
+states that Ingenuity's mission ended in January 2024 after damaging a rotor blade and had completed 72 flights, and it no longer flies. 
+This contradicts the claim that it is still flying and that NASA is extending the mission. -> contradicted ['kb-013']
+  judge raw: { "reasoning": "The claim states that Ingenuity has completed about fifty flights and NASA is extending the mission. Evidence 
+[kb-013] states that Ingenuity ended its mission in January 2024 after damaging a rotor blade and had completed 72 flights, and it no longer
+flies. This contradicts the claim about the mission being extended.", "label": "contradicted", "evidence_ids": [ "kb-013" ] }
+  judge raw: { "reasoning": "The claim states that Ingenuity has completed about fifty flights and NASA is extending the mission. Evidence 
+[kb-013] states that Ingenuity's mission ended in January 2024 after damaging a rotor blade, having completed 72 flights, and it no longer 
+flies. This contradicts the claim that it is still flying and that NASA is extending the mission.", "label": "contradicted", "evidence_ids":
+[ "kb-013" ] }
+  Observation: samples: ['contradicted', 'contradicted', 'contradicted']
+  ✓ ⚠ inaccurate · 0.97 · Possibly inaccurate (contradicted by NASA (mock DB) [kb-013])
+
+▶ claim 3/6 [factual] A new Mars mission is launching in early 2026, with plans to bring back samples. (Dr. Lena Park 00:02:18)
+  Action: search_kb('Mars mission early 2026 samples')
+  Observation: kb-010 NASA Mars mission schedule (2025-01-28) | kb-011 Mars Sample Return delayed and restructured (2025-06-01) | kb-013 
+Ingenuity helicopter mission ends (2024-01-25)
+  researcher raw: I found information stating that NASA's next Mars mission is scheduled to launch in early 2026, but this mission is an 
+orbiter focused on the Martian upper atmosphere and space weather, not one specifically planning to bring back samples.
+  Thought (researcher): I found information stating that NASA's next Mars mission is scheduled to launch in early 2026, but this mission is 
+an orbiter focused on the Martian upper atmosphere and space weather, not one specifically planning to bring back samples.
+  judge raw: { "reasoning": "The claim states a new Mars mission is launching in early 2026 with plans to bring back samples. Passage 
+[kb-010] confirms that the next Mars mission, announced in January 2025, is scheduled to launch in early 2026, but it specifies this is an 
+orbiter mission focused on the Martian upper atmosphere and space weather, not explicitly a mission with plans to bring back samples. 
+Passage [kb-011] discusses the Mars Sample Return campaign being delayed and restructured, suggesting the original plan for bringing back 
+samples is not on track. Since [kb-010] confirms the launch timing but not the sample return aspect, and [kb-011] suggests issues with the 
+sample return, the claim as stated is not fully supported by the evidence.", "label": "insufficient", "evidence_ids": [ "kb-010"…
+  Thought (judge): The claim states a new Mars mission is launching in early 2026 with plans to bring back samples. Passage [kb-010] 
+confirms that the next Mars mission, announced in January 2025, is scheduled to launch in early 2026, but it specifies this is an orbiter 
+mission focused on the Martian upper atmosphere and space weather, not explicitly a mission with plans to bring back samples. Passage 
+[kb-011] disc…
+  judge raw: { "reasoning": "The claim states a new Mars mission is launching in early 2026 with plans to bring back samples. Passage 
+[kb-010] confirms that the agency's next Mars mission, announced in January 2025, is scheduled to launch in early 2026, but it specifies 
+this mission is an orbiter mission focused on the Martian upper atmosphere and space weather, not one explicitly focused on bringing back 
+samples. Passage [kb-011] discusses the Mars Sample Return campaign being delayed, with samples expected no earlier than the mid-2030s, and 
+mentions budget proposals to cancel the program in FY2026, which contradicts the 'bring back samples' aspect of the claim for the mission 
+scheduled in early 2026.", "label": "contradicted", "evidence_ids": [ "kb-010", "kb-011" ] }
+  judge raw: { "reasoning": "The claim states a new Mars mission is launching in early 2026 with plans to bring back samples. Evidence 
+[kb-010] confirms that NASA's next Mars mission, announced in January 2025, is scheduled to launch in early 2026, but it is an orbiter 
+mission focused on the Martian upper atmosphere and space weather, not explicitly a mission with plans to bring back samples. Evidence 
+[kb-011] indicates that the Mars Sample Return campaign has been delayed and restructured, with samples reaching Earth no earlier than the 
+mid-2030s, and the FY2026 budget request proposed cancelling the program.", "label": "contradicted", "evidence_ids": [ "kb-010", "kb-011" ] 
+}
+  Observation: samples: ['insufficient', 'contradicted', 'contradicted']
+  ✓ ⚠ inaccurate · 0.85 · Possibly inaccurate (contradicted by NASA (mock DB) [kb-010], NASA (mock DB) [kb-011])
+
+▶ claim 4/6 [factual] Bitcoin went over one hundred thousand dollars for the first time in early December. (Dr. Lena Park 00:03:15)
+  Action: search_kb('Bitcoin over one hundred thousand dollars December')
+  Observation: kb-022 Bitcoin passes 100,000 dollars (2024-12-05) | kb-023 Bitcoin price in 2025 (2025-12-31) | kb-059 TikTok reaches one 
+billion users (2021-09-27)
+  researcher raw: I found evidence that Bitcoin traded above 100,000 US dollars for the first time on December 5, 2024, according to mock 
+market data.
+  Thought (researcher): I found evidence that Bitcoin traded above 100,000 US dollars for the first time on December 5, 2024, according to 
+mock market data.
+  judge raw: { "reasoning": "The claim states that Bitcoin went over one hundred thousand dollars for the first time in early December. 
+Evidence [kb-022] states that Bitcoin traded above $100,000 for the first time on December 5, 2024. This date (December 5, 2024) falls 
+within December, but it is not explicitly 'early December' relative to the recording date of the episode (February 10, 2025) or the context 
+of the claim. However, the evidence confirms that Bitcoin did cross the $100,000 mark in December.", "label": "supported", "evidence_ids": [
+"kb-022" ] }
+  Thought (judge): The claim states that Bitcoin went over one hundred thousand dollars for the first time in early December. Evidence 
+[kb-022] states that Bitcoin traded above $100,000 for the first time on December 5, 2024. This date (December 5, 2024) falls within 
+December, but it is not explicitly 'early December' relative to the recording date of the episode (February 10, 2025) or the context of the 
+claim. How…
+  judge raw: { "reasoning": "The claim states that Bitcoin went over one hundred thousand dollars for the first time in early December. 
+Evidence [kb-022] states that Bitcoin traded above $100,000 for the first time on December 5, 2024. This date (December 5, 2024) is in 
+December, but it is not 'early December' relative to the recording date of February 2025, and the event happened in 2024, not necessarily 
+referencing a specific time frame in the context of the claim being made in 2025.", "label": "contradicted", "evidence_ids": [ "kb-022" ] }
+  judge raw: { "reasoning": "The claim states that Bitcoin went over one hundred thousand dollars for the first time in early December. 
+Evidence [kb-022] states that Bitcoin traded above $100,000 for the first time on December 5, 2024. This date is in December, but it is in 
+2024, not referencing the context of the episode recorded in 2025-02-10. Evidence [kb-023] mentions a new all-time high in October 2025, but
+not the first time crossing $100,000 in early December.", "label": "contradicted", "evidence_ids": [ "kb-022", "kb-023" ] }
+  Observation: samples: ['supported', 'contradicted', 'contradicted']
+  ✓ ⚠ inaccurate · 0.85 · Possibly inaccurate (contradicted by Market data (mock) [kb-022])
+
+▶ claim 5/6 [anecdote] A Mars team has been working weekends since last summer. (Dr. Lena Park 00:01:31)
+  Thought (factcheck): rule: a personal anecdote with no public record -> ❓ without searching
+  ✓ ❓ unverifiable · 0.40 · Unverifiable (a personal anecdote with no public record)
+
+▶ claim 6/6 [prediction] Jamie Ortiz told Dr. Lena Park that Bitcoin will reach $200,000 by 2025. (Jamie Ortiz 00:03:29)
+  Thought (factcheck): rule: a prediction about the future -> ❓ without searching
+  ✓ ❓ unverifiable · 0.40 · Unverifiable (a prediction about the future)
+
+▶ summarize summarizer agent
+  summarizer raw: {"reasoning": "The user wants a podcast episode summary for show notes based on the provided transcript. The summary needs
+to be 200-300 words, in prose, covering core themes, key discussions, and speaker opinions. It must feature the host (Jamie Ortiz) and guest
+(Dr. Lena Park), use only transcript evidence, and avoid bullet points or headings. I need to ensure the summary flows well, addressing the 
+main topics discussed: Mars exploration and related news, and a brief digression into cryptocurrency mentioned by Dr. Park.", "summary": 
+"Host Jamie Ortiz welcomes planetary scientist Dr. Lena Park to discuss the current status and rumors surrounding the Red Planet. Dr. Park 
+began by highlighting current Mars exploration efforts, specifically mentioning the Perseverance rover which landed in …
+  Thought (summarizer): The user wants a podcast episode summary for show notes based on the provided transcript. The summary needs to be 
+200-300 words, in prose, covering core themes, key discussions, and speaker opinions. It must feature the host (Jamie Ortiz) and guest (Dr. 
+Lena Park), use only transcript evidence, and avoid bullet points or headings. I need to ensure the summary flows well, addressing the main 
+topic…
+  ✓ summary: 251 words
+
+▶ notes notes agent: takeaways, quotes, tags
+  notes raw: { "reasoning": "The takeaways focus on the key updates regarding Mars exploration and the excitement surrounding future 
+missions. Quote IDs were selected for lines that offer strong insights about the current state of Mars exploration, the significance of 
+Ingenuity, the goal of sample return, and surprising market movements. Tags reflect the core subjects discussed.", "takeaways": [ "The 
+Perseverance rover has been drilling rock cores in Jezebel Crater since landing in 2021.", "The Ingenuity helicopter continues to fly, with 
+NASA extending the mission.", "A new Mars mission is scheduled to launch in early 2026 with the goal of bringing back samples.", "Starship 
+is considered a potential game-changer for future Mars missions.", "Bitcoin experienced a significant price jump, surprising even…
+  Thought (notes): The takeaways focus on the key updates regarding Mars exploration and the excitement surrounding future missions. Quote 
+IDs were selected for lines that offer strong insights about the current state of Mars exploration, the significance of Ingenuity, the goal 
+of sample return, and surprising market movements. Tags reflect the core subjects discussed.
+  ✓ 5 takeaways, 4 quotes, tags: mars exploration, perseverance rover, nasa missions, bitcoin, planetary science
+  ✓ wrote out\ep004/report.json, report.md, trace.jsonl
+ep004 done in 0.2s · ✅ 1 ⚠ 3 ❓ 2
+─────────────────────────────────────────────────── ep005 · Tech & Media Myths Debunked ────────────────────────────────────────────────────
+
+▶ plan planner agent decides steps and budgets
+  planner raw: { "reasoning": "The episode profile indicates there are 16 claim candidates. Therefore, I need to run the 'claims' step 
+before the 'factcheck' step. Since the profile does not specify the need for recent events, prices, or statistics, I will set 
+`use_web_search` to false.", "steps": [ "summarize", "notes", "claims", "factcheck" ], "claim_budget": 16, "use_web_search": false, 
+"summary_focus": "This episode debunks common myths related to technology and media through expert discussion." }
+  Thought (planner): The episode profile indicates there are 16 claim candidates. Therefore, I need to run the 'claims' step before the 
+'factcheck' step. Since the profile does not specify the need for recent events, prices, or statistics, I will set `use_web_search` to 
+false.
+PLAN             
+┌───┬───────────┐
+│ # │ step      │
+├───┼───────────┤
+│ 1 │ summarize │
+│ 2 │ notes     │
+│ 3 │ claims    │
+│ 4 │ factcheck │
+└───┴───────────┘
+  claim_budget=8  use_web_search=False
+  summary_focus: This episode debunks common myths related to technology and media through expert discussion.
+  ! claim_budget 16 clamped to 8 (limit 8)
+
+▶ summarize summarizer agent
+  summarizer raw: {"reasoning": "The user wants a podcast episode summary based on the provided transcript. The summary must be 200-300 
+words, cover core themes, key discussions, and speaker opinions, use only the transcript evidence, and be written in plain prose across 2-3 
+paragraphs. The host, guests, and turn IDs must be included.", "summary": "Host Rachel Kim welcomed guests Omar Haddad and Dr. Nina Alvarez 
+to debunk common myths surrounding technology and media. The discussion began with popular media consumption, where Omar Haddad noted the 
+massive scale of streaming services, mentioning Netflix had just over 300 million paid memberships worldwide as of the end of 2024, while 
+Spotify boasts about 400 million monthly active users. Regarding social media, Omar countered the myth that Facebook is dying…
+  Thought (summarizer): The user wants a podcast episode summary based on the provided transcript. The summary must be 200-300 words, cover 
+core themes, key discussions, and speaker opinions, use only the transcript evidence, and be written in plain prose across 2-3 paragraphs. 
+The host, guests, and turn IDs must be included.
+  ✓ summary: 282 words
+
+▶ notes notes agent: takeaways, quotes, tags
+  notes raw: { "reasoning": "The takeaways focus on the main topics discussed: the size of major platforms, cognitive science myths, tech 
+history facts, and future predictions. Quote IDs are selected for their direct, insightful commentary on the subjects. Tags cover the main 
+themes presented in the discussion.", "takeaways": [ "Netflix finished 2024 with just over 300 million paid memberships worldwide.", 
+"Facebook still maintains around 2 billion monthly users despite perceived declines in posting activity.", "Brain imaging confirms that 
+activity occurs across virtually the whole brain throughout a normal day.", "The average human attention span is now very short, leading to 
+the design of short content.", "By 2030, more than half of all online content will be generated by Artificial Intelligence." ]…
+  Thought (notes): The takeaways focus on the main topics discussed: the size of major platforms, cognitive science myths, tech history 
+facts, and future predictions. Quote IDs are selected for their direct, insightful commentary on the subjects. Tags cover the main themes 
+presented in the discussion.
+  ✓ 5 takeaways, 4 quotes, tags: media myths, tech history, attention span, ai future, social media
+
+▶ claims claims agent over 16 candidate turns (regex pre-filter)
+  claims raw: {"reasoning": "I will examine each candidate turn for checkable claims. I will focus on specific data points, dates, and 
+events mentioned by the speakers to determine if they qualify as factual, statistic, prediction, anecdote, or opinion.", "claims": 
+[{"turn_id": "T05", "claim": "Netflix finished 2024 with just over 300 million paid memberships worldwide.", "type": "statistic"}, 
+{"turn_id": "T07", "claim": "Spotify has about 400 million monthly active users.", "type": "statistic"}, {"turn_id": "T09", "claim": 
+"Facebook still has around 2 billion monthly users.", "type": "statistic"}, {"turn_id": "T12", "claim": "Brain imaging shows activity across
+virtually the whole brain over the course of a normal day.", "type": "factual"}, {"turn_id": "T14", "claim": "The average human attention 
+span…
+  Thought (claims): I will examine each candidate turn for checkable claims. I will focus on specific data points, dates, and events 
+mentioned by the speakers to determine if they qualify as factual, statistic, prediction, anecdote, or opinion.
+  ✓ 8 claims to check (0 opinions and 0 about-the-show dropped, 3 over budget)
+
+▶ factcheck 8 claims: research agent (tools) -> judge agent (samples)
+
+▶ claim 1/8 [statistic] Netflix finished 2024 with just over 300 million paid memberships worldwide. (Omar Haddad 00:44)
+  Action: search_kb('Netflix 2024 paid memberships')
+  Observation: kb-025 Netflix paid memberships at end of 2024 (2025-01-21) | kb-033 Netflix paid sharing (2023-05-23) | kb-035 Netflix ad 
+tier audience (2025-05-14)
+  researcher raw: The evidence indicates that Netflix ended 2024 with 301.6 million paid memberships worldwide.
+  Thought (researcher): The evidence indicates that Netflix ended 2024 with 301.6 million paid memberships worldwide.
+  judge raw: { "reasoning": "The claim states that Netflix finished 2024 with just over 300 million paid memberships worldwide. Evidence 
+[kb-025] states that Netflix ended 2024 with 301.6 million paid memberships worldwide. This supports the claim.", "label": "supported", 
+"evidence_ids": [ "kb-025" ] }
+  Thought (judge): The claim states that Netflix finished 2024 with just over 300 million paid memberships worldwide. Evidence [kb-025] 
+states that Netflix ended 2024 with 301.6 million paid memberships worldwide. This supports the claim. -> supported ['kb-025']
+  judge raw: { "reasoning": "The claim states that Netflix finished 2024 with just over 300 million paid memberships worldwide. The evidence
+from [kb-025] states that Netflix ended 2024 with 301.6 million paid memberships worldwide. This directly supports the claim.", "label": 
+"supported", "evidence_ids": [ "kb-025" ] }
+  judge raw: { "reasoning": "The evidence directly states that Netflix ended 2024 with 301.6 million paid memberships worldwide. This 
+supports the claim that they finished 2024 with just over 300 million paid memberships worldwide.", "label": "supported", "evidence_ids": [ 
+"kb-025" ] }
+  Observation: samples: ['supported', 'supported', 'supported']
+  ✓ ✅ verified · 0.97 · True (confirmed by Netflix shareholder letter (mock summary) [kb-025])
+
+▶ claim 2/8 [statistic] Spotify has about 400 million monthly active users. (Omar Haddad 01:12)
+  Action: search_kb('Spotify monthly active users')
+  Observation: kb-031 Spotify user base (2025-02-04) | kb-060 Instagram monthly active users (2022-10-26) | kb-029 Facebook monthly active 
+users (2024-02-01)
+  researcher raw: The evidence indicates that Spotify reported 675 million monthly active users at the end of 2024, which is close to the 
+claimed figure of 400 million.
+  Thought (researcher): The evidence indicates that Spotify reported 675 million monthly active users at the end of 2024, which is close to 
+the claimed figure of 400 million.
+  judge raw: { "reasoning": "The claim states that Spotify has about 400 million monthly active users. Evidence [kb-031] states that Spotify
+reported 675 million monthly active users at the end of 2024. This evidence supports the claim.", "label": "supported", "evidence_ids": [ 
+"kb-031" ] }
+  Thought (judge): The claim states that Spotify has about 400 million monthly active users. Evidence [kb-031] states that Spotify reported 
+675 million monthly active users at the end of 2024. This evidence supports the claim. -> supported ['kb-031']
+  judge raw: { "reasoning": "The claim states Spotify has about 400 million monthly active users. Evidence [kb-031] states that Spotify 
+reported 675 million monthly active users at the end of 2024. This figure is close to 400 million, suggesting the claim is supported by the 
+provided evidence.", "label": "supported", "evidence_ids": [ "kb-031" ] }
+  judge raw: { "reasoning": "The evidence states that Spotify reported 675 million monthly active users at the end of 2024. This figure is 
+different from the claim of 400 million monthly active users.", "label": "contradicted", "evidence_ids": [ "kb-031" ] }
+  Observation: samples: ['supported', 'supported', 'contradicted']
+  ✓ ⚠ inaccurate · 0.85 · Possibly inaccurate (contradicted by Spotify earnings (mock summary) [kb-031])
+
+▶ claim 3/8 [statistic] Facebook still has around 2 billion monthly users. (Omar Haddad 01:38)
+  Action: search_kb('Facebook monthly users 2 billion')
+  Observation: kb-029 Facebook monthly active users (2024-02-01) | kb-060 Instagram monthly active users (2022-10-26) | kb-059 TikTok 
+reaches one billion users (2021-09-27)
+  researcher raw: The search results indicate that Meta reported Facebook had about 3.07 billion monthly active users in the fourth quarter 
+of 2023, and it passed 2 billion monthly users in mid-2017.
+  Thought (researcher): The search results indicate that Meta reported Facebook had about 3.07 billion monthly active users in the fourth 
+quarter of 2023, and it passed 2 billion monthly users in mid-2017.
+  judge raw: { "reasoning": "The claim states that Facebook still has around 2 billion monthly users. Evidence [kb-029] states that Meta 
+reported Facebook had about 3.07 billion monthly active users in the fourth quarter of 2023 and that Facebook first passed 2 billion monthly
+users in mid-2017. This supports the claim that Facebook has around 2 billion monthly users.", "label": "supported", "evidence_ids": [ 
+"kb-029" ] }
+  Thought (judge): The claim states that Facebook still has around 2 billion monthly users. Evidence [kb-029] states that Meta reported 
+Facebook had about 3.07 billion monthly active users in the fourth quarter of 2023 and that Facebook first passed 2 billion monthly users in
+mid-2017. This supports the claim that Facebook has around 2 billion monthly users. -> supported ['kb-029']
+  judge raw: { "reasoning": "The claim states that Facebook still has around 2 billion monthly users. Evidence [kb-029] states that Meta 
+reported Facebook had about 3.07 billion monthly active users in the fourth quarter of 2023 and that Facebook first passed 2 billion monthly
+users in mid-2017. This evidence supports the claim that Facebook has around 2 billion monthly users.", "label": "supported", 
+"evidence_ids": [ "kb-029" ] }
+  judge raw: { "reasoning": "The claim states that Facebook still has around 2 billion monthly users. Evidence [kb-029] states that Meta 
+reported Facebook had about 3.07 billion monthly active users in the fourth quarter of 2023 and that Facebook first passed 2 billion monthly
+users in mid-2017. This evidence supports the general magnitude of the claim, even if the exact number is from a specific point in time.", 
+"label": "supported", "evidence_ids": [ "kb-029" ] }
+  Observation: samples: ['supported', 'supported', 'supported']
+  ✓ ✅ verified · 0.97 · True (confirmed by Meta earnings (mock summary) [kb-029])
+
+▶ claim 4/8 [factual] Brain imaging shows activity across virtually the whole brain over the course of a normal day. (Dr. Nina Alvarez 
+02:20)
+  Action: search_kb('brain imaging activity whole brain')
+  Observation: kb-028 The ten-percent-of-the-brain myth (2023-03-01) | kb-005 Radiology dominates authorized AI medical devices (2025-07-10)
+  researcher raw: Brain imaging shows activity across virtually all brain regions over the course of a day, and damage to almost any area 
+produces some deficit.
+  Thought (researcher): Brain imaging shows activity across virtually all brain regions over the course of a day, and damage to almost any 
+area produces some deficit.
+  judge raw: { "reasoning": "The claim states that brain imaging shows activity across virtually the whole brain over the course of a normal
+day. Passage [kb-028] confirms this, stating that brain imaging shows activity across virtually all brain regions over the course of a 
+day.", "label": "supported", "evidence_ids": [ "kb-028" ] }
+  Thought (judge): The claim states that brain imaging shows activity across virtually the whole brain over the course of a normal day. 
+Passage [kb-028] confirms this, stating that brain imaging shows activity across virtually all brain regions over the course of a day. -> 
+supported ['kb-028']
+  judge raw: { "reasoning": "The claim states that brain imaging shows activity across virtually the whole brain over the course of a normal
+day. Passage [kb-028] states that brain imaging shows activity across virtually all brain regions over the course of a day. This directly 
+supports the claim.", "label": "supported", "evidence_ids": [ "kb-028" ] }
+  judge raw: { "reasoning": "The claim states that brain imaging shows activity across virtually the whole brain over the course of a normal
+day. Passage [kb-028] explicitly states that brain imaging shows activity across virtually all brain regions over the course of a day, which
+supports the claim.", "label": "supported", "evidence_ids": [ "kb-028" ] }
+  Observation: samples: ['supported', 'supported', 'supported']
+  ✓ ✅ verified · 0.97 · True (confirmed by Neuroscience reviews (mock summary) [kb-028])
+
+▶ claim 5/8 [statistic] The average human attention span is now eight seconds. (Omar Haddad 02:48)
+  Action: search_kb('average human attention span eight seconds')
+  Observation: kb-030 The eight-second attention span claim (2017-03-10) | kb-045 Average cost of a data breach (2025-07-30) | kb-047 Daily 
+water needs (2022-01-01)
+  researcher raw: The search results indicate that the claim about the average human attention span being eight seconds is traced to a 2015 
+marketing report, and researchers have found no study supporting this number, noting that attention varies depending on the task.
+  Thought (researcher): The search results indicate that the claim about the average human attention span being eight seconds is traced to a
+2015 marketing report, and researchers have found no study supporting this number, noting that attention varies depending on the task.
+  judge raw: { "reasoning": "The claim states that the average human attention span is now eight seconds. Passage [kb-030] states that this 
+claim traces to a 2015 marketing report, researchers found no study supporting the number, and attention varies by task. This evidence 
+directly casts doubt on the accuracy of the claim.", "label": "contradicted", "evidence_ids": [ "kb-030" ] }
+  Thought (judge): The claim states that the average human attention span is now eight seconds. Passage [kb-030] states that this claim 
+traces to a 2015 marketing report, researchers found no study supporting the number, and attention varies by task. This evidence directly 
+casts doubt on the accuracy of the claim. -> contradicted ['kb-030']
+  judge raw: { "reasoning": "The claim states that the average human attention span is now eight seconds. Evidence [kb-030] states that this
+claim traces to a 2015 marketing report and that researchers found no study supporting either number, indicating the claim is not supported 
+by reliable research.", "label": "contradicted", "evidence_ids": [ "kb-030" ] }
+  judge raw: { "reasoning": "The claim states that the average human attention span is now eight seconds. Evidence [kb-030] indicates that 
+this claim traces to a 2015 marketing report and that researchers found no study supporting this number, stating that attention varies with 
+the task. Therefore, the evidence contradicts the claim by noting the lack of supporting research and the origin of the statistic.", 
+"label": "contradicted", "evidence_ids": [ "kb-030" ] }
+  Observation: samples: ['contradicted', 'contradicted', 'contradicted']
+  ✓ ⚠ inaccurate · 0.97 · Possibly inaccurate (contradicted by BBC / research review (mock summary) [kb-030])
+
+▶ claim 6/8 [factual] The first iPhone went on sale in June 2007. (Omar Haddad 03:28)
+  Action: search_kb('first iPhone sale date')
+  Observation: kb-026 Original iPhone launch (2007-06-29) | kb-036 Global electric car sales 2024 (2025-05-14) | kb-050 US e-commerce share 
+of retail (2025-02-19)
+  researcher raw: The evidence indicates that the original iPhone went on sale in the United States on June 29, 2007.
+  Thought (researcher): The evidence indicates that the original iPhone went on sale in the United States on June 29, 2007.
+  judge raw: { "reasoning": "The claim states the first iPhone went on sale in June 2007. Evidence [kb-026] states that the Original iPhone 
+went on sale in the United States on June 29, 2007. This supports the claim.", "label": "supported", "evidence_ids": [ "kb-026" ] }
+  Thought (judge): The claim states the first iPhone went on sale in June 2007. Evidence [kb-026] states that the Original iPhone went on 
+sale in the United States on June 29, 2007. This supports the claim. -> supported ['kb-026']
+  judge raw: { "reasoning": "The claim states that the first iPhone went on sale in June 2007. Evidence [kb-026] states that the original 
+iPhone went on sale in the United States on 29 June 2007. This supports the claim.", "label": "supported", "evidence_ids": [ "kb-026" ] }
+  judge raw: { "reasoning": "The claim states the first iPhone went on sale in June 2007. Evidence [kb-026] states that the original iPhone 
+was unveiled in January 2007 and went on sale in the United States on June 29, 2007. This supports the claim.", "label": "supported", 
+"evidence_ids": [ "kb-026" ] }
+  Observation: samples: ['supported', 'supported', 'supported']
+  ✓ ✅ verified · 0.97 · True (confirmed by Apple (mock DB) [kb-026])
+
+▶ claim 7/8 [factual] Steve Jobs had unveiled the iPhone in January. (Omar Haddad 03:28)
+  Action: search_kb('Steve Jobs iPhone unveiling date')
+  Observation: kb-026 Original iPhone launch (2007-06-29) | kb-027 YouTube founding (2020-01-01)
+  researcher raw: The evidence indicates that Steve Jobs unveiled the iPhone in January 2007, which aligns with the claim.
+  Thought (researcher): The evidence indicates that Steve Jobs unveiled the iPhone in January 2007, which aligns with the claim.
+  judge raw: { "reasoning": "The claim states that Steve Jobs unveiled the iPhone in January. Evidence [kb-026] states that Apple's original
+iPhone was unveiled by Steve Jobs at Macworld in January 2007. This supports the claim.", "label": "supported", "evidence_ids": [ "kb-026" ]
+}
+  Thought (judge): The claim states that Steve Jobs unveiled the iPhone in January. Evidence [kb-026] states that Apple's original iPhone 
+was unveiled by Steve Jobs at Macworld in January 2007. This supports the claim. -> supported ['kb-026']
+  judge raw: { "reasoning": "The claim states that Steve Jobs unveiled the iPhone in January. Passage [kb-026] states that Apple's original 
+iPhone was unveiled by Steve Jobs at Macworld in January 2007. This supports the claim.", "label": "supported", "evidence_ids": [ "kb-026" ]
+}
+  judge raw: { "reasoning": "The evidence states that the original iPhone was unveiled by Steve Jobs in January 2007 and went on sale on 
+June 29, 2007. This supports the claim.", "label": "supported", "evidence_ids": [ "kb-026" ] }
+  Observation: samples: ['supported', 'supported', 'supported']
+  ✓ ✅ verified · 0.97 · True (confirmed by Apple (mock DB) [kb-026])
+
+▶ claim 8/8 [factual] Google bought YouTube in 2006 for $1.65 billion. (Omar Haddad 03:45)
+  Action: search_kb('Google bought YouTube 2006 price')
+  Observation: kb-027 YouTube founding (2020-01-01) | kb-023 Bitcoin price in 2025 (2025-12-31) | kb-061 Facebook's founding (2024-02-04)
+  researcher raw: I did not find evidence in the search results to confirm or deny the claim that Google bought YouTube in 2006 for $1.65 
+billion.
+  Thought (researcher): I did not find evidence in the search results to confirm or deny the claim that Google bought YouTube in 2006 for 
+$1.65 billion.
+  judge raw: { "reasoning": "The claim states that Google bought YouTube in 2006 for $1.65 billion. The provided evidence does not contain 
+any information about Google's acquisition of YouTube or the price paid for it.", "label": "insufficient", "evidence_ids": [ "kb-027", 
+"kb-023", "kb-061", "kb-059" ] }
+  Thought (judge): The claim states that Google bought YouTube in 2006 for $1.65 billion. The provided evidence does not contain any 
+information about Google's acquisition of YouTube or the price paid for it. -> insufficient ['kb-027', 'kb-023', 'kb-061', 'kb-059']
+  judge raw: { "reasoning": "The claim states that Google bought YouTube in 2006 for $1.65 billion. The provided evidence does not contain 
+any information about Google buying YouTube or the price paid for it.", "label": "insufficient", "evidence_ids": [ "kb-027", "kb-023", 
+"kb-061", "kb-059" ] }
+  judge raw: { "reasoning": "The claim states that Google bought YouTube in 2006 for $1.65 billion. The provided evidence does not contain 
+any information regarding the acquisition of YouTube by Google or the price paid for it.", "label": "insufficient", "evidence_ids": [] }
+  Observation: samples: ['insufficient', 'insufficient', 'insufficient']
+  ! KB evidence insufficient; escalating to web search: ['web-010', 'web-042', 'web-110']
+  Observation: web-010 Google to buy YouTube for 1.65 billion dollars (2006-10-09, high)
+  Observation: web-042 Instagram now has 2 billion monthly users (2022-10-26, high)
+  Observation: web-110 Spotify opens video podcasts to more creators (2025-01-02, medium)
+  judge raw: { "reasoning": "The claim states that Google bought YouTube in 2006 for $1.65 billion. The evidence from [web-010] states that 
+'Google agreed to acquire video-sharing site YouTube for 1.65 billion US dollars' published in 2006. This directly supports the claim.", 
+"label": "supported", "evidence_ids": [ "web-010" ] }
+  Thought (judge): The claim states that Google bought YouTube in 2006 for $1.65 billion. The evidence from [web-010] states that 'Google 
+agreed to acquire video-sharing site YouTube for 1.65 billion US dollars' published in 2006. This directly supports the claim. -> supported 
+['web-010']
+  judge raw: { "reasoning": "The claim states that Google bought YouTube in 2006 for $1.65 billion. The evidence from [web-010] states that 
+'Google agreed to acquire video-sharing site YouTube for 1.65 billion US dollars' on 2006-10-09. This directly supports the claim.", 
+"label": "supported", "evidence_ids": [ "web-010" ] }
+  judge raw: { "reasoning": "The claim states that Google bought YouTube in 2006 for $1.65 billion. The evidence from web-010 explicitly 
+states that \"Google agreed to acquire video-sharing site YouTube for 1.65 billion US dollars in stock\" published on 2006-10-09, which 
+supports the claim.", "label": "supported", "evidence_ids": [ "web-010" ] }
+  Observation: samples: ['supported', 'supported', 'supported']
+  ✓ ✅ verified · 0.95 · True (confirmed by example-news.test [web-010])
+  ✓ wrote out\ep005/report.json, report.md, trace.jsonl
+ep005 done in 0.3s · ✅ 6 ⚠ 2 ❓ 0

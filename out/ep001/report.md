@@ -43,18 +43,14 @@ Looking ahead, Mark predicted that remote-first companies will dominate talent a
 
 | | Claim | Verification | Confidence | Said at |
 |---|---|---|---|---|
-| ❓ | Sarah Johnson is hosting the podcast Work Reimagined. | Unverifiable (no evidence found that addresses the claim) | 0.50 | Sarah Johnson `00:00` |
 | ✅ | GitLab, Automattic, and Doist have written handbooks for everything. | True (confirmed by GitLab (mock DB) [kb-001], Company blogs (mock summary) [kb-002]) | 0.97 | Mark Rivera `01:20` |
-| ❓ | Sarah Johnson thanked listeners for tuning in to Work Reimagined. | Unverifiable (no evidence found that addresses the claim) | 0.50 | Sarah Johnson `06:00` |
 | ❓ | Remote-first companies will dominate talent acquisition. | Unverifiable (a prediction about the future) | 0.40 | Mark Rivera `05:00` |
 | ❓ | Local offices might become optional hubs. | Unverifiable (a prediction about the future) | 0.40 | Mark Rivera `05:00` |
 | ❓ | Async culture will become standard practice. | Unverifiable (a prediction about the future) | 0.40 | Mark Rivera `05:00` |
 
 <details><summary>Fact-check reasoning</summary>
 
-- ❓ **Sarah Johnson is hosting the podcast Work Reimagined.** (factual, judged · samples: insufficient, insufficient, insufficient · searches: search_kb: sarah johnson work reimagined): The claim states that Sarah Johnson is hosting the podcast Work Reimagined. The provided evidence does not contain any information about Sarah Johnson or the podcast Work Reimagined.
 - ✅ **GitLab, Automattic, and Doist have written handbooks for everything.** (factual, judged · samples: supported, supported, supported · searches: search_kb: gitlab automattic doist handbooks): The claim states that GitLab, Automattic, and Doist have written handbooks for everything. The evidence supports this by stating that GitLab maintains a public company handbook documenting processes, values, and the remote operating model, and that Automattic and Doist have published written guides on how they work remotely, emphasizing written documentation.
-- ❓ **Sarah Johnson thanked listeners for tuning in to Work Reimagined.** (factual, judged · samples: insufficient, insufficient, insufficient · searches: search_kb: sarah johnson work reimagined): The claim states that Sarah Johnson thanked listeners for tuning in to Work Reimagined. The provided evidence is a company blog summary from 2024-05-01 discussing distributed companies and remote-work guidance, and does not contain any mention of Sarah Johnson or the specific thank you mentioned in the claim.
 - ❓ **Remote-first companies will dominate talent acquisition.** (prediction, rule): a prediction about the future
 - ❓ **Local offices might become optional hubs.** (prediction, rule): a prediction about the future
 - ❓ **Async culture will become standard practice.** (prediction, rule): a prediction about the future

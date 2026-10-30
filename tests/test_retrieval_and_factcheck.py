@@ -77,3 +77,11 @@ def test_numeric_check_downgrades_supported_verdict(noisy_txt, spec):
     assert factcheck.judged_result(claim, ep.turns[1], samples, {"kb-9": kb}, [], spec).status == "inaccurate"
     off = spec.model_copy(update={"factcheck": spec.factcheck.model_copy(update={"numeric_check": False})})
     assert factcheck.judged_result(claim, ep.turns[1], samples, {"kb-9": kb}, [], off).status == "verified"
+
+
+def test_show_meta_claims_are_recognised(noisy_txt, spec):
+    ep = ingest.load(noisy_txt, spec)  # host Jamie Ortiz, guest Dr. Lena Park
+    assert factcheck.is_show_meta("Jamie Ortiz is hosting the podcast.", ep)
+    assert factcheck.is_show_meta("Lena Park thanked the listeners for tuning in.", ep)
+    assert not factcheck.is_show_meta("Over half of US adults listen to podcasts monthly.", ep)
+    assert not factcheck.is_show_meta("Lena Park said NASA launches in 2026.", ep)

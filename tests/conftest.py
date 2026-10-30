@@ -27,7 +27,7 @@ def noisy_txt(tmp_path):
     path.write_text(
         "# episode_id: ep900\n# title: Test Episode\n# host: Jamie Ortiz\n# guests: Dr. Lena Park\n"
         "# recorded: 2025-02-10\n"
-        "[00:00:05] Host: Um, welcome back to the show, you know, it's great.\n"
+        "[00:00:05] Host: Um, welcome back everyone, you know, it's great.\n"
         "[00:02:14] Host: So Nassa recently announced something about a new Mars mission.\n"
         "[00:02:18] Guest: Yes, it's launching in early 2026, they're planning to bring back samples.\n"
         "this line continues the previous turn.\n"

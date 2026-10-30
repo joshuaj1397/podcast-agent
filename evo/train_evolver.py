@@ -19,15 +19,18 @@ from pathlib import Path
 import sys
 
 sys.path.insert(0, "src")  # podcast_agent (for evo.genome) without installing the agent in the training venv
-from evo.genome import normalize_edit  # noqa: E402
+from evo.genome import normalize_edit, parent_prompts  # noqa: E402
 from evo.lora import Example, group_advantages, grpo, load_model, save, sft  # noqa: E402
 
 
 def load_rows(runs: Path) -> list[dict]:
-    rows = []
+    """All logged proposer/reflector calls, except those whose parent is held out for the validity eval."""
+    rows, held_out = [], set()
     for f in sorted(runs.glob("*/trajectories.jsonl")):
         rows += [json.loads(line) for line in f.read_text(encoding="utf-8").splitlines() if line.strip()]
-    return [r for r in rows if r["completion"]]
+        held_out |= {pid for pid, _ in parent_prompts(f.parent, "eval")}
+    print(f"holding out trajectories of eval parents: {sorted(held_out)}")
+    return [r for r in rows if r["completion"] and r["parent_id"] not in held_out]
 
 
 def normalized(completion: str) -> str:
