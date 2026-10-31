@@ -25,6 +25,10 @@ COMPARISONS = [  # (label, candidate, reference)
     ("E4B + round-2 harness vs E2B + base (held-out)", "heldout_evolved-r2_e4b", "heldout_base"),
     ("**Round-2 harness vs base, both on E2B (held-out)**", "heldout_evolved-r2_e2b", "heldout_base"),
     ("Round-2 harness vs base, both on E2B (search split)", "search_evolved-r2_e2b", "search_base"),
+    ("Gemma 4 12B vs E2B, base harness (search split)", "search_base_12b", "search_base"),
+    ("12B + its harness (fixed examples) vs E2B + base (held-out)", "heldout_base-12b_12b", "heldout_base"),
+    ("Evo² round-3 harness vs 12B harness, both on 12B (held-out)", "heldout_evolved-r3_12b", "heldout_base-12b_12b"),
+    ("12B + round-3 harness vs E2B + base (held-out)", "heldout_evolved-r3_12b", "heldout_base"),
 ]
 LABELS = {
     "heldout_base_no_numeric": "Base harness, numeric check off",
@@ -37,11 +41,16 @@ LABELS = {
     "heldout_evolved-r2_e2b": "**Evo² round-2 harness** (`harness/evolved_r2.yaml`)",
     "heldout_base_e4b": "Base harness · Gemma 4 E4B",
     "heldout_evolved-r2_e4b": "Evo² round-2 harness · Gemma 4 E4B",
+    "heldout_base-12b_12b": "12B harness (`base_12b.yaml`: fixed claims examples) · Gemma 4 12B",
+    "heldout_evolved-r3_12b": "Evo² round-3 harness · Gemma 4 12B",
     "search_base_no_numeric": "Search split · base, numeric check off",
     "search_base": "Search split · base",
     "search_base_e4b": "Search split · base · Gemma 4 E4B",
     "search_evolved-r2_e4b": "Search split · round-2 harness · E4B (selection data)",
     "search_evolved-r2_e2b": "Search split · round-2 harness · E2B",
+    "search_base_12b": "Search split · base · Gemma 4 12B (one claim per episode)",
+    "search_base-12b_12b": "Search split · 12B harness · Gemma 4 12B",
+    "search_evolved-r3_12b": "Search split · round-3 harness · 12B (selection data)",
 }
 
 

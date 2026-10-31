@@ -144,6 +144,8 @@ Both are deliberately broad (a fact-check desk's KB), not tuned to the sample ep
 | **Evo² round-2 harness** (`harness/evolved_r2.yaml`) | **0.924** | 0.82 | 0.96 | 1.00 | 1.00 | 1.00 | 0.87 |
 | Base harness · Gemma 4 E4B | 0.849 | 0.69 | 0.85 | 1.00 | 0.97 | 1.00 | 0.75 |
 | Evo² round-2 harness · Gemma 4 E4B | 0.802 | 0.60 | 0.76 | 1.00 | 1.00 | 1.00 | 0.65 |
+| 12B harness (`base_12b.yaml`) · Gemma 4 12B | 0.768 | 0.52 | 0.83 | 1.00 | 0.93 | 1.00 | 0.58 |
+| Evo² round-3 harness (`evolved_r3_12b.yaml`) · Gemma 4 12B | 0.845 | 0.65 | 0.89 | 1.00 | 1.00 | 1.00 | 0.81 |
 
 On the 10 search episodes the default harness scores 0.890 (0.883 with the numeric check off) and the round-2 harness 0.916. Averaged over three seeds, the round-2 harness gains +0.023 on held-out (0.873 → 0.896) and +0.012 on the search split (0.900 → 0.912); both confidence intervals include 0.
 
@@ -161,7 +163,7 @@ How to read this:
 - **Structure is solved by construction.** Quotes are always verbatim with the right timestamps, summaries are 200–300 words, there are exactly 5 takeaways, and every key point is covered. This comes from schema-constrained decoding, the critic loop and copy-by-id.
 - **Fact-checking is the hard part for a 2B model** (verdict accuracy 0.71–0.82). Most remaining errors are claims the extractor merges or misses, and *outdated* statistics the judge calls "supported" because the evidence is about the same subject.
 - **The bigger wins were agent design, not tuning.** Two changes lifted held-out V̂ from 0.839 to 0.877 (measured just before and after adding them): escalating to web search when the KB can't settle a claim, and dropping claims about the show itself. The **numeric check** (code that turns "supported" into ⚠ when the claim's numbers match none in the evidence) adds a little on both splits and has never flipped a correct verdict. I designed these three after reading held-out errors, so the search-split numbers are the cleaner evidence for them.
-- **The bigger model scored lower.** Gemma 4 E4B is below E2B on both splits with either harness. Its claim extraction is all-or-nothing (one held-out episode lost every claim), and every harness choice had been made with E2B. The harness Evo² evolved *for* E4B helps E2B instead (details in [`docs/evo2.md`](docs/evo2.md#results)).
+- **Bigger models scored lower on held-out.** Gemma 4 E4B is below E2B on both splits with either harness; its claim extraction is all-or-nothing (one held-out episode lost every claim). Gemma 4 12B first returned one claim per episode (search split 0.549) because it copied the claims prompt's few-shot layout; with the examples rewritten (`harness/base_12b.yaml`) and an Evo² round it is the best configuration on the search split (0.943) but still below E2B on held-out (0.845). The harness was built around E2B, partly from held-out errors, so held-out favours E2B. The harness Evo² evolved *for* E4B helps E2B instead (details in [`docs/evo2.md`](docs/evo2.md#results)).
 - **Every difference between configurations is within noise.** With 5 episodes / 25 claims, one claim is ±0.04 verdict accuracy. Re-running with other seeds moves held-out V̂ by about ±0.03 (the round-2 harness scored 0.924, 0.864 and 0.901 on seeds 7–9). `eval/RESULTS.md` has paired bootstrap intervals and the seed table. Read the deltas as directional.
 
 ---
@@ -188,7 +190,8 @@ How to read this:
 | Round 2 (trained evolver, E4B task model), fitness on 5 search episodes | 0.819 | **0.955** |
 | ...on 5 search episodes the search did not use (E4B) | 0.840 | 0.957 |
 | ...the round-2 harness on held-out with E2B (seed 7 / mean of 3 seeds) | 0.877 / 0.873 | **0.924** / 0.896 |
-| Evolver edit sets that were well-formed during the search (proposer) | 7/48 (round 1) | 15/32 (round 2) |
+| Evolver edit sets that were well-formed during the search (proposer) | 7/48 (round 1) | 15/32 (round 2), 12/24 (round 3) |
+| Round 3 (trained evolver, 12B task model): fitness / unused search episodes / held-out | 0.875 / 0.796 / 0.768 | **0.968** / 0.917 / 0.845 |
 
 What worked, and what didn't:
 
@@ -206,7 +209,8 @@ What worked, and what didn't:
 ```
 src/podcast_agent/   cli.py pipeline.py agent_factory.py tools.py factcheck.py critic.py
                      ingest.py retrieval.py llm.py trace.py render.py models.py harness.py evaluate.py
-harness/             base.yaml (the genome)  evolved.yaml, evolved_r2.yaml (Evo² rounds 1 and 2)
+harness/             base.yaml (the genome)  evolved.yaml, evolved_r2.yaml, evolved_r3_12b.yaml (Evo² rounds 1-3)
+                     base_12b.yaml (base with few-shot examples Gemma 4 12B can follow)
 data/heldout/        ep001–ep005 (eval only)      data/search/  s01–s10 (Evo² fitness)
 kb/                  facts.jsonl  search_corpus.jsonl
 eval/                gold/*.yaml  RESULTS.md
@@ -222,7 +226,7 @@ tests/               offline tests (FakeLlm)
 |---|---|
 | Change a prompt, budget, k, samples | edit `harness/base.yaml` (or copy it and pass `-H my.yaml`) |
 | Use the best harness | `-H harness/evolved_r2.yaml` (Evo² round 2: higher claim budgets) |
-| Use a bigger model | `--model ollama_chat/gemma4:e4b` (or set `model:` in the harness); it scored lower than E2B here |
+| Use a bigger model | `--model ollama_chat/gemma4:e4b`, or `-H harness/evolved_r3_12b.yaml` for 12B; both scored lower than E2B on held-out |
 | Re-run only fact-checking | `podcast-agent run data/heldout -e ep004 --only factcheck` |
 | Add a knowledge-base fact | append a line to `kb/facts.jsonl`; check with `podcast-agent kb-search "..."` |
 | Add an output field | add it to `models.Report`, fill it in `pipeline.assemble`, print it in `render.py` |

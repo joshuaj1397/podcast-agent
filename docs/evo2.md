@@ -25,8 +25,8 @@ paper, scaled down to one laptop GPU and extended in one way (we also fine-tune 
 - **Off-policy GRPO.** The paper runs GRPO online. We log trajectories during the search (sampled from the
   quantized Ollama model at temperature 0.9) and train afterwards; the importance ratio uses this policy's
   log-probs before the update as "old" log-probs. This is an approximation and is documented in the code.
-- **Two search rounds** (12 and 8 expansions), plus a validity evaluation of the trained evolver. Round 2 used
-  the trained evolver and a different task model (Gemma 4 E4B). Crossover and ablations are future work.
+- **Three search rounds** (12, 8 and 6 expansions), plus a validity evaluation of the trained evolver. Rounds 2
+  and 3 used the trained evolver with other task models (Gemma 4 E4B, 12B). Crossover and ablations are future work.
 - **Config-level edits only.** The edit language changes the YAML harness, not Python code. Code-level edits
   (letting the evolver patch `pipeline.py`) are the obvious next step and need sandboxing.
 - **Small fitness set** (4 short episodes): V̂ differences of about ±0.02 are within noise. Results on the
@@ -58,6 +58,8 @@ uv run python -m evo.sample --split eval --n 4 --model ollama_chat/podcast-evolv
 
 # 5. round 2: trained evolver, E4B as the task model, 5 fitness episodes (the other 5 search episodes validate)
 PODCAST_MODEL=ollama_chat/gemma4:e4b uv run podcast-agent evo run -H harness/base.yaml --first-round 2     --iterations 8 --group 4 --evolver-model ollama_chat/podcast-evolver:r1     --episodes s01,s03,s05,s07,s09 --out harness/evolved_r2.yaml
+# round 3: the same with Gemma 4 12B, from the harness with 12B-compatible examples
+PODCAST_MODEL=ollama_chat/gemma4:12b uv run podcast-agent evo run -H harness/base_12b.yaml --first-round 3     --iterations 6 --group 4 --evolver-model ollama_chat/podcast-evolver:r1     --episodes s01,s03,s05,s07,s09 --out harness/evolved_r3_12b.yaml
 ```
 
 Run evaluations one at a time. Two evaluations running at once against the same Ollama server get their
@@ -139,6 +141,39 @@ Held-out, run once per configuration ([`eval/RESULTS.md`](../eval/RESULTS.md)):
   −0.027…+0.097), search split 0.900 → **0.912** (+0.012, CI −0.013…+0.042). The gain is consistent in sign on
   both splits but within noise; the mechanism (more claims reach the fact-checker) is visible in claim recall.
 
+**5. Round 3: Gemma 4 12B, to test whether model size was the limit.**
+
+Same protocol as round 2 (trained evolver, 5 fitness episodes, 5 validation episodes, held-out once), with
+`gemma4:12b` (Q4_K_M) as the task model, 6 expansions (about 2 minutes per episode, 3× slower than E4B).
+
+- **With the base harness 12B scored 0.549** on the search split: it fact-checked 1–2 claims per episode. Sent
+  without the JSON schema, it listed every claim, but in the layout of the claims prompt's few-shot examples
+  (one `{"turn_id": …}` object per line); under the schema it wrote the first claim that way and closed the list.
+  An appended instruction did not change that; rewriting the examples as one complete answer did (s01: 1 → 8
+  claims). That fix is `harness/base_12b.yaml`, the root of round 3 (`base.yaml` is unchanged).
+
+| | |
+|---|---|
+| Fitness (5 search episodes, 12B) | root 0.875 → best 0.968 (`round3-n1c`) |
+| What it found | the same planner instruction as round 2 (budget for every checkable claim, "consider a minimum of 7") and a cap of 10 |
+| Validation (5 unused search episodes, 12B) | root 0.796 → top 4 nodes 0.909–0.917; `round3-n1c` selected → `harness/evolved_r3_12b.yaml` |
+| Well-formed evolver outputs | proposer 12/24, Reflector 1/6 |
+| Search split, all 10 episodes | 12B harness 0.836 → round 3 0.943 (selection data) (E2B base 0.890) |
+| **Held-out** | 12B harness 0.768 → round 3 **0.845** (E2B base 0.877, E2B + round 2 0.924 / 0.896 over seeds) |
+
+One round-3 node added the guardrail "The output from the 'claims' step must strictly adhere to the gold
+standard…": the evolver echoing its feedback, harmless because the task model never sees gold labels, and a
+reminder that an evolver's edits need review before they ship.
+
+Model size did not rescue held-out V̂: 12B + its evolved harness is the best configuration on the search split
+(0.943) but below E2B on held-out (0.845 vs 0.877). Two things make held-out favour E2B. The base harness was
+built around E2B, and three of its fixes (web escalation, the show-meta filter, the numeric check) came from
+reading held-out errors with E2B, so for E2B the held-out set is partly seen. And each bigger model first hit a
+harness mismatch the smaller one tolerated (E4B: claim budgets; 12B: few-shot layout), so a fair model comparison
+needs a harness fitted per model on more data than 10 search episodes. Compute set the pace, not the quality: at
+temperature 0 a slower machine produces the same outputs, but 12B's 2 minutes per episode limited the search to 6
+expansions and one seed.
+
 ## What we learned
 
 - **Measure against an exact control.** The first comparison of the task-model LoRA showed +0.08. That control had been converted to GGUF from the original checkpoint, which still contains the k/v projections of the 20 KV-shared layers (601 tensors). The merged LoRA models were re-saved through transformers, which drops those unused tensors (541). llama.cpp then ran two subtly different models. Re-saving the base through the identical path gave the real answer: no gain.
@@ -148,9 +183,10 @@ Held-out, run once per configuration ([`eval/RESULTS.md`](../eval/RESULTS.md)):
 - **What the evolver sees decides what it can fix.** With failure lines that only said "claim not extracted",
   round 1 never touched the planner. With one added line naming the planner's budget, a 2B evolver proposed the
   right planner edit in its first expansion of round 2. Improving the observation was cheaper than training.
-- **A bigger model is not automatically a better agent.** E4B scored below E2B in the same pipeline because its
-  planning and extraction habits differ, and every harness choice had been made with E2B. Comparing models fairly
-  means re-fitting the harness per model, which is what round 2 did.
+- **A bigger model is not automatically a better agent.** E4B and 12B both scored below E2B in the same pipeline
+  because their planning and extraction habits differ, and every harness choice had been made with E2B. 12B
+  returned one claim per episode until the few-shot examples matched the output schema. Comparing models fairly
+  means re-fitting the harness per model, which is what rounds 2 and 3 did; on held-out, E2B still wins.
 - **Evaluation noise is larger than temperature 0 suggests.** Two evaluations that accidentally ran at the same
   time against Ollama scored the same configuration 0.697 and 0.775 (and the clean run 0.802): batching changes
   greedy outputs slightly, and a different early output cascades through the pipeline. Seeds alone move held-out

@@ -1,0 +1,449 @@
+[
+ {
+  "id": "round3-root",
+  "parent": null,
+  "score": 0.8752,
+  "reward": 0.0,
+  "depth": 0,
+  "metrics": {
+   "verdict_accuracy": 0.74,
+   "evidence_recall": 0.95,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.933,
+   "structure": 1.0,
+   "claim_recall": 0.74,
+   "tag_overlap": 0.75
+  },
+  "edits": []
+ },
+ {
+  "id": "round3-n1a",
+  "parent": "round3-root",
+  "score": 0.9547,
+  "reward": 0.0795,
+  "depth": 1,
+  "metrics": {
+   "verdict_accuracy": 0.887,
+   "evidence_recall": 1.0,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 1.0,
+   "structure": 1.0,
+   "claim_recall": 0.92,
+   "tag_overlap": 0.75
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "10"
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "planner",
+    "text": "Ensure that all claims identified by the 'claims' step are passed to the 'factcheck' step, provided the 'claim_budget' is sufficient to cover them. If the budget is exceeded, prioritize claims with higher information density."
+   },
+   {
+    "op": "replace_in_prompt",
+    "prompt": "summarizer",
+    "old": "Write ONE summary of {min_words}-{max_words} words (aim for about {target_words}) in 2-3 paragraphs that covers:\nthe core themes, the key discussions, and the outcomes or opinions each speaker shared.\nName the host and guests. Use only information from the transcript. Plain prose, no bullet points, no headings.",
+    "new": "Write ONE summary of {min_words}-{max_words} words (aim for about {target_words}) in 2-3 paragraphs. Ensure the summary explicitly captures the core themes, the key discussions, and the outcomes or opinions each speaker shared. Name the host and guests. Use only information from the transcript. Present as smooth, coherent prose, avoiding bullet points or headings."
+   }
+  ]
+ },
+ {
+  "id": "round3-n1b",
+  "parent": "round3-root",
+  "score": 0.8752,
+  "reward": 0.0,
+  "depth": 1,
+  "metrics": {
+   "verdict_accuracy": 0.74,
+   "evidence_recall": 0.95,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.933,
+   "structure": 1.0,
+   "claim_recall": 0.74,
+   "tag_overlap": 0.75
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "12"
+   }
+  ]
+ },
+ {
+  "id": "round3-n1c",
+  "parent": "round3-root",
+  "score": 0.968,
+  "reward": 0.0928,
+  "depth": 1,
+  "metrics": {
+   "verdict_accuracy": 0.92,
+   "evidence_recall": 1.0,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 1.0,
+   "structure": 1.0,
+   "claim_recall": 0.92,
+   "tag_overlap": 0.75
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "10"
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "planner",
+    "text": "Ensure that the claim_budget is set high enough (consider a minimum of 7) when the transcript is rich in potentially checkable facts or statistics, to maximize the chance of covering all relevant claims."
+   },
+   {
+    "op": "replace_in_prompt",
+    "prompt": "claims",
+    "old": "Write your reasoning first, briefly.",
+    "new": "Write your reasoning first, briefly. Ensure the reasoning explicitly justifies the number of claims chosen based on the density and type of claims found."
+   }
+  ]
+ },
+ {
+  "id": "round3-n1d",
+  "parent": "round3-root",
+  "score": 0.8752,
+  "reward": 0.0,
+  "depth": 1,
+  "metrics": {
+   "verdict_accuracy": 0.74,
+   "evidence_recall": 0.95,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.933,
+   "structure": 1.0,
+   "claim_recall": 0.74,
+   "tag_overlap": 0.75
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "10"
+   },
+   {
+    "op": "set_param",
+    "path": "claims.candidate_max",
+    "value": "30"
+   },
+   {
+    "op": "toggle_step",
+    "step": "factcheck",
+    "enabled": true
+   }
+  ]
+ },
+ {
+  "id": "round3-n1r",
+  "parent": "round3-root",
+  "score": 0.9613,
+  "reward": 0.0861,
+  "depth": 1,
+  "metrics": {
+   "verdict_accuracy": 0.92,
+   "evidence_recall": 1.0,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.967,
+   "structure": 1.0,
+   "claim_recall": 0.92,
+   "tag_overlap": 0.75
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "10"
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "planner",
+    "text": "Ensure that all claims identified by the 'claims' step are passed to the 'factcheck' step, provided the 'claim_budget' is sufficient to cover them. If the budget is exceeded, prioritize claims with higher information density."
+   },
+   {
+    "op": "replace_in_prompt",
+    "prompt": "summarizer",
+    "old": "Write ONE summary of {min_words}-{max_words} words (aim for about {target_words}) in 2-3 paragraphs that covers:\nthe core themes, the key discussions, and the outcomes or opinions each speaker shared.\nName the host and guests. Use only information from the transcript. Plain prose, no bullet points, no headings.",
+    "new": "Write ONE summary of {min_words}-{max_words} words (aim for about {target_words}) in 2-3 paragraphs. Ensure the summary explicitly captures the core themes, the key discussions, and the outcomes or opinions each speaker shared. Name the host and guests. Use only information from the transcript. Present as smooth, coherent prose, avoiding bullet points or headings."
+   },
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "10"
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "planner",
+    "text": "Ensure that the claim_budget is set high enough (consider a minimum of 7) when the transcript is rich in potentially checkable facts or statistics, to maximize the chance of covering all relevant claims."
+   },
+   {
+    "op": "replace_in_prompt",
+    "prompt": "claims",
+    "old": "Write your reasoning first, briefly.",
+    "new": "Write your reasoning first, briefly. Ensure the reasoning explicitly justifies the number of claims chosen based on the density and type of claims found."
+   },
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "10"
+   },
+   {
+    "op": "set_param",
+    "path": "claims.candidate_max",
+    "value": "25"
+   },
+   {
+    "op": "toggle_step",
+    "step": "factcheck",
+    "enabled": true
+   }
+  ]
+ },
+ {
+  "id": "round3-n2c",
+  "parent": "round3-n1d",
+  "score": 0.8752,
+  "reward": 0.0,
+  "depth": 2,
+  "metrics": {
+   "verdict_accuracy": 0.74,
+   "evidence_recall": 0.95,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.933,
+   "structure": 1.0,
+   "claim_recall": 0.74,
+   "tag_overlap": 0.75
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "12"
+   },
+   {
+    "op": "set_param",
+    "path": "claims.candidate_max",
+    "value": "40"
+   }
+  ]
+ },
+ {
+  "id": "round3-n2d",
+  "parent": "round3-n1d",
+  "score": 0.8752,
+  "reward": 0.0,
+  "depth": 2,
+  "metrics": {
+   "verdict_accuracy": 0.74,
+   "evidence_recall": 0.95,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.933,
+   "structure": 1.0,
+   "claim_recall": 0.74,
+   "tag_overlap": 0.75
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "12"
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "judge",
+    "text": "Be extremely strict in your labeling. If the evidence is inconclusive but the claim is presented as fact, err on the side of 'insufficient' rather than 'supported', unless the evidence directly matches the claim's assertion."
+   }
+  ]
+ },
+ {
+  "id": "round3-n3c",
+  "parent": "round3-n1c",
+  "score": 0.9613,
+  "reward": -0.0067,
+  "depth": 2,
+  "metrics": {
+   "verdict_accuracy": 0.92,
+   "evidence_recall": 1.0,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.967,
+   "structure": 1.0,
+   "claim_recall": 0.92,
+   "tag_overlap": 0.75
+  },
+  "edits": [
+   {
+    "op": "replace_in_prompt",
+    "prompt": "claims",
+    "old": "Write your reasoning first, briefly. Ensure the reasoning explicitly justifies the number of claims chosen based on the density and type of claims found.",
+    "new": "Write your reasoning first, briefly. Justify the final number of claims selected based on the density and type of claims found, ensuring you don't generate more than necessary."
+   },
+   {
+    "op": "add_guardrail",
+    "text": "The output from the 'claims' step must strictly adhere to the gold standard for claim count and content; do not generate claims that are purely anecdotal unless the gold standard explicitly allows it."
+   }
+  ]
+ },
+ {
+  "id": "round3-n4a",
+  "parent": "round3-n1b",
+  "score": 0.8818,
+  "reward": 0.0066,
+  "depth": 2,
+  "metrics": {
+   "verdict_accuracy": 0.74,
+   "evidence_recall": 0.95,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.967,
+   "structure": 1.0,
+   "claim_recall": 0.74,
+   "tag_overlap": 0.75
+  },
+  "edits": [
+   {
+    "op": "replace_in_prompt",
+    "prompt": "summarizer",
+    "old": "Write ONE summary of {min_words}-{max_words} words (aim for about {target_words}) in 2-3 paragraphs that covers:\nthe core themes, the key discussions, and the outcomes or opinions each speaker shared.\nName the host and guests. Use only information from the transcript. Plain prose, no bullet points, no headings.",
+    "new": "Write ONE comprehensive summary of {min_words}-{max_words} words (aim for about {target_words}) in 3 distinct paragraphs. Each paragraph must clearly cover the core themes, the key discussions, and the main outcomes or opinions shared by each speaker. Ensure all major key points are explicitly integrated into the narrative. Name the host and guests. Use only information from the transcript. Write in plain prose, avoiding bullet points or headings."
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "judge",
+    "text": "If the claim is 'supported' or 'contradicted', you MUST cite the IDs of the passages you used in your reasoning and the final verdict."
+   }
+  ]
+ },
+ {
+  "id": "round3-n4c",
+  "parent": "round3-n1b",
+  "score": 0.8987,
+  "reward": 0.0235,
+  "depth": 2,
+  "metrics": {
+   "verdict_accuracy": 0.78,
+   "evidence_recall": 1.0,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.933,
+   "structure": 1.0,
+   "claim_recall": 0.78,
+   "tag_overlap": 0.8
+  },
+  "edits": [
+   {
+    "op": "append_to_prompt",
+    "prompt": "planner",
+    "text": "If checkable-claim candidates are present, ensure the 'claims' step is included in the plan before 'factcheck'."
+   },
+   {
+    "op": "add_guardrail",
+    "text": "If a claim is deemed 'unverifiable' by the judge, mark it as such instead of attempting to support or contradict it."
+   }
+  ]
+ },
+ {
+  "id": "round3-n5d",
+  "parent": "round3-n1r",
+  "score": 0.9613,
+  "reward": 0.0,
+  "depth": 2,
+  "metrics": {
+   "verdict_accuracy": 0.92,
+   "evidence_recall": 1.0,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 0.967,
+   "structure": 1.0,
+   "claim_recall": 0.92,
+   "tag_overlap": 0.75
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "12"
+   },
+   {
+    "op": "replace_in_prompt",
+    "prompt": "planner",
+    "old": "Ensure that all claims identified by the 'claims' step are passed to the 'factcheck' step, provided the 'claim_budget' is sufficient to cover them. If the budget is exceeded, prioritize claims with higher information density.",
+    "new": "Ensure that all claims identified by the 'claims' step are passed to the 'factcheck' step, provided the 'claim_budget' is sufficient to cover them. If the budget is exceeded, prioritize claims with higher information density and ensure the total number of claims aligns with the potential key points."
+   },
+   {
+    "op": "toggle_step",
+    "step": "claims",
+    "enabled": true
+   }
+  ]
+ },
+ {
+  "id": "round3-n6b",
+  "parent": "round3-n1d",
+  "score": 0.8308,
+  "reward": -0.0444,
+  "depth": 2,
+  "metrics": {
+   "verdict_accuracy": 0.633,
+   "evidence_recall": 0.85,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 1.0,
+   "structure": 1.0,
+   "claim_recall": 0.633,
+   "tag_overlap": 0.75
+  },
+  "edits": [
+   {
+    "op": "append_to_prompt",
+    "prompt": "claims",
+    "text": "If a claim is unverifiable or highly subjective, mark its type as 'opinion' or 'unverifiable' and proceed to the judge step without a full research cycle if evidence search is deemed unnecessary."
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "judge",
+    "text": "If the evidence cited does not directly address the claim, label the result as 'insufficient' rather than 'supported' or 'contradicted'."
+   },
+   {
+    "op": "replace_in_prompt",
+    "prompt": "planner",
+    "old": "Skip claims and factcheck only if the profile shows no checkable-claim candidates.",
+    "new": "Skip claims and factcheck only if the profile shows no checkable-claim candidates OR if the claim_budget is 0."
+   }
+  ]
+ },
+ {
+  "id": "round3-n6d",
+  "parent": "round3-n1d",
+  "score": 0.8885,
+  "reward": 0.0133,
+  "depth": 2,
+  "metrics": {
+   "verdict_accuracy": 0.74,
+   "evidence_recall": 0.95,
+   "quote_validity": 1.0,
+   "keypoint_coverage": 1.0,
+   "structure": 1.0,
+   "claim_recall": 0.74,
+   "tag_overlap": 0.75
+  },
+  "edits": [
+   {
+    "op": "set_param",
+    "path": "limits.claim_budget",
+    "value": "12"
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "claims",
+    "text": "If the planner sets a claim_budget, ensure the claims step attempts to generate and process that many unique, checkable claims. If fewer are found, prioritize claims that are statistics, predictions, or factual statements."
+   },
+   {
+    "op": "append_to_prompt",
+    "prompt": "summarizer",
+    "text": "Ensure the summary covers all core themes, key discussions, and the outcomes or opinions of each speaker comprehensively. Do not omit major points."
+   }
+  ]
+ }
+]

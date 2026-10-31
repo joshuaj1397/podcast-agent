@@ -16,11 +16,16 @@ All runs: Ollama, temperature 0, same code; Gemma 4 E2B unless the Model column 
 | [**Evo² round-2 harness** (`harness/evolved_r2.yaml`)](results/heldout_evolved-r2_e2b.md) | `gemma4:e2b` | 0.924 | 0.82 | 0.96 | 1.00 | 1.00 | 1.00 | 0.87 |
 | [Base harness · Gemma 4 E4B](results/heldout_base_e4b.md) | `gemma4:e4b` | 0.849 | 0.69 | 0.85 | 1.00 | 0.97 | 1.00 | 0.75 |
 | [Evo² round-2 harness · Gemma 4 E4B](results/heldout_evolved-r2_e4b.md) | `gemma4:e4b` | 0.802 | 0.60 | 0.76 | 1.00 | 1.00 | 1.00 | 0.65 |
+| [12B harness (`base_12b.yaml`: fixed claims examples) · Gemma 4 12B](results/heldout_base-12b_12b.md) | `gemma4:12b` | 0.768 | 0.52 | 0.83 | 1.00 | 0.93 | 1.00 | 0.58 |
+| [Evo² round-3 harness · Gemma 4 12B](results/heldout_evolved-r3_12b.md) | `gemma4:12b` | 0.845 | 0.65 | 0.89 | 1.00 | 1.00 | 1.00 | 0.81 |
 | [Search split · base, numeric check off](results/search_base_no_numeric.md) | `gemma4:e2b` | 0.883 | 0.77 | 0.90 | 1.00 | 0.95 | 1.00 | 0.89 |
 | [Search split · base](results/search_base.md) | `gemma4:e2b` | 0.890 | 0.79 | 0.90 | 1.00 | 0.95 | 1.00 | 0.89 |
 | [Search split · base · Gemma 4 E4B](results/search_base_e4b.md) | `gemma4:e4b` | 0.830 | 0.65 | 0.84 | 1.00 | 0.97 | 1.00 | 0.67 |
 | [Search split · round-2 harness · E4B (selection data)](results/search_evolved-r2_e4b.md) | `gemma4:e4b` | 0.956 | 0.92 | 0.97 | 1.00 | 0.95 | 1.00 | 0.92 |
 | [Search split · round-2 harness · E2B](results/search_evolved-r2_e2b.md) | `gemma4:e2b` | 0.916 | 0.83 | 0.93 | 1.00 | 0.98 | 1.00 | 0.88 |
+| [Search split · base · Gemma 4 12B (one claim per episode)](results/search_base_12b.md) | `gemma4:12b` | 0.549 | 0.19 | 0.26 | 1.00 | 0.93 | 1.00 | 0.19 |
+| [Search split · 12B harness · Gemma 4 12B](results/search_base-12b_12b.md) | `gemma4:12b` | 0.836 | 0.68 | 0.85 | 1.00 | 0.93 | 1.00 | 0.68 |
+| [Search split · round-3 harness · 12B (selection data)](results/search_evolved-r3_12b.md) | `gemma4:12b` | 0.943 | 0.88 | 0.95 | 1.00 | 0.98 | 1.00 | 0.88 |
 
 ## Paired comparisons (95% bootstrap CI)
 
@@ -37,6 +42,10 @@ All runs: Ollama, temperature 0, same code; Gemma 4 E2B unless the Model column 
 | E4B + round-2 harness vs E2B + base (held-out) | -0.074 [-0.330, +0.107] | +0.040 [-0.200, +0.280] (25 claims) |
 | **Round-2 harness vs base, both on E2B (held-out)** | +0.047 [+0.000, +0.119] | +0.200 [+0.040, +0.360] (25 claims) |
 | Round-2 harness vs base, both on E2B (search split) | +0.026 [-0.011, +0.065] | +0.037 [-0.056, +0.130] (54 claims) |
+| Gemma 4 12B vs E2B, base harness (search split) | -0.340 [-0.390, -0.280] | -0.611 [-0.741, -0.463] (54 claims) |
+| 12B + its harness (fixed examples) vs E2B + base (held-out) | -0.109 [-0.191, -0.027] | -0.200 [-0.400, +0.000] (25 claims) |
+| Evo² round-3 harness vs 12B harness, both on 12B (held-out) | +0.077 [-0.073, +0.220] | +0.200 [+0.000, +0.400] (25 claims) |
+| 12B + round-3 harness vs E2B + base (held-out) | -0.032 [-0.120, +0.031] | +0.000 [-0.200, +0.200] (25 claims) |
 
 An interval that contains 0 means the difference is not distinguishable from noise at this sample size.
 
