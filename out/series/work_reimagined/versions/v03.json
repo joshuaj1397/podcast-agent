@@ -1,0 +1,1169 @@
+{
+  "series_id": "work_reimagined",
+  "title": "Work Reimagined",
+  "version": 3,
+  "summary": "## Overarching themes\nThe series explores redefining remote work as an async-first culture founded on trust and rigorous documentation rather than mere location flexibility. It emphasizes that clear documentation is crucial for preventing knowledge silos and reducing context-switching. Success is framed by measuring outcomes over hours worked and fostering deep team trust. The discussion advocates for intentional cultural investments, such as virtual rituals, to counteract isolation. The series predicts that asynchronous methods will become standard for decisions, while synchronous time is reserved for complex conflict and creativity.\n\n## How the ideas developed\nThe initial premise introduced in ep001 established remote work as requiring an async-first culture built on trust and documentation. This was refined by emphasizing that documentation actively reduces context-switching and silos. A key position was that relying on tools like Slack is counterproductive and risks burnout. This was balanced by establishing that the core of remote success rests on documentation, clear goals, cultural investment, and trust. The prediction that remote-first companies will dominate talent acquisition and async culture will standardize was set in ep001. In ep004, the focus shifted to operationalizing this culture, introducing the idea that a handbook is the output of documentation, requiring a consistent writing habit as the starting point. This was further operationalized by suggesting short decision memos as a writing habit. Challenges identified were documentation rot and writing anxiety. Strategies addressed these by recommending assigning named owners and review dates to documentation and publishing explicit response-time norms for communication channels. The evolution continued into ep005 where the sufficiency of outcomes over hours was tested, noting that while this works in engineering, outcomes alone can mask issues like burnout or invisibility. Tom Becker recommended weekly one-on-ones that focus on blockers and growth rather than status updates.\n\n## Recurring guests, segments and cross-references\nThe series features recurring segments like Deep Dive, Examples, Challenges, Predictions, and Listener Questions across the episodes [Deep Dive, Examples, Challenges, Predictions, Listener Question]. Mark Rivera referenced external examples like GitLab, Automattic, and Doist which provide written handbooks supporting async culture. Hannah Okafor built directly on Rivera's concepts by focusing on practical application, detailing how to build a writing culture and addressing documentation rot. The conversation consistently linked documentation to tangible results, such as reducing meeting time and accelerating new hire ramp-up. Both episodes emphasized moving away from tool reliance towards a culture driven by written norms. Tom Becker’s input in ep005 contrasted the engineering focus on outcomes with the realities faced by support roles, contrasting outcome measurement with coverage necessity.\n\n## Episode arc\n- ep001 · The Future of Remote Work (Mark Rivera): This episode opens the discussion on the nature of remote work, defining it as an async-first culture built on trust and documentation, and outlines key strategies for successful remote operations.\n- ep004 · Async in Practice: Building a Writing Culture (Hannah Okafor): This episode tests the concept that an async-first culture built on documentation can be built through establishing consistent writing habits and clear communication norms.\n- ep005 · Managing Remote Teams: Is “Outcomes Over Hours” Enough? (Tom Becker, Leila Haddad): This episode tests the sufficiency of measuring outcomes over hours for remote teams by contrasting the views of engineering managers and customer support leads and proposing specific mitigation strategies.",
+  "char_count": 3846,
+  "max_chars": 4000,
+  "summary_sources": {
+    "themes": [
+      [
+        "The series explores redefining remote work as an async-first culture founded on trust and rigorous documentation rather than mere location flexibility.",
+        [
+          "L01"
+        ]
+      ],
+      [
+        "It emphasizes that clear documentation is crucial for preventing knowledge silos and reducing context-switching.",
+        [
+          "L03"
+        ]
+      ],
+      [
+        "Success is framed by measuring outcomes over hours worked and fostering deep team trust.",
+        [
+          "L08",
+          "L17"
+        ]
+      ],
+      [
+        "The discussion advocates for intentional cultural investments, such as virtual rituals, to counteract isolation.",
+        [
+          "L06"
+        ]
+      ],
+      [
+        "The series predicts that asynchronous methods will become standard for decisions, while synchronous time is reserved for complex conflict and creativity.",
+        [
+          "L16"
+        ]
+      ]
+    ],
+    "evolution": [
+      [
+        "The initial premise introduced in ep001 established remote work as requiring an async-first culture built on trust and documentation.",
+        [
+          "L01"
+        ]
+      ],
+      [
+        "This was refined by emphasizing that documentation actively reduces context-switching and silos.",
+        [
+          "L03"
+        ]
+      ],
+      [
+        "A key position was that relying on tools like Slack is counterproductive and risks burnout.",
+        [
+          "L04"
+        ]
+      ],
+      [
+        "This was balanced by establishing that the core of remote success rests on documentation, clear goals, cultural investment, and trust.",
+        [
+          "L08"
+        ]
+      ],
+      [
+        "The prediction that remote-first companies will dominate talent acquisition and async culture will standardize was set in ep001.",
+        [
+          "L07"
+        ]
+      ],
+      [
+        "In ep004, the focus shifted to operationalizing this culture, introducing the idea that a handbook is the output of documentation, requiring a consistent writing habit as the starting point.",
+        [
+          "L09"
+        ]
+      ],
+      [
+        "This was further operationalized by suggesting short decision memos as a writing habit.",
+        [
+          "L10"
+        ]
+      ],
+      [
+        "Challenges identified were documentation rot and writing anxiety.",
+        [
+          "L13"
+        ]
+      ],
+      [
+        "Strategies addressed these by recommending assigning named owners and review dates to documentation and publishing explicit response-time norms for communication channels.",
+        [
+          "L14",
+          "L15"
+        ]
+      ],
+      [
+        "The evolution continued into ep005 where the sufficiency of outcomes over hours was tested, noting that while this works in engineering, outcomes alone can mask issues like burnout or invisibility.",
+        [
+          "L17"
+        ]
+      ],
+      [
+        "Tom Becker recommended weekly one-on-ones that focus on blockers and growth rather than status updates.",
+        [
+          "L18"
+        ]
+      ]
+    ],
+    "connections": [
+      [
+        "The series features recurring segments like Deep Dive, Examples, Challenges, Predictions, and Listener Questions across the episodes [Deep Dive, Examples, Challenges, Predictions, Listener Question].",
+        []
+      ],
+      [
+        "Mark Rivera referenced external examples like GitLab, Automattic, and Doist which provide written handbooks supporting async culture.",
+        [
+          "L02"
+        ]
+      ],
+      [
+        "Hannah Okafor built directly on Rivera's concepts by focusing on practical application, detailing how to build a writing culture and addressing documentation rot.",
+        [
+          "L13"
+        ]
+      ],
+      [
+        "The conversation consistently linked documentation to tangible results, such as reducing meeting time and accelerating new hire ramp-up.",
+        [
+          "L11",
+          "L12"
+        ]
+      ],
+      [
+        "Both episodes emphasized moving away from tool reliance towards a culture driven by written norms.",
+        []
+      ],
+      [
+        "Tom Becker’s input in ep005 contrasted the engineering focus on outcomes with the realities faced by support roles, contrasting outcome measurement with coverage necessity.",
+        [
+          "L17",
+          "L19"
+        ]
+      ]
+    ]
+  },
+  "episodes": [
+    "ep001",
+    "ep004",
+    "ep005"
+  ],
+  "updated_at": "2026-11-05T12:06:05+00:00",
+  "history": [
+    {
+      "version": 1,
+      "episode_id": "ep001",
+      "at": "2026-11-05T12:05:00+00:00",
+      "mode": "initial",
+      "change": "Initial summary from ep001: 8 ledger items.",
+      "chars": 2274,
+      "chars_before": 0,
+      "similarity": null,
+      "ops": [
+        {
+          "op": "add",
+          "item": "L01",
+          "replaced": null,
+          "point": "ep001.P1",
+          "text": "Mark Rivera stated that remote work is more about an async-first culture, documentation, and autonomy rather than just working from anywhere.",
+          "reason": "first episode of the series"
+        },
+        {
+          "op": "add",
+          "item": "L02",
+          "replaced": null,
+          "point": "ep001.P2",
+          "text": "Mark Rivera mentioned that companies like GitLab, Automattic, and Doist have written handbooks for everything to support async culture.",
+          "reason": "first episode of the series"
+        },
+        {
+          "op": "add",
+          "item": "L03",
+          "replaced": null,
+          "point": "ep001.P3",
+          "text": "Mark Rivera argued that clear documentation, even for small teams, reduces context-switching and prevents knowledge from becoming siloed.",
+          "reason": "first episode of the series"
+        },
+        {
+          "op": "add",
+          "item": "L04",
+          "replaced": null,
+          "point": "ep001.P4",
+          "text": "Mark Rivera posited that tools like Slack are not the solution for remote work culture, as over-reliance on them can lead to burnout.",
+          "reason": "first episode of the series"
+        },
+        {
+          "op": "add",
+          "item": "L05",
+          "replaced": null,
+          "point": "ep001.P5",
+          "text": "Mark Rivera recommended that teams measure productivity by focusing on outcomes over hours, tracking progress on deliverables, and trusting the team.",
+          "reason": "first episode of the series"
+        },
+        {
+          "op": "add",
+          "item": "L06",
+          "replaced": null,
+          "point": "ep001.P6",
+          "text": "Mark Rivera suggested that regular virtual coffee chats, retreats, and team rituals are necessary to combat feelings of isolation in remote work.",
+          "reason": "first episode of the series"
+        },
+        {
+          "op": "add",
+          "item": "L07",
+          "replaced": null,
+          "point": "ep001.P7",
+          "text": "Mark Rivera predicted that remote-first companies will dominate talent acquisition and async culture will become standard practice.",
+          "reason": "first episode of the series"
+        },
+        {
+          "op": "add",
+          "item": "L08",
+          "replaced": null,
+          "point": "ep001.P8",
+          "text": "Mark Rivera advised that the foundation for remote work success involves focusing on documentation, setting clear goals, investing in culture, and trusting the team.",
+          "reason": "first episode of the series"
+        }
+      ],
+      "reasoning": {
+        "extract": "The user wants me to summarize the provided podcast episode (ep001) for a series summary. I need to extract key points covering the main themes, positions, predictions, and any figures mentioned, ensuring each point is a self-contained sentence with a speaker and a single idea. I must use the specified format and reference the turns correctly.",
+        "writer": "The user has provided a very short series with only one episode and limited ledger data. I need to construct the summary based strictly on the available information, adhering to all formatting rules, including citation placement and character limits. Since there is only one episode, the 'evolution' and 'connections' sections will be highly constrained. I must ensure the tone is plain prose."
+      },
+      "length_actions": [],
+      "degraded": [],
+      "llm_calls": 0,
+      "cache_hits": 2,
+      "seconds": 0.0,
+      "model": "ollama_chat/gemma4:e2b",
+      "harness": "base"
+    },
+    {
+      "version": 2,
+      "episode_id": "ep004",
+      "at": "2026-11-05T12:05:36+00:00",
+      "mode": "incremental",
+      "change": "Added eight new points detailing writing culture practices, efficiency metrics, and predictions about async work.",
+      "chars": 3504,
+      "chars_before": 2274,
+      "similarity": 0.2,
+      "ops": [
+        {
+          "op": "add",
+          "item": "L09",
+          "replaced": null,
+          "point": "ep004.P1",
+          "text": "Hannah Okafor stated that a handbook is the output of documentation, and the starting point should be a writing habit.",
+          "reason": "Added a new perspective on the relationship between documentation and handbooks."
+        },
+        {
+          "op": "add",
+          "item": "L10",
+          "replaced": null,
+          "point": "ep004.P2",
+          "text": "Hannah Okafor described using short decision memos containing the problem, options, recommendation, and decision-maker as a writing habit.",
+          "reason": "Added a specific example of a writing habit related to decision-making."
+        },
+        {
+          "op": "add",
+          "item": "L11",
+          "replaced": null,
+          "point": "ep004.P3",
+          "text": "Recurring meetings were cut by roughly 40 percent by the second quarter.",
+          "reason": "Added a figure related to efficiency gains in meetings."
+        },
+        {
+          "op": "add",
+          "item": "L12",
+          "replaced": null,
+          "point": "ep004.P4",
+          "text": "New hires were ramping in three weeks instead of six weeks.",
+          "reason": "Added a figure regarding the speed of onboarding."
+        },
+        {
+          "op": "add",
+          "item": "L13",
+          "replaced": null,
+          "point": "ep004.P5",
+          "text": "Hannah Okafor identified documentation rot and writing anxiety as the two main challenges in building a writing culture.",
+          "reason": "Added new challenges to the building a writing culture theme."
+        },
+        {
+          "op": "add",
+          "item": "L14",
+          "replaced": null,
+          "point": "ep004.P6",
+          "text": "Hannah Okafor recommended assigning a named owner and a review date to every page to fight documentation rot.",
+          "reason": "Added a tactic to combat documentation rot, related to outcome tracking."
+        },
+        {
+          "op": "add",
+          "item": "L15",
+          "replaced": null,
+          "point": "ep004.P7",
+          "text": "Hannah Okafor advised publishing explicit response-time norms for communication channels like Slack to fix expectations.",
+          "reason": "Added a suggestion for setting communication norms, related to tool usage."
+        },
+        {
+          "op": "add",
+          "item": "L16",
+          "replaced": null,
+          "point": "ep004.P8",
+          "text": "Hannah Okafor predicted that async work will become standard for decisions and status updates, while sync time will be reserved for conflict and creativity.",
+          "reason": "Added a prediction regarding the future of sync vs. async work."
+        }
+      ],
+      "reasoning": {
+        "extract": "The user asked for a series summary of the episode, requiring 3-10 specific, self-contained sentences (points) covering themes, positions, predictions, figures, and references, with each point attributed and linked to a turn ID. I need to ensure I adhere strictly to the provided transcript and follow all formatting rules, specifically reducing the number of points to 3-10.",
+        "merge": "I will add all the new points from the episode as they introduce new concepts, figures, or perspectives related to writing culture, documentation, and async work.",
+        "writer": "The user wants me to create a summary of a two-episode podcast series for an ad agency based on a provided ledger and episode list. I need to structure the output into three sections: themes, evolution, connections, and arc, following specific formatting rules, including citation of ledger items and adhering to character limits. I must use plain prose, avoid headings/bullets, and ensure the evolution section traces the development of ideas. The provided previous version must be updated to incorporate all new ledger items from ep004 and reflect the current state of the conversation."
+      },
+      "length_actions": [],
+      "degraded": [],
+      "llm_calls": 5,
+      "cache_hits": 0,
+      "seconds": 31.7,
+      "model": "ollama_chat/gemma4:e2b",
+      "harness": "base"
+    },
+    {
+      "version": 3,
+      "episode_id": "ep005",
+      "at": "2026-11-05T12:06:05+00:00",
+      "mode": "incremental",
+      "change": "Revised L05 to incorporate the nuance that outcomes alone can mask issues like burnout, added tactics for measurement and bias mitigation, and added new predictions regarding remote team structures.",
+      "chars": 3846,
+      "chars_before": 3504,
+      "similarity": 0.4,
+      "ops": [
+        {
+          "op": "reinforce",
+          "item": "L05",
+          "replaced": null,
+          "point": "ep005.P1",
+          "text": "Mark Rivera recommended that teams measure productivity by focusing on outcomes over hours, tracking progress on deliverables, and trusting the team.",
+          "reason": "Reinforce the existing position that teams should measure productivity by focusing on outcomes over hours."
+        },
+        {
+          "op": "revise",
+          "item": "L17",
+          "replaced": "L05",
+          "point": "ep005.P2",
+          "text": "Tom Becker argued that while outcomes over hours work in engineering, outcomes alone can mask problems like burnout or invisibility.",
+          "reason": "Tom Becker provides a nuance to Mark Rivera's outcome-focused approach, suggesting the initial statement in L05 is incomplete."
+        },
+        {
+          "op": "add",
+          "item": "L18",
+          "replaced": null,
+          "point": "ep005.P3",
+          "text": "Tom Becker recommended weekly one-on-ones that explicitly avoid status updates, focusing instead on blockers, growth, and actual performance.",
+          "reason": "This adds a new tactic (weekly one-on-ones focusing on specific topics) related to productivity measurement."
+        },
+        {
+          "op": "add",
+          "item": "L19",
+          "replaced": null,
+          "point": "ep005.P4",
+          "text": "Leila Haddad stated that for customer support, hours matter because coverage is the outcome, necessitating scheduled shifts.",
+          "reason": "This adds a new perspective regarding how outcomes (coverage) differ based on the role type."
+        },
+        {
+          "op": "add",
+          "item": "L20",
+          "replaced": null,
+          "point": "ep005.P5",
+          "text": "Leila Haddad shared that after trying activity-monitoring software in 2023, morale collapsed, leading to the resignation of two top agents.",
+          "reason": "This adds a new specific example illustrating the challenges of activity monitoring related to documentation rot and anxiety."
+        },
+        {
+          "op": "add",
+          "item": "L21",
+          "replaced": null,
+          "point": "ep005.P6",
+          "text": "Tom Becker suggested fixing proximity bias by requiring written impact summaries for every promotion case, as evidence must beat visibility.",
+          "reason": "This adds a specific tactic (written impact summaries) to combat documentation rot/visibility issues mentioned in L14."
+        },
+        {
+          "op": "add",
+          "item": "L22",
+          "replaced": null,
+          "point": "ep005.P7",
+          "text": "Tom Becker predicted that in remote teams, problems manifest as absence, indicated by silence, fewer questions, shorter written updates, and cameras going off.",
+          "reason": "This adds specific indicators of problems in remote work, complementing the prediction about sync time."
+        },
+        {
+          "op": "reinforce",
+          "item": "L17",
+          "replaced": null,
+          "point": "ep005.P8",
+          "text": "Tom Becker argued that while outcomes over hours work in engineering, outcomes alone can mask problems like burnout or invisibility.",
+          "reason": "Reinforce the core idea of outcomes over hours for knowledge work, adding the necessary human check-in caveat."
+        },
+        {
+          "op": "add",
+          "item": "L23",
+          "replaced": null,
+          "point": "ep005.P9",
+          "text": "Leila Haddad predicted that for frontline remote roles, hybrid models featuring scheduled coverage with flexibility would become common.",
+          "reason": "This adds a new prediction about the structure of remote work models, supporting the theme of async culture."
+        }
+      ],
+      "reasoning": {
+        "extract": "The series summary should focus on the debate around 'outcomes over hours' in remote work management, contrasting the perspectives of engineering and customer support roles, and outlining practical solutions discussed.",
+        "merge": "I will process each point from the new episode, assigning an operation based on whether the information updates an existing ledger item, adds new information, or reinforces an existing one. For instance, P1 references L05, so I will check if that connection needs refinement. P2 offers a counterpoint to L05, suggesting an addition or a revision if L05's stance is now outdated.",
+        "writer": "The user wants me to rewrite and condense the previous summary based on the provided ledger and episode list, adhering strictly to the constraints: plain prose, specific citation style, character limits (themes under 680, evolution under 1122, connections under 680, arc entry length around 306 characters), and ensuring the latest revisions from ep005 are incorporated. I need to focus on capturing the core arc, evolution, and connections while cutting redundancy to stay under 4000 characters. The previous summary was too long, so I must be more concise while retaining the critical shifts in perspective, especially concerning outcome measurement vs. hours."
+      },
+      "length_actions": [
+        "dropped a sentence of evolution (115 chars, cites L23): Finally, Leila Haddad predicted that hybrid models with scheduled cove",
+        "dropped a sentence of evolution (169 chars, cites L21, L22): Tom Becker suggested using written impact summaries for promotions to ",
+        "dropped a sentence of evolution (207 chars, cites L19, L20): The discussion differentiated needs by noting that for customer suppor"
+      ],
+      "degraded": [
+        "length enforced in code: 4,340 -> 3,846 chars"
+      ],
+      "llm_calls": 5,
+      "cache_hits": 0,
+      "seconds": 24.8,
+      "model": "ollama_chat/gemma4:e2b",
+      "harness": "base"
+    }
+  ],
+  "ledger": [
+    {
+      "id": "L01",
+      "kind": "theme",
+      "text": "Mark Rivera stated that remote work is more about an async-first culture, documentation, and autonomy rather than just working from anywhere.",
+      "episodes": [
+        "ep001"
+      ],
+      "status": "current",
+      "added_in": "ep001",
+      "updated_in": "ep001",
+      "refers_to": [],
+      "turns": [
+        "ep001 T04 00:45"
+      ],
+      "revises": null,
+      "superseded_by": null
+    },
+    {
+      "id": "L02",
+      "kind": "reference",
+      "text": "Mark Rivera mentioned that companies like GitLab, Automattic, and Doist have written handbooks for everything to support async culture.",
+      "episodes": [
+        "ep001"
+      ],
+      "status": "current",
+      "added_in": "ep001",
+      "updated_in": "ep001",
+      "refers_to": [],
+      "turns": [
+        "ep001 T06 01:20"
+      ],
+      "revises": null,
+      "superseded_by": null
+    },
+    {
+      "id": "L03",
+      "kind": "theme",
+      "text": "Mark Rivera argued that clear documentation, even for small teams, reduces context-switching and prevents knowledge from becoming siloed.",
+      "episodes": [
+        "ep001"
+      ],
+      "status": "current",
+      "added_in": "ep001",
+      "updated_in": "ep001",
+      "refers_to": [],
+      "turns": [
+        "ep001 T08 02:05"
+      ],
+      "revises": null,
+      "superseded_by": null
+    },
+    {
+      "id": "L04",
+      "kind": "position",
+      "text": "Mark Rivera posited that tools like Slack are not the solution for remote work culture, as over-reliance on them can lead to burnout.",
+      "episodes": [
+        "ep001"
+      ],
+      "status": "current",
+      "added_in": "ep001",
+      "updated_in": "ep001",
+      "refers_to": [],
+      "turns": [
+        "ep001 T10 02:45"
+      ],
+      "revises": null,
+      "superseded_by": null
+    },
+    {
+      "id": "L05",
+      "kind": "position",
+      "text": "Mark Rivera recommended that teams measure productivity by focusing on outcomes over hours, tracking progress on deliverables, and trusting the team.",
+      "episodes": [
+        "ep001",
+        "ep005"
+      ],
+      "status": "superseded",
+      "added_in": "ep001",
+      "updated_in": "ep005",
+      "refers_to": [],
+      "turns": [
+        "ep001 T12 03:25",
+        "ep005 T01 00:00"
+      ],
+      "revises": null,
+      "superseded_by": "L17"
+    },
+    {
+      "id": "L06",
+      "kind": "position",
+      "text": "Mark Rivera suggested that regular virtual coffee chats, retreats, and team rituals are necessary to combat feelings of isolation in remote work.",
+      "episodes": [
+        "ep001"
+      ],
+      "status": "current",
+      "added_in": "ep001",
+      "updated_in": "ep001",
+      "refers_to": [],
+      "turns": [
+        "ep001 T14 04:10"
+      ],
+      "revises": null,
+      "superseded_by": null
+    },
+    {
+      "id": "L07",
+      "kind": "prediction",
+      "text": "Mark Rivera predicted that remote-first companies will dominate talent acquisition and async culture will become standard practice.",
+      "episodes": [
+        "ep001"
+      ],
+      "status": "current",
+      "added_in": "ep001",
+      "updated_in": "ep001",
+      "refers_to": [],
+      "turns": [
+        "ep001 T16 05:00"
+      ],
+      "revises": null,
+      "superseded_by": null
+    },
+    {
+      "id": "L08",
+      "kind": "position",
+      "text": "Mark Rivera advised that the foundation for remote work success involves focusing on documentation, setting clear goals, investing in culture, and trusting the team.",
+      "episodes": [
+        "ep001"
+      ],
+      "status": "current",
+      "added_in": "ep001",
+      "updated_in": "ep001",
+      "refers_to": [],
+      "turns": [
+        "ep001 T18 05:35"
+      ],
+      "revises": null,
+      "superseded_by": null
+    },
+    {
+      "id": "L09",
+      "kind": "position",
+      "text": "Hannah Okafor stated that a handbook is the output of documentation, and the starting point should be a writing habit.",
+      "episodes": [
+        "ep004"
+      ],
+      "status": "current",
+      "added_in": "ep004",
+      "updated_in": "ep004",
+      "refers_to": [
+        "ep001"
+      ],
+      "turns": [
+        "ep004 T04 00:50"
+      ],
+      "revises": null,
+      "superseded_by": null
+    },
+    {
+      "id": "L10",
+      "kind": "theme",
+      "text": "Hannah Okafor described using short decision memos containing the problem, options, recommendation, and decision-maker as a writing habit.",
+      "episodes": [
+        "ep004"
+      ],
+      "status": "current",
+      "added_in": "ep004",
+      "updated_in": "ep004",
+      "refers_to": [
+        "ep001"
+      ],
+      "turns": [
+        "ep004 T06 01:30"
+      ],
+      "revises": null,
+      "superseded_by": null
+    },
+    {
+      "id": "L11",
+      "kind": "figure",
+      "text": "Recurring meetings were cut by roughly 40 percent by the second quarter.",
+      "episodes": [
+        "ep004"
+      ],
+      "status": "current",
+      "added_in": "ep004",
+      "updated_in": "ep004",
+      "refers_to": [
+        "ep001"
+      ],
+      "turns": [
+        "ep004 T08 02:15"
+      ],
+      "revises": null,
+      "superseded_by": null
+    },
+    {
+      "id": "L12",
+      "kind": "figure",
+      "text": "New hires were ramping in three weeks instead of six weeks.",
+      "episodes": [
+        "ep004"
+      ],
+      "status": "current",
+      "added_in": "ep004",
+      "updated_in": "ep004",
+      "refers_to": [
+        "ep001"
+      ],
+      "turns": [
+        "ep004 T08 02:15"
+      ],
+      "revises": null,
+      "superseded_by": null
+    },
+    {
+      "id": "L13",
+      "kind": "theme",
+      "text": "Hannah Okafor identified documentation rot and writing anxiety as the two main challenges in building a writing culture.",
+      "episodes": [
+        "ep004"
+      ],
+      "status": "current",
+      "added_in": "ep004",
+      "updated_in": "ep004",
+      "refers_to": [
+        "ep001"
+      ],
+      "turns": [
+        "ep004 T12 03:40"
+      ],
+      "revises": null,
+      "superseded_by": null
+    },
+    {
+      "id": "L14",
+      "kind": "position",
+      "text": "Hannah Okafor recommended assigning a named owner and a review date to every page to fight documentation rot.",
+      "episodes": [
+        "ep004"
+      ],
+      "status": "current",
+      "added_in": "ep004",
+      "updated_in": "ep004",
+      "refers_to": [
+        "ep001"
+      ],
+      "turns": [
+        "ep004 T14 04:25"
+      ],
+      "revises": null,
+      "superseded_by": null
+    },
+    {
+      "id": "L15",
+      "kind": "position",
+      "text": "Hannah Okafor advised publishing explicit response-time norms for communication channels like Slack to fix expectations.",
+      "episodes": [
+        "ep004"
+      ],
+      "status": "current",
+      "added_in": "ep004",
+      "updated_in": "ep004",
+      "refers_to": [
+        "ep001"
+      ],
+      "turns": [
+        "ep004 T16 05:10"
+      ],
+      "revises": null,
+      "superseded_by": null
+    },
+    {
+      "id": "L16",
+      "kind": "prediction",
+      "text": "Hannah Okafor predicted that async work will become standard for decisions and status updates, while sync time will be reserved for conflict and creativity.",
+      "episodes": [
+        "ep004"
+      ],
+      "status": "current",
+      "added_in": "ep004",
+      "updated_in": "ep004",
+      "refers_to": [
+        "ep001"
+      ],
+      "turns": [
+        "ep004 T18 05:55"
+      ],
+      "revises": null,
+      "superseded_by": null
+    },
+    {
+      "id": "L17",
+      "kind": "position",
+      "text": "Tom Becker argued that while outcomes over hours work in engineering, outcomes alone can mask problems like burnout or invisibility.",
+      "episodes": [
+        "ep001",
+        "ep005"
+      ],
+      "status": "current",
+      "added_in": "ep005",
+      "updated_in": "ep005",
+      "refers_to": [
+        "ep001"
+      ],
+      "turns": [
+        "ep001 T12 03:25",
+        "ep005 T01 00:00",
+        "ep005 T05 01:00",
+        "ep005 T20 06:35"
+      ],
+      "revises": "L05",
+      "superseded_by": null
+    },
+    {
+      "id": "L18",
+      "kind": "position",
+      "text": "Tom Becker recommended weekly one-on-ones that explicitly avoid status updates, focusing instead on blockers, growth, and actual performance.",
+      "episodes": [
+        "ep005"
+      ],
+      "status": "current",
+      "added_in": "ep005",
+      "updated_in": "ep005",
+      "refers_to": [],
+      "turns": [
+        "ep005 T07 01:45"
+      ],
+      "revises": null,
+      "superseded_by": null
+    },
+    {
+      "id": "L19",
+      "kind": "position",
+      "text": "Leila Haddad stated that for customer support, hours matter because coverage is the outcome, necessitating scheduled shifts.",
+      "episodes": [
+        "ep005"
+      ],
+      "status": "current",
+      "added_in": "ep005",
+      "updated_in": "ep005",
+      "refers_to": [],
+      "turns": [
+        "ep005 T09 02:25"
+      ],
+      "revises": null,
+      "superseded_by": null
+    },
+    {
+      "id": "L20",
+      "kind": "figure",
+      "text": "Leila Haddad shared that after trying activity-monitoring software in 2023, morale collapsed, leading to the resignation of two top agents.",
+      "episodes": [
+        "ep005"
+      ],
+      "status": "current",
+      "added_in": "ep005",
+      "updated_in": "ep005",
+      "refers_to": [],
+      "turns": [
+        "ep005 T11 03:05"
+      ],
+      "revises": null,
+      "superseded_by": null
+    },
+    {
+      "id": "L21",
+      "kind": "position",
+      "text": "Tom Becker suggested fixing proximity bias by requiring written impact summaries for every promotion case, as evidence must beat visibility.",
+      "episodes": [
+        "ep005"
+      ],
+      "status": "current",
+      "added_in": "ep005",
+      "updated_in": "ep005",
+      "refers_to": [],
+      "turns": [
+        "ep005 T14 04:15"
+      ],
+      "revises": null,
+      "superseded_by": null
+    },
+    {
+      "id": "L22",
+      "kind": "prediction",
+      "text": "Tom Becker predicted that in remote teams, problems manifest as absence, indicated by silence, fewer questions, shorter written updates, and cameras going off.",
+      "episodes": [
+        "ep005"
+      ],
+      "status": "current",
+      "added_in": "ep005",
+      "updated_in": "ep005",
+      "refers_to": [],
+      "turns": [
+        "ep005 T17 05:30"
+      ],
+      "revises": null,
+      "superseded_by": null
+    },
+    {
+      "id": "L23",
+      "kind": "prediction",
+      "text": "Leila Haddad predicted that for frontline remote roles, hybrid models featuring scheduled coverage with flexibility would become common.",
+      "episodes": [
+        "ep005"
+      ],
+      "status": "current",
+      "added_in": "ep005",
+      "updated_in": "ep005",
+      "refers_to": [],
+      "turns": [
+        "ep005 T21 06:55"
+      ],
+      "revises": null,
+      "superseded_by": null
+    }
+  ],
+  "digests": {
+    "ep001": {
+      "episode_id": "ep001",
+      "title": "The Future of Remote Work",
+      "host": "Sarah Johnson",
+      "guests": [
+        "Mark Rivera"
+      ],
+      "source": "data/heldout/ep001_remote_work.json",
+      "sections": [
+        "Introduction",
+        "Deep Dive",
+        "Examples",
+        "Trends",
+        "Challenges",
+        "Predictions",
+        "Closing"
+      ],
+      "arc_role": "This episode opens the discussion on the nature of remote work, defining it as an async-first culture built on trust and documentation, and outlines key strategies for successful remote operations.",
+      "points": [
+        {
+          "id": "ep001.P1",
+          "kind": "theme",
+          "text": "Mark Rivera stated that remote work is more about an async-first culture, documentation, and autonomy rather than just working from anywhere.",
+          "refers_to": [],
+          "turn": "T04 00:45",
+          "changes": ""
+        },
+        {
+          "id": "ep001.P2",
+          "kind": "reference",
+          "text": "Mark Rivera mentioned that companies like GitLab, Automattic, and Doist have written handbooks for everything to support async culture.",
+          "refers_to": [],
+          "turn": "T06 01:20",
+          "changes": ""
+        },
+        {
+          "id": "ep001.P3",
+          "kind": "theme",
+          "text": "Mark Rivera argued that clear documentation, even for small teams, reduces context-switching and prevents knowledge from becoming siloed.",
+          "refers_to": [],
+          "turn": "T08 02:05",
+          "changes": ""
+        },
+        {
+          "id": "ep001.P4",
+          "kind": "position",
+          "text": "Mark Rivera posited that tools like Slack are not the solution for remote work culture, as over-reliance on them can lead to burnout.",
+          "refers_to": [],
+          "turn": "T10 02:45",
+          "changes": ""
+        },
+        {
+          "id": "ep001.P5",
+          "kind": "position",
+          "text": "Mark Rivera recommended that teams measure productivity by focusing on outcomes over hours, tracking progress on deliverables, and trusting the team.",
+          "refers_to": [],
+          "turn": "T12 03:25",
+          "changes": ""
+        },
+        {
+          "id": "ep001.P6",
+          "kind": "position",
+          "text": "Mark Rivera suggested that regular virtual coffee chats, retreats, and team rituals are necessary to combat feelings of isolation in remote work.",
+          "refers_to": [],
+          "turn": "T14 04:10",
+          "changes": ""
+        },
+        {
+          "id": "ep001.P7",
+          "kind": "prediction",
+          "text": "Mark Rivera predicted that remote-first companies will dominate talent acquisition and async culture will become standard practice.",
+          "refers_to": [],
+          "turn": "T16 05:00",
+          "changes": ""
+        },
+        {
+          "id": "ep001.P8",
+          "kind": "position",
+          "text": "Mark Rivera advised that the foundation for remote work success involves focusing on documentation, setting clear goals, investing in culture, and trusting the team.",
+          "refers_to": [],
+          "turn": "T18 05:35",
+          "changes": ""
+        }
+      ],
+      "mentions": {},
+      "fact_checks": {
+        "verified": 1,
+        "inaccurate": 0,
+        "unverifiable": 1
+      },
+      "summary": "Sarah Johnson and Mark Rivera discussed the evolution and future implications of remote work on the podcast Work Reimagined. Mark Rivera emphasized that remote work is more than just working from anywhere; it fundamentally revolves around an async-first culture built on documentation and autonomy rather than just location. He pointed to companies like GitLab and Automattic as examples of how extensive documentation allows employees to operate without constant guidance, noting that clear documentation benefits even smaller teams by reducing context-switching and preventing knowledge silos.\n\nWhen discussing tools, Mark cautioned that platforms like Zoom and Slack are not the solution; culture is the key. He argued that relying too heavily on tools can lead to burnout, suggesting that measuring productivity should shift from tracking hours to focusing on outcomes and deliverables, relying on transparency and trust among the team. To combat potential isolation, Mark suggested that intentional efforts like regular virtual coffee chats and occasional in-person retreats are necessary to maintain connection.\n\nLooking toward the future, Mark predicted that remote-first companies will dominate talent acquisition, and asynchronous culture will become the standard practice. Sarah Johnson concluded the discussion by summarizing Mark's advice for transitioning teams: focusing on documentation, setting clear goals, investing in culture, and trusting the team as the foundation for success."
+    },
+    "ep004": {
+      "episode_id": "ep004",
+      "title": "Async in Practice: Building a Writing Culture",
+      "host": "Sarah Johnson",
+      "guests": [
+        "Hannah Okafor"
+      ],
+      "source": "data/heldout/ep004_async_writing_culture.json",
+      "sections": [
+        "Introduction",
+        "Deep Dive",
+        "Examples",
+        "Challenges",
+        "Listener Question",
+        "Predictions",
+        "Closing"
+      ],
+      "arc_role": "This episode tests the concept that an async-first culture built on documentation can be built through establishing consistent writing habits and clear communication norms.",
+      "points": [
+        {
+          "id": "ep004.P1",
+          "kind": "position",
+          "text": "Hannah Okafor stated that a handbook is the output of documentation, and the starting point should be a writing habit.",
+          "refers_to": [
+            "ep001"
+          ],
+          "turn": "T04 00:50",
+          "changes": ""
+        },
+        {
+          "id": "ep004.P2",
+          "kind": "theme",
+          "text": "Hannah Okafor described using short decision memos containing the problem, options, recommendation, and decision-maker as a writing habit.",
+          "refers_to": [
+            "ep001"
+          ],
+          "turn": "T06 01:30",
+          "changes": ""
+        },
+        {
+          "id": "ep004.P3",
+          "kind": "figure",
+          "text": "Hannah Okafor noted that recurring meetings were cut by roughly 40 percent by the second quarter.",
+          "refers_to": [
+            "ep001"
+          ],
+          "turn": "T08 02:15",
+          "changes": ""
+        },
+        {
+          "id": "ep004.P4",
+          "kind": "figure",
+          "text": "Hannah Okafor mentioned that new hires were ramping in three weeks instead of six weeks.",
+          "refers_to": [
+            "ep001"
+          ],
+          "turn": "T08 02:15",
+          "changes": ""
+        },
+        {
+          "id": "ep004.P5",
+          "kind": "theme",
+          "text": "Hannah Okafor identified documentation rot and writing anxiety as the two main challenges in building a writing culture.",
+          "refers_to": [
+            "ep001"
+          ],
+          "turn": "T12 03:40",
+          "changes": ""
+        },
+        {
+          "id": "ep004.P6",
+          "kind": "position",
+          "text": "Hannah Okafor recommended assigning a named owner and a review date to every page to fight documentation rot.",
+          "refers_to": [
+            "ep001"
+          ],
+          "turn": "T14 04:25",
+          "changes": ""
+        },
+        {
+          "id": "ep004.P7",
+          "kind": "position",
+          "text": "Hannah Okafor advised publishing explicit response-time norms for communication channels like Slack to fix expectations.",
+          "refers_to": [
+            "ep001"
+          ],
+          "turn": "T16 05:10",
+          "changes": ""
+        },
+        {
+          "id": "ep004.P8",
+          "kind": "prediction",
+          "text": "Hannah Okafor predicted that async work will become standard for decisions and status updates, while sync time will be reserved for conflict and creativity.",
+          "refers_to": [
+            "ep001"
+          ],
+          "turn": "T18 05:55",
+          "changes": ""
+        }
+      ],
+      "mentions": {
+        "Mark Rivera": [
+          "T01",
+          "T03",
+          "T17"
+        ]
+      },
+      "fact_checks": {
+        "verified": 1,
+        "inaccurate": 0,
+        "unverifiable": 3
+      },
+      "summary": "Host Sarah Johnson and guest Hannah Okafor discussed practical strategies for cultivating an async-first writing culture within distributed teams. Hannah Okafor emphasized that the focus should be on establishing a daily writing habit rather than relying solely on a handbook, which she noted can quickly become outdated if decisions are not documented regularly. She proposed using short decision memos—detailing the problem, options, recommendation, and decision-maker—to ensure critical information is captured before meetings occur. Hannah shared that while initial adoption might slow things down, this approach led to a significant reduction in recurring meetings and drastically improved onboarding time, allowing new hires to quickly understand organizational context through past memos. \n\nWhen addressing challenges, Hannah pointed out that documentation rot and writing anxiety are common pitfalls. To combat rot, she suggested assigning named owners and review dates to every page. Regarding communication norms, she advised publishing explicit response-time guidelines for tools like Slack, clarifying that it is a same-day medium, not a same-minute one, and that leaders must model this behavior. Hannah ultimately agreed that async will become standard for decisions and status updates, though synchronous time will remain valuable for conflict and creativity. The episode concluded with a piece of advice for teams to try replacing a recurring meeting with a written update for a month to measure the resulting gains and losses."
+    },
+    "ep005": {
+      "episode_id": "ep005",
+      "title": "Managing Remote Teams: Is “Outcomes Over Hours” Enough?",
+      "host": "Sarah Johnson",
+      "guests": [
+        "Tom Becker",
+        "Leila Haddad"
+      ],
+      "source": "data/heldout/ep005_managing_remote_teams.json",
+      "sections": [
+        "Introduction",
+        "Deep Dive",
+        "Examples",
+        "Challenges",
+        "Listener Question",
+        "Predictions",
+        "Closing"
+      ],
+      "arc_role": "This episode tests the sufficiency of measuring outcomes over hours for remote teams by contrasting the views of engineering managers and customer support leads and proposing specific mitigation strategies.",
+      "points": [
+        {
+          "id": "ep005.P1",
+          "kind": "reference",
+          "text": "Sarah Johnson introduced the episode by mentioning that in the first episode, Mark Rivera said remote teams should measure outcomes over hours.",
+          "refers_to": [
+            "ep001"
+          ],
+          "turn": "T01 00:00",
+          "changes": ""
+        },
+        {
+          "id": "ep005.P2",
+          "kind": "position",
+          "text": "Tom Becker argued that while outcomes over hours work in engineering, outcomes alone can mask problems like burnout or invisibility.",
+          "refers_to": [
+            "ep001"
+          ],
+          "turn": "T05 01:00",
+          "changes": ""
+        },
+        {
+          "id": "ep005.P3",
+          "kind": "position",
+          "text": "Tom Becker recommended weekly one-on-ones that explicitly avoid status updates, focusing instead on blockers, growth, and actual performance.",
+          "refers_to": [],
+          "turn": "T07 01:45",
+          "changes": ""
+        },
+        {
+          "id": "ep005.P4",
+          "kind": "position",
+          "text": "Leila Haddad stated that for customer support, hours matter because coverage is the outcome, necessitating scheduled shifts.",
+          "refers_to": [],
+          "turn": "T09 02:25",
+          "changes": ""
+        },
+        {
+          "id": "ep005.P5",
+          "kind": "figure",
+          "text": "Leila Haddad shared that after trying activity-monitoring software in 2023, morale collapsed, leading to the resignation of two top agents.",
+          "refers_to": [],
+          "turn": "T11 03:05",
+          "changes": ""
+        },
+        {
+          "id": "ep005.P6",
+          "kind": "position",
+          "text": "Tom Becker suggested fixing proximity bias by requiring written impact summaries for every promotion case, as evidence must beat visibility.",
+          "refers_to": [],
+          "turn": "T14 04:15",
+          "changes": ""
+        },
+        {
+          "id": "ep005.P7",
+          "kind": "prediction",
+          "text": "Tom Becker predicted that in remote teams, problems manifest as absence, indicated by silence, fewer questions, shorter written updates, and cameras going off.",
+          "refers_to": [],
+          "turn": "T17 05:30",
+          "changes": ""
+        },
+        {
+          "id": "ep005.P8",
+          "kind": "prediction",
+          "text": "Tom Becker predicted that for knowledge work, outcomes over hours will be the norm, paired with human check-ins.",
+          "refers_to": [],
+          "turn": "T20 06:35",
+          "changes": ""
+        },
+        {
+          "id": "ep005.P9",
+          "kind": "prediction",
+          "text": "Leila Haddad predicted that for frontline remote roles, hybrid models featuring scheduled coverage with flexibility would become common.",
+          "refers_to": [],
+          "turn": "T21 06:55",
+          "changes": ""
+        }
+      ],
+      "mentions": {
+        "Mark Rivera": [
+          "T01",
+          "T05",
+          "T22"
+        ]
+      },
+      "fact_checks": {
+        "verified": 0,
+        "inaccurate": 1,
+        "unverifiable": 3
+      },
+      "summary": "Host Sarah Johnson explores the central theme of whether focusing solely on outcomes rather than hours worked is sufficient for managing remote teams, featuring guests Tom Becker and Leila Haddad. Tom Becker, an engineering director managing a large, distributed team, agrees that outcomes tracking, such as quarterly goals and deliverables, is mostly effective, but cautions that outcomes alone can mask issues like burnout or invisibility. To address this, Tom suggests supplementing outcomes with weekly one-on-ones focused strictly on blockers, growth, and personal well-being, arguing that problems in remote settings often manifest as silence or reduced communication rather than noise.\n\nLeila Haddad offered a contrasting perspective, noting that for roles like customer support, hours still matter because coverage is a key outcome, requiring scheduled shifts. However, she stressed avoiding micromanagement by avoiding activity-monitoring software, as such tools led to a collapse in morale and agent attrition. Regarding promotion bias, Tom mentioned that visibility can still be an issue, and they mitigated this by requiring written impact summaries for promotion cases, while Leila suggested rotating who presents team wins to ensure diverse voices are heard.\n\nUltimately, the discussion concluded that for knowledge work, outcomes over hours combined with human check-ins ('people over dashboards') is the way forward, while frontline roles might see hybrid models balancing scheduled coverage with flexibility. The consensus is that outcomes are necessary, but they must be paired with meaningful human interaction to ensure team health."
+    }
+  }
+}

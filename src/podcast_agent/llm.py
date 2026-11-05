@@ -185,7 +185,7 @@ def fake_instance(schema: dict, text: str) -> Any:
         if kind == "object":
             return {k: value(k, v, i) for k, v in node["properties"].items()}
         if kind == "array":
-            n = {"takeaways": 5, "tags": 4, "quote_ids": 3, "steps": 4, "claims": 3, "evidence_ids": 1}.get(name, 2)
+            n = {"takeaways": 5, "tags": 4, "points": 4, "quote_ids": 3, "steps": 4, "claims": 3, "evidence_ids": 1}.get(name, 2)
             items = node["items"]
             enum = (defs[items["$ref"].rsplit("/", 1)[-1]] if "$ref" in items else items).get("enum")
             n = min(n, len(enum)) if enum else n

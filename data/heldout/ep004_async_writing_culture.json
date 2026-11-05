@@ -1,0 +1,136 @@
+{
+  "episode_id": "ep004",
+  "title": "Async in Practice: Building a Writing Culture",
+  "host": "Sarah Johnson",
+  "guests": [
+    "Hannah Okafor"
+  ],
+  "transcript": [
+    {
+      "timestamp": "00:00",
+      "speaker": "Sarah",
+      "section": "Introduction",
+      "text": "Welcome back to Work Reimagined. I\u2019m Sarah Johnson. A few episodes ago, Mark Rivera told us remote work is really about async-first culture and documentation. Today we\u2019re testing that idea in practice."
+    },
+    {
+      "timestamp": "00:20",
+      "speaker": "Hannah",
+      "section": "Introduction",
+      "text": "Thanks for having me, Sarah. I run operations at Fieldnote, a 60-person fully distributed company, so I live this every day."
+    },
+    {
+      "timestamp": "00:35",
+      "speaker": "Sarah",
+      "section": "Introduction",
+      "text": "Mark pointed to GitLab and Automattic and their handbooks. Is a handbook really where you start?"
+    },
+    {
+      "timestamp": "00:50",
+      "speaker": "Hannah",
+      "section": "Deep Dive",
+      "text": "Honestly, no. A handbook is the output. The starting point is a writing habit. If people don\u2019t write decisions down day to day, a handbook just becomes a graveyard of stale pages."
+    },
+    {
+      "timestamp": "01:20",
+      "speaker": "Sarah",
+      "section": "Deep Dive",
+      "text": "So what does a writing habit look like concretely?"
+    },
+    {
+      "timestamp": "01:30",
+      "speaker": "Hannah",
+      "section": "Deep Dive",
+      "text": "We use short decision memos: the problem, the options, the recommendation, and who decides. Anything that affects more than one team gets a memo before it gets a meeting."
+    },
+    {
+      "timestamp": "02:05",
+      "speaker": "Sarah",
+      "section": "Examples",
+      "text": "Does that slow things down?"
+    },
+    {
+      "timestamp": "02:15",
+      "speaker": "Hannah",
+      "section": "Examples",
+      "text": "At first, yes. Our first quarter, decisions took about a day longer. By the second quarter we had cut recurring meetings by roughly 40 percent, and new hires were ramping in three weeks instead of six."
+    },
+    {
+      "timestamp": "02:50",
+      "speaker": "Sarah",
+      "section": "Examples",
+      "text": "That onboarding number is striking."
+    },
+    {
+      "timestamp": "03:00",
+      "speaker": "Hannah",
+      "section": "Examples",
+      "text": "It\u2019s the biggest win. A new hire can read the last six months of memos and understand why things are the way they are, not just what they are."
+    },
+    {
+      "timestamp": "03:30",
+      "speaker": "Sarah",
+      "section": "Challenges",
+      "text": "What goes wrong?"
+    },
+    {
+      "timestamp": "03:40",
+      "speaker": "Hannah",
+      "section": "Challenges",
+      "text": "Two things. Documentation rot, where nobody owns updating pages, and writing anxiety. Not everyone is comfortable writing, especially non-native English speakers. We had to make it clear that clarity beats polish."
+    },
+    {
+      "timestamp": "04:15",
+      "speaker": "Sarah",
+      "section": "Challenges",
+      "text": "How do you fight documentation rot?"
+    },
+    {
+      "timestamp": "04:25",
+      "speaker": "Hannah",
+      "section": "Challenges",
+      "text": "Every page has a named owner and a review date. If the review date passes, the page gets flagged as possibly outdated. It\u2019s simple, but it works."
+    },
+    {
+      "timestamp": "04:55",
+      "speaker": "Sarah",
+      "section": "Listener Question",
+      "text": "Time for our listener question. Jordan from Toronto asks: our team says it\u2019s async, but Slack still expects replies in minutes. How do we fix that?"
+    },
+    {
+      "timestamp": "05:10",
+      "speaker": "Hannah",
+      "section": "Listener Question",
+      "text": "Publish explicit response-time norms. For us, Slack is a same-day medium, not a same-minute one. Urgent things get a phone call. Once leaders model it, the team follows."
+    },
+    {
+      "timestamp": "05:40",
+      "speaker": "Sarah",
+      "section": "Predictions",
+      "text": "Mark predicted async would become standard practice. Do you agree?"
+    },
+    {
+      "timestamp": "05:55",
+      "speaker": "Hannah",
+      "section": "Predictions",
+      "text": "Mostly, but I\u2019d add a nuance. Async will become standard for decisions and status updates. Sync time won\u2019t disappear; it\u2019ll get reserved for conflict, creativity, and relationships."
+    },
+    {
+      "timestamp": "06:25",
+      "speaker": "Sarah",
+      "section": "Closing",
+      "text": "One piece of advice for a team starting today?"
+    },
+    {
+      "timestamp": "06:35",
+      "speaker": "Hannah",
+      "section": "Closing",
+      "text": "Pick one recurring meeting and replace it with a written update for a month. Measure what you lose and what you gain."
+    },
+    {
+      "timestamp": "06:55",
+      "speaker": "Sarah",
+      "section": "Closing",
+      "text": "Great challenge. Thanks Hannah, and thanks to everyone listening to Work Reimagined. Next time, we\u2019re talking about how managers actually measure performance remotely."
+    }
+  ]
+}

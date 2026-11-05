@@ -1,0 +1,11 @@
+# Series manifest: membership is configuration, not inferred.
+# Episodes are listed in air order. `podcast-agent series add <transcript>` appends to this list,
+# so keep `episodes:` as the last key in this file.
+series_id: work_reimagined
+title: Work Reimagined
+episodes:
+  - data/heldout/ep001_remote_work.json
+  - data/heldout/ep004_async_writing_culture.json
+  - data/heldout/ep005_managing_remote_teams.json
+  - data/heldout/ep006_return_to_office.json
+  - data/heldout/ep007_ai_agents_remote_work.json

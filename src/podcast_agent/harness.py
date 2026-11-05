@@ -96,6 +96,25 @@ class ToolDescriptions(_Strict):
     search_web: str
 
 
+class SeriesPrompts(_Strict):
+    extract: str
+    merge: str
+    writer: str
+
+
+class Series(_Strict):
+    """Series summary settings. max_chars is enforced in code (series.enforce_length), not only asked for."""
+
+    max_chars: int = Field(4000, ge=200, description="hard limit for the series summary, spaces included")
+    target_chars: int = Field(3400, ge=100, description="length the writer is asked for (margin below max_chars)")
+    min_section_chars: int = 40
+    points_min: int = 3
+    points_max: int = 10
+    max_ledger_items: int = Field(40, ge=5, description="current ledger items; the least important are archived")
+    max_output_tokens: int = 2048
+    prompts: SeriesPrompts
+
+
 class HarnessSpec(_Strict):
     version: str
     model: str = "ollama_chat/gemma4:e2b"
@@ -109,6 +128,7 @@ class HarnessSpec(_Strict):
     claims: Claims = Claims()
     prompts: Prompts
     tools: ToolDescriptions
+    series: Series | None = None  # older harness files have none; series.py then uses base.yaml's
     guardrails: list[str] = []
     glossary: dict[str, str] = Field(default_factory=dict, description="ASR fixes, applied case-insensitively")
     filler_words: list[str] = ["um", "uh", "erm", "hmm"]
@@ -117,7 +137,9 @@ class HarnessSpec(_Strict):
     def instruction(self, agent: str, **values: object) -> str:
         """The system prompt for one sub-agent: its prompt (with {placeholders} filled) plus the guardrails."""
         # Only {word} placeholders are filled, so JSON examples in prompts are safe; unknown ones stay as-is.
-        text = re.sub(r"\{(\w+)\}", lambda m: str(values.get(m[1], m[0])), getattr(self.prompts, agent).strip())
+        prompts = self.series.prompts if agent.startswith("series_") and self.series else self.prompts
+        template = getattr(prompts, agent.removeprefix("series_")).strip()
+        text = re.sub(r"\{(\w+)\}", lambda m: str(values.get(m[1], m[0])), template)
         if self.guardrails:
             text += "\n\nRules:\n" + "\n".join(f"- {g}" for g in self.guardrails)
         return text

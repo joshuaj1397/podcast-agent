@@ -23,8 +23,9 @@ COPY harness ./harness
 COPY kb ./kb
 COPY data ./data
 COPY eval ./eval
+COPY series ./series
 
-RUN useradd --create-home --uid 1000 app && mkdir -p out .cache && chown -R app /app/out /app/.cache /app/eval
+RUN useradd --create-home --uid 1000 app && mkdir -p out .cache && chown -R app /app/out /app/.cache /app/eval /app/series
 USER app
 
 ENTRYPOINT ["podcast-agent"]

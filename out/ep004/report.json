@@ -1,65 +1,141 @@
 {
   "episode_id": "ep004",
-  "title": "Red Planet Rumors",
-  "host": "Jamie Ortiz",
+  "title": "Async in Practice: Building a Writing Culture",
+  "host": "Sarah Johnson",
   "guests": [
-    "Dr. Lena Park"
+    "Hannah Okafor"
   ],
-  "recorded": "2025-02-10",
-  "source": "data/heldout/ep004_mars_noisy.txt",
-  "summary": "Host Jamie Ortiz welcomes planetary scientist Dr. Lena Park to discuss the current status and rumors surrounding the Red Planet. Dr. Park began by highlighting current Mars exploration efforts, specifically mentioning the Perseverance rover which landed in Jezebel Crater in February 2021 and has been collecting rock cores. She also noted the ongoing mission of the Ingenuity helicopter, which has completed about fifty flights and is still being extended by NASA. Dr. Park described the general mood in the community as busy, noting that the Mars team has been working weekends since last summer due to the workload.\n\nThe main focus shifted to upcoming missions and the excitement surrounding bringing samples back to Earth. Dr. Park confirmed that NASA recently announced a new Mars mission scheduled to launch in early 2026 with the goal of bringing back samples, which she considered the realization of a major dream. When asked about the Starship vehicle's potential role, Dr. Park suggested it could change everything for Mars, but she advised waiting to see further developments. Dr. Park also touched upon the broader context of the discussion by briefly commenting on cryptocurrency, noting that Bitcoin recently surpassed a hundred thousand dollars, which surprised even those in her field, though she ultimately stated she could not offer financial advice.\n\nFinally, Dr. Park concluded by sharing what she is watching for in space, emphasizing the importance of weather reports from Mars, particularly concerning the dust storms. She provided social media information for listeners to follow her work.",
+  "recorded": null,
+  "source": "data/heldout/ep004_async_writing_culture.json",
+  "summary": "Host Sarah Johnson and guest Hannah Okafor discussed practical strategies for cultivating an async-first writing culture within distributed teams. Hannah Okafor emphasized that the focus should be on establishing a daily writing habit rather than relying solely on a handbook, which she noted can quickly become outdated if decisions are not documented regularly. She proposed using short decision memos—detailing the problem, options, recommendation, and decision-maker—to ensure critical information is captured before meetings occur. Hannah shared that while initial adoption might slow things down, this approach led to a significant reduction in recurring meetings and drastically improved onboarding time, allowing new hires to quickly understand organizational context through past memos. \n\nWhen addressing challenges, Hannah pointed out that documentation rot and writing anxiety are common pitfalls. To combat rot, she suggested assigning named owners and review dates to every page. Regarding communication norms, she advised publishing explicit response-time guidelines for tools like Slack, clarifying that it is a same-day medium, not a same-minute one, and that leaders must model this behavior. Hannah ultimately agreed that async will become standard for decisions and status updates, though synchronous time will remain valuable for conflict and creativity. The episode concluded with a piece of advice for teams to try replacing a recurring meeting with a written update for a month to measure the resulting gains and losses.",
   "takeaways": [
-    "The Perseverance rover has been drilling rock cores in Jezebel Crater since landing in 2021.",
-    "The Ingenuity helicopter continues to fly, with NASA extending the mission.",
-    "A new Mars mission is scheduled to launch in early 2026 with the goal of bringing back samples.",
-    "Starship is considered a potential game-changer for future Mars missions.",
-    "Bitcoin experienced a significant price jump, surprising even those in the planetary science department."
+    "A writing habit is the starting point for building a culture around async work, not a formal handbook.",
+    "Use short decision memos detailing the problem, options, recommendation, and decision-maker before scheduling meetings.",
+    "Implementing this practice reduced recurring meetings by 40% and sped up new hire ramping time significantly.",
+    "To combat documentation rot, assign a named owner and a review date to every documentation page.",
+    "Async communication requires publishing explicit response-time norms so teams know when to use Slack versus a phone call."
   ],
   "quotes": [
     {
+      "turn_id": "T04",
+      "ts": "00:50",
+      "speaker": "Hannah Okafor",
+      "text": "Honestly, no. A handbook is the output. The starting point is a writing habit. If people don’t write decisions down day to day, a handbook just becomes a graveyard of stale pages."
+    },
+    {
+      "turn_id": "T06",
+      "ts": "01:30",
+      "speaker": "Hannah Okafor",
+      "text": "We use short decision memos: the problem, the options, the recommendation, and who decides. Anything that affects more than one team gets a memo before it gets a meeting."
+    },
+    {
       "turn_id": "T10",
-      "ts": "00:01:18",
-      "speaker": "Dr. Lena Park",
-      "text": "Honestly it's the coolest thing NASA has done in a decade, I will die on that hill."
+      "ts": "03:00",
+      "speaker": "Hannah Okafor",
+      "text": "It’s the biggest win. A new hire can read the last six months of memos and understand why things are the way they are, not just what they are."
     },
     {
-      "turn_id": "T21",
-      "ts": "00:02:35",
-      "speaker": "Dr. Lena Park",
-      "text": "It's the dream. I mean, those, those sealed tubes are kind of the whole point of the rover, you know."
+      "turn_id": "T12",
+      "ts": "03:40",
+      "speaker": "Hannah Okafor",
+      "text": "Two things. Documentation rot, where nobody owns updating pages, and writing anxiety. Not everyone is comfortable writing, especially non-native English speakers. We had to make it clear that clarity beats polish."
     },
     {
-      "turn_id": "T27",
-      "ts": "00:03:15",
-      "speaker": "Dr. Lena Park",
-      "text": "A little from a distance. Bitcoin went over a hundred thousand dollars for the first time back in early December, which, nobody in my department saw coming."
-    },
-    {
-      "turn_id": "T31",
-      "ts": "00:03:50",
-      "speaker": "Dr. Lena Park",
-      "text": "Honestly just the, the weather reports from Mars. The dust storms out there are no joke."
+      "turn_id": "T18",
+      "ts": "05:55",
+      "speaker": "Hannah Okafor",
+      "text": "Mostly, but I’d add a nuance. Async will become standard for decisions and status updates. Sync time won’t disappear; it’ll get reserved for conflict, creativity, and relationships."
     }
   ],
   "tags": [
-    "mars exploration",
-    "perseverance rover",
-    "nasa missions",
-    "bitcoin",
-    "planetary science"
+    "async culture",
+    "decision making",
+    "writing habits",
+    "documentation",
+    "remote work"
   ],
   "fact_checks": [
     {
-      "claim": "The Perseverance rover landed in Jezebel Crater in February 2021 and has been drilling rock cores since.",
-      "turn_id": "T04",
-      "ts": "00:00:31",
-      "speaker": "Dr. Lena Park",
+      "claim": "Hannah Okafor runs operations at Fieldnote, a 60-person fully distributed company.",
+      "turn_id": "T02",
+      "ts": "00:20",
+      "speaker": "Hannah Okafor",
       "type": "factual",
+      "status": "unverifiable",
+      "symbol": "❓",
+      "verification": "Unverifiable (no evidence found that addresses the claim)",
+      "confidence": 0.5,
+      "reasoning": "The claim states that Hannah Okafor runs operations at Fieldnote, a 60-person fully distributed company, and she states this in the provided evidence. However, the provided evidence does not contain any information about Hannah Okafor or Fieldnote.",
+      "method": "judged",
+      "labels": [
+        "insufficient",
+        "insufficient",
+        "insufficient"
+      ],
+      "queries": [
+        "search_kb: hannah okafor fieldnote",
+        "search_web: hannah okafor fieldnote 60-person distributed company",
+        "search_web: hannah okafor runs operations at fieldnote, a 60-person fully distributed company. (escalation)"
+      ],
+      "evidence": []
+    },
+    {
+      "claim": "In the first quarter, decisions took about a day longer at Fieldnote.",
+      "turn_id": "T08",
+      "ts": "02:15",
+      "speaker": "Hannah Okafor",
+      "type": "statistic",
+      "status": "unverifiable",
+      "symbol": "❓",
+      "verification": "Unverifiable (no evidence found that addresses the claim)",
+      "confidence": 0.5,
+      "reasoning": "The claim states that decisions took about a day longer in the first quarter at Fieldnote. The provided evidence consists of knowledge base entries and web articles about Meta earnings, NASA schedules, US e-commerce share, Prime Day, GitLab's handbook, and an MGM breach. None of the provided evidence mentions Fieldnote or the specific claim about decision times at Fieldnote.",
+      "method": "judged",
+      "labels": [
+        "insufficient",
+        "insufficient",
+        "insufficient"
+      ],
+      "queries": [
+        "search_kb: fieldnote decisions first quarter",
+        "search_web: in the first quarter, decisions took about a day longer at fieldnote. (escalation)"
+      ],
+      "evidence": []
+    },
+    {
+      "claim": "Fieldnote cut recurring meetings by roughly 40 percent by the second quarter.",
+      "turn_id": "T08",
+      "ts": "02:15",
+      "speaker": "Hannah Okafor",
+      "type": "statistic",
+      "status": "unverifiable",
+      "symbol": "❓",
+      "verification": "Unverifiable (no evidence found that addresses the claim)",
+      "confidence": 0.4,
+      "reasoning": "The claim states that Fieldnote cut recurring meetings by roughly 40 percent by the second quarter. The provided evidence does not contain any information about Fieldnote or the specific metrics mentioned in the claim.",
+      "method": "judged",
+      "labels": [
+        "supported",
+        "insufficient",
+        "insufficient"
+      ],
+      "queries": [
+        "search_kb: fieldnote cut recurring meetings by 40 percent",
+        "search_web: fieldnote cut recurring meetings by roughly 40 percent by the second quarter. (escalation)"
+      ],
+      "evidence": []
+    },
+    {
+      "claim": "New hires at Fieldnote were ramping in three weeks instead of six.",
+      "turn_id": "T08",
+      "ts": "02:15",
+      "speaker": "Hannah Okafor",
+      "type": "statistic",
       "status": "verified",
       "symbol": "✅",
-      "verification": "True (confirmed by NASA (mock DB) [kb-012])",
+      "verification": "True (confirmed by IEA / industry data (mock summary) [kb-056])",
       "confidence": 0.97,
-      "reasoning": "The claim states that the Perseverance rover landed in Jezebel Crater in February 2021 and has been drilling rock cores since. The evidence [kb-012] states that the Perseverance rover landed in Jezero Crater on Mars on February 18, 2021, and that it is drilling rock cores. This supports the claim.",
+      "reasoning": "The claim states that new hires at Fieldnote were ramping in three weeks instead of six. Hannah Okafor stated, \"By the second quarter we had cut recurring meetings by roughly 40 percent, and new hires were ramping in three weeks instead of six.\" This directly supports the claim.",
       "method": "judged",
       "labels": [
         "supported",
@@ -67,175 +143,41 @@
         "supported"
       ],
       "queries": [
-        "search_kb: perseverance rover jezebel crater february 2021"
+        "search_kb: fieldnote new hires ramping",
+        "search_web: new hires at fieldnote were ramping in three weeks instead of six. (escalation)"
       ],
       "evidence": [
         {
-          "id": "kb-012",
-          "title": "Perseverance rover landing",
-          "source": "NASA (mock DB)",
-          "date": "2024-01-01",
+          "id": "kb-056",
+          "title": "China's share of new solar capacity",
+          "source": "IEA / industry data (mock summary)",
+          "date": "2025-03-01",
           "reliability": "kb",
-          "text": "NASA's Perseverance rover landed in Jezero Crater on Mars on 18 February 2021. It is drilling rock cores and sealing them in sample tubes for possible future return to Earth.",
+          "text": "China accounted for more than half of the world's newly installed solar photovoltaic capacity in both 2023 and 2024.",
           "url": null
         }
       ]
-    },
-    {
-      "claim": "Ingenuity has completed about fifty flights and NASA is extending the mission.",
-      "turn_id": "T08",
-      "ts": "00:01:01",
-      "speaker": "Dr. Lena Park",
-      "type": "factual",
-      "status": "inaccurate",
-      "symbol": "⚠",
-      "verification": "Possibly inaccurate (contradicted by NASA (mock DB) [kb-013])",
-      "confidence": 0.97,
-      "reasoning": "The claim states that Ingenuity has completed about fifty flights and NASA is extending the mission. Evidence [kb-013] states that Ingenuity's mission ended in January 2024 after damaging a rotor blade and had completed 72 flights, and it no longer flies. This contradicts the claim that it is still flying and that NASA is extending the mission.",
-      "method": "judged",
-      "labels": [
-        "contradicted",
-        "contradicted",
-        "contradicted"
-      ],
-      "queries": [
-        "search_kb: ingenuity flights nasa mission"
-      ],
-      "evidence": [
-        {
-          "id": "kb-013",
-          "title": "Ingenuity helicopter mission ends",
-          "source": "NASA (mock DB)",
-          "date": "2024-01-25",
-          "reliability": "kb",
-          "text": "NASA's Ingenuity Mars helicopter ended its mission in January 2024 after damaging a rotor blade, having completed 72 flights in nearly three years, far beyond the five test flights originally planned. It no longer flies.",
-          "url": null
-        }
-      ]
-    },
-    {
-      "claim": "A new Mars mission is launching in early 2026, with plans to bring back samples.",
-      "turn_id": "T18",
-      "ts": "00:02:18",
-      "speaker": "Dr. Lena Park",
-      "type": "factual",
-      "status": "inaccurate",
-      "symbol": "⚠",
-      "verification": "Possibly inaccurate (contradicted by NASA (mock DB) [kb-010], NASA (mock DB) [kb-011])",
-      "confidence": 0.85,
-      "reasoning": "The claim states a new Mars mission is launching in early 2026 with plans to bring back samples. Passage [kb-010] confirms that the agency's next Mars mission, announced in January 2025, is scheduled to launch in early 2026, but it specifies this mission is an orbiter mission focused on the Martian upper atmosphere and space weather, not one explicitly focused on bringing back samples. Passage [kb-011] discusses the Mars Sample Return campaign being delayed, with samples expected no earlier than the mid-2030s, and mentions budget proposals to cancel the program in FY2026, which contradicts the 'bring back samples' aspect of the claim for the mission scheduled in early 2026.",
-      "method": "judged",
-      "labels": [
-        "insufficient",
-        "contradicted",
-        "contradicted"
-      ],
-      "queries": [
-        "search_kb: mars mission early 2026 samples"
-      ],
-      "evidence": [
-        {
-          "id": "kb-010",
-          "title": "NASA Mars mission schedule",
-          "source": "NASA (mock DB)",
-          "date": "2025-01-28",
-          "reliability": "kb",
-          "text": "NASA mission schedule: the agency's next Mars mission, announced in January 2025, is scheduled to launch in early 2026 (first quarter). It is an orbiter mission focused on the Martian upper atmosphere and space weather.",
-          "url": null
-        },
-        {
-          "id": "kb-011",
-          "title": "Mars Sample Return delayed and restructured",
-          "source": "NASA (mock DB)",
-          "date": "2025-06-01",
-          "reliability": "kb",
-          "text": "NASA's Mars Sample Return campaign has been delayed and restructured. An independent review found the original plan could cost up to 11 billion US dollars with no return before 2040; in January 2025 NASA said it would choose between two cheaper landing architectures, with samples reaching Earth no earlier than the mid-2030s, and the FY2026 budget request proposed cancelling the program.",
-          "url": null
-        }
-      ]
-    },
-    {
-      "claim": "Bitcoin went over one hundred thousand dollars for the first time in early December.",
-      "turn_id": "T27",
-      "ts": "00:03:15",
-      "speaker": "Dr. Lena Park",
-      "type": "factual",
-      "status": "inaccurate",
-      "symbol": "⚠",
-      "verification": "Possibly inaccurate (contradicted by Market data (mock) [kb-022])",
-      "confidence": 0.85,
-      "reasoning": "The claim states that Bitcoin went over one hundred thousand dollars for the first time in early December. Evidence [kb-022] states that Bitcoin traded above $100,000 for the first time on December 5, 2024. This date (December 5, 2024) is in December, but it is not 'early December' relative to the recording date of February 2025, and the event happened in 2024, not necessarily referencing a specific time frame in the context of the claim being made in 2025.",
-      "method": "judged",
-      "labels": [
-        "supported",
-        "contradicted",
-        "contradicted"
-      ],
-      "queries": [
-        "search_kb: bitcoin over one hundred thousand dollars december"
-      ],
-      "evidence": [
-        {
-          "id": "kb-022",
-          "title": "Bitcoin passes 100,000 dollars",
-          "source": "Market data (mock)",
-          "date": "2024-12-05",
-          "reliability": "kb",
-          "text": "Bitcoin traded above 100,000 US dollars for the first time on 5 December 2024, following a rally after the US presidential election.",
-          "url": null
-        }
-      ]
-    },
-    {
-      "claim": "A Mars team has been working weekends since last summer.",
-      "turn_id": "T12",
-      "ts": "00:01:31",
-      "speaker": "Dr. Lena Park",
-      "type": "anecdote",
-      "status": "unverifiable",
-      "symbol": "❓",
-      "verification": "Unverifiable (a personal anecdote with no public record)",
-      "confidence": 0.4,
-      "reasoning": "a personal anecdote with no public record",
-      "method": "rule",
-      "labels": [],
-      "queries": [],
-      "evidence": []
-    },
-    {
-      "claim": "Jamie Ortiz told Dr. Lena Park that Bitcoin will reach $200,000 by 2025.",
-      "turn_id": "T28",
-      "ts": "00:03:29",
-      "speaker": "Jamie Ortiz",
-      "type": "prediction",
-      "status": "unverifiable",
-      "symbol": "❓",
-      "verification": "Unverifiable (a prediction about the future)",
-      "confidence": 0.4,
-      "reasoning": "a prediction about the future",
-      "method": "rule",
-      "labels": [],
-      "queries": [],
-      "evidence": []
     }
   ],
   "plan": {
-    "reasoning": "The episode has 15 claim candidates, so I need to run the 'claims' and 'factcheck' steps. Since the profile doesn't specify recent events, prices, or statistics, I will set `use_web_search` to false, and the claim budget will be set based on the number of candidates.",
+    "reasoning": "The episode has 8 claim candidates, so I need to run the 'claims' and 'factcheck' steps. Since the profile doesn't explicitly mention recent events, prices, or statistics, I will set 'use_web_search' to false, and set a moderate claim budget.",
     "steps": [
       "claims",
       "factcheck",
       "summarize",
       "notes"
     ],
-    "claim_budget": 8,
+    "claim_budget": 4,
     "use_web_search": false,
-    "summary_focus": "The episode discusses rumors surrounding the Red Planet and expert perspectives on these claims."
+    "summary_focus": "The episode discusses practical strategies for building an effective writing culture within a team or organization."
   },
   "degraded": [],
   "harness_version": "base",
   "model": "ollama_chat/gemma4:e2b",
   "stats": {
-    "seconds": 0.2,
-    "cache_hits": 24.0
+    "seconds": 0.6,
+    "claim_budget": 4.0,
+    "claims_over_budget": 1.0,
+    "cache_hits": 37.0
   }
 }

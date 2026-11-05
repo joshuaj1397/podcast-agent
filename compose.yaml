@@ -38,6 +38,7 @@ services:
       - ./harness:/app/harness:ro
       - ./out:/app/out
       - ./eval:/app/eval
+      - ./series:/app/series # series manifests (series add appends here)
       - llm-cache:/app/.cache
 
 volumes:

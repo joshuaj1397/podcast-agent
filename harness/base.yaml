@@ -127,6 +127,90 @@ tools:
     Search the web (mock search API). Returns headlines and snippets with a reliability rating.
     Use when the knowledge base has nothing relevant. Args: query: 3-6 keywords.
 
+# Series summary (podcast-agent series ...). max_chars is enforced in code; target_chars is what the writer is asked for.
+series:
+  max_chars: 4000
+  target_chars: 3400
+  min_section_chars: 40
+  points_min: 3
+  points_max: 10
+  max_ledger_items: 40
+  max_output_tokens: 2048
+  prompts:
+    extract: |
+      You read one episode of a podcast series and record what matters for the SERIES summary, not for this episode alone.
+      You get the list of earlier episodes and the transcript. Produce:
+      - points: {points_min}-{points_max} items, at least one from every section where something substantive is said.
+        turn_id: the turn where it is said. Each point is one specific, self-contained sentence that names the speaker and
+        states ONE idea: split a compound statement (two predictions in one turn are two points). kind is one of:
+        - theme: a topic the episode is about, like Writing culture as the foundation of async work.
+        - position: an opinion or recommendation a speaker argues for.
+        - prediction: a statement about the future.
+        - figure: a number or measured result, with its value and unit. Every number in the episode that describes a
+          result (percentages, durations, counts) gets its own figure point: one number per point.
+        - reference: the episode responds to, agrees with, revises or builds on an earlier episode or guest.
+        refers_to: the ids of earlier episodes the point responds to (empty if none). Fill it for references, and for
+        positions and predictions that confirm, refine or revise something said in an earlier episode.
+        changes_earlier: only if this point changes, revises or updates a view, prediction or figure from an EARLIER
+        episode: restate that earlier view in one sentence saying who held it, like: Ana Ruiz predicted in ep002 that
+        EV sales would pass 50 percent by 2030. The host often recalls it in the transcript. Leave it empty for
+        everything else; most points change nothing.
+      - arc_role: one sentence on what this episode does in the series (opens it, tests an earlier idea, debates, revises, wraps up).
+      Write your reasoning first, briefly. Do not put double quotes inside text fields.
+
+    merge: |
+      You maintain the ledger behind a podcast series summary. The ledger lists the series' current themes, positions,
+      predictions, figures and cross-episode references; each item has an id like L03.
+      A new episode was added. For each of its points choose one operation:
+      - add: information that is not in the ledger yet, including new detail, a new example, another speaker's view,
+        or a tactic related to an existing item. target: new.
+      - revise: the point makes a ledger item out of date: the same person changes their prediction or position,
+        a figure is replaced by a newer value for the same measure, or a guest corrects an earlier claim.
+        target: the id of the item it replaces. text: the statement that is true now, saying what changed and in which
+        episode, like: In ep009 Ana Ruiz revised her ep002 forecast: EV sales will pass 50 percent in 2035, not 2030.
+      - reinforce: the point says the same as a ledger item. target: that item's id. text: the point.
+      Before choosing, fill old_still_current: after this episode, is the target item still the latest word on its
+      subject? A figure replaced by a newer value for the same measure, or a view its own speaker has changed, is no
+      longer current, even though it was true when it was said. If the item is still current, the operation is add or
+      reinforce, never revise. If it is not, revise it, so two conflicting statements never stand side by side.
+      For add, target is new and old_still_current is true.
+      Examples:
+      - Ledger: [L04] Ana Ruiz predicted EV sales will pass 50 percent by 2030. Point: Ana Ruiz now expects 2035.
+        -> revise L04, old_still_current false.
+      - Ledger: [L09] The waiting list fell from 12 weeks to 8. Point: with the new app the waiting list is now 5 weeks.
+        -> revise L09 (newer value for the same measure), old_still_current false.
+      - Ledger: [L07] Teams should document decisions. Point: Ben Cole uses one-page memos for decisions.
+        -> add (new detail; L07 still holds), old_still_current true.
+      - Ledger: [L02] Ana Ruiz: charging networks are the bottleneck. Point: Ben Cole argues battery cost matters more.
+        -> add (a second view; L02 still records what Ana says), old_still_current true.
+      Possibly related lists ledger items from the same speaker or with similar words; check those first. When a
+      speaker says they changed, revised or updated their earlier view, revise that speaker's earlier item.
+      Give a short reason for every operation. change_summary: one short sentence naming the concrete changes,
+      like: Added battery-cost view; revised Ana Ruiz's EV forecast from 2030 to 2035.
+      Write your reasoning first, briefly. Do not put double quotes inside text fields.
+
+    writer: |
+      You write the summary of a podcast series for an ad agency, from the series ledger and the list of episodes.
+      Fill these fields with plain prose (no bullet points, no headings). After each sentence in themes, evolution and
+      connections, cite the ledger items it is based on in square brackets, like [L04] or [L04, L12]. Code removes
+      the citations; if the summary is too long, it drops the sentences that cite the least important items first.
+      - themes: the overarching themes across the episodes (about {themes_chars} characters).
+      - evolution: how ideas, opinions and positions developed across episodes. Follow the threads: an idea that was
+        proposed, then tested, refined, challenged or revised in later episodes. Do not retell the episodes one by one;
+        the arc does that. Every item with a revision history must appear: what was said first, in which episode, and
+        what replaced it, citing both ids. State the latest view as the current one (about {evolution_chars} characters).
+      - connections: recurring guests, recurring segments and references between episodes (about {connections_chars} characters).
+      - arc: one entry per episode, in order: one sentence on where the episode fits in the arc of the series
+        (about {arc_chars} characters each).
+      The whole summary must stay under {max_chars} characters; aim for about {target_chars}.
+      Cover the series as a whole: give the latest episodes as much room as the first ones, and work in what the
+      latest update changed. Refer to episodes by id, like ep001; the arc lines already name each guest.
+      Use only the ledger and the episode list.
+      Never state a superseded item as current.
+      If a previous version of the summary is given, keep its wording where it is still accurate and change what the
+      ledger changed; rewrite any sentence that relies on a superseded item.
+      Write your reasoning first, briefly. Do not put double quotes inside text fields.
+
 guardrails:
   - Use only the transcript and the evidence you are given; never invent facts, names or numbers.
   - Refer to turns only by their ids (like T07).

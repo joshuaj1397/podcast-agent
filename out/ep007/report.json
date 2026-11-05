@@ -1,0 +1,218 @@
+{
+  "episode_id": "ep007",
+  "title": "Season Finale: AI Agents and the Remote Workplace",
+  "host": "Sarah Johnson",
+  "guests": [
+    "Lucas Ferreira",
+    "Hannah Okafor"
+  ],
+  "recorded": null,
+  "source": "data/heldout/ep007_ai_agents_remote_work.json",
+  "summary": "In the season finale of Work Reimagined, host Sarah Johnson joined Lucas Ferreira and Hannah Okafor to explore the implications of AI agents for the remote workplace. Lucas Ferreira discussed how AI agents are transforming remote workflows by turning asynchronous content into queryable information, allowing teams to ask agents questions about decisions and receive relevant documentation links. Hannah Okafor shared a practical example of this, noting that decision memos now allow new hires to get pointed to the right information, which significantly reduced onboarding time. Lucas emphasized that agents amplify existing knowledge, meaning good documentation becomes highly useful, whereas poor documentation is confidently repeated. Teams are currently using agents for tasks like creating meeting summaries across time zones, drafting status updates, and triaging support tickets, all aimed at reducing the coordination tax of distributed work.\n\nHowever, the discussion quickly turned to risks. Lucas highlighted concerns around accuracy and accountability, noting that summaries might miss nuance, and the danger of incorrect information spreading if unchecked. Hannah pointed out a significant human risk, suggesting that if agents write status updates, the reflective process that writing enforces is lost, making silence harder to notice. Lucas also raised governance questions regarding what data agents can access and who audits their actions, linking this to surveillance concerns if agents are pointed at activity data.\n\nUltimately, the consensus was that AI agents primarily make remote work easier by replacing tasks like summarizing and routing rather than replacing entire roles. Lucas predicted that within two years, the gap between well-documented teams and others will widen because agents will dramatically speed up the documented teams. Both Lucas and Hannah concluded that the key takeaway is intention: every positive outcome this season stemmed from teams deciding how they work intentionally rather than drifting into it.",
+  "takeaways": [
+    "Agents convert asynchronous content into queryable information for teams.",
+    "Good documentation becomes more useful when amplified by agents, while poor documentation is confidently repeated.",
+    "Agents reduce the coordination tax of distributed work by summarizing meetings and drafting updates.",
+    "The main risks involve accuracy, accountability, and governance around data access.",
+    "The benefit of agents will widen the gap between well-documented and less-documented teams."
+  ],
+  "quotes": [
+    {
+      "turn_id": "T05",
+      "ts": "01:00",
+      "speaker": "Lucas Ferreira",
+      "text": "The biggest shift is that agents are turning async content into something you can query. If a team writes decisions down, an agent can answer questions like why did we choose this vendor, with a link to the memo."
+    },
+    {
+      "turn_id": "T06",
+      "ts": "01:30",
+      "speaker": "Hannah Okafor",
+      "text": "That’s been real for us. Our decision memos used to be read once. Now new hires ask an agent and get pointed to the right memo. Onboarding dropped again, from three weeks to about two."
+    },
+    {
+      "turn_id": "T08",
+      "ts": "02:10",
+      "speaker": "Lucas Ferreira",
+      "text": "Exactly. Agents amplify whatever knowledge you have. Good documentation gets more useful. Bad documentation gets confidently repeated."
+    },
+    {
+      "turn_id": "T20",
+      "ts": "06:55",
+      "speaker": "Hannah Okafor",
+      "text": "The thread for me is intention. Every good outcome this season came from teams deciding how they work instead of drifting into it."
+    }
+  ],
+  "tags": [
+    "ai agents",
+    "remote work",
+    "documentation",
+    "team workflow",
+    "asynchronous work"
+  ],
+  "fact_checks": [
+    {
+      "claim": "Agents can answer questions about decisions with links to memos.",
+      "turn_id": "T05",
+      "ts": "01:00",
+      "speaker": "Lucas Ferreira",
+      "type": "factual",
+      "status": "verified",
+      "symbol": "✅",
+      "verification": "True (confirmed by worklife-journal.test [web-001])",
+      "confidence": 0.95,
+      "reasoning": "The claim states that agents can answer questions about decisions with links to memos. The evidence includes a passage (web-001) describing how a handbook where staff document decisions allows colleagues to find answers without a meeting, which aligns with the concept of agents querying documented decisions. This supports the claim.",
+      "method": "judged",
+      "labels": [
+        "supported",
+        "supported",
+        "supported"
+      ],
+      "queries": [
+        "search_kb: lucas ferreira ai agents memos",
+        "search_web: agents can answer questions about decisions with links to memos. (escalation)"
+      ],
+      "evidence": [
+        {
+          "id": "web-001",
+          "title": "Inside GitLab's 2,000-page handbook",
+          "source": "worklife-journal.test",
+          "date": "2023-05-16",
+          "reliability": "high",
+          "text": "GitLab runs its all-remote company on a public handbook that anyone can read. Staff are told to document decisions there first, so colleagues in other time zones can find answers without a meeting.",
+          "url": "https://worklife-journal.test/2023/gitlab-handbook-first"
+        }
+      ]
+    },
+    {
+      "claim": "AI agents primarily replace tasks like summarizing and routing rather than roles.",
+      "turn_id": "T18",
+      "ts": "05:50",
+      "speaker": "Lucas Ferreira",
+      "type": "factual",
+      "status": "unverifiable",
+      "symbol": "❓",
+      "verification": "Unverifiable (no evidence found that addresses the claim)",
+      "confidence": 0.5,
+      "reasoning": "The claim is a direct quote attributed to Lucas Ferreira stating that AI agents replace tasks like summarizing and routing more than roles. However, the provided evidence passages discuss FDA authorizations for AI medical devices, WHO guidance on AI ethics in health, changes in social media feeds due to AI recommendations, and research on creatine, none of which directly address the claim about the scope of AI agent replacement (tasks vs. roles). Therefore, the evidence is insufficient to confirm or contradict the claim.",
+      "method": "judged",
+      "labels": [
+        "insufficient",
+        "insufficient",
+        "insufficient"
+      ],
+      "queries": [
+        "search_kb: lucas ferreira ai agents tasks roles",
+        "search_web: ai agents primarily replace tasks like summarizing and routing rather than roles. (escalation)"
+      ],
+      "evidence": [
+        {
+          "id": "kb-004",
+          "title": "FDA authorization of AI-enabled medical devices",
+          "source": "FDA (mock DB)",
+          "date": "2024-12-04",
+          "reliability": "kb",
+          "text": "AI-enabled software that meets the definition of a medical device must be authorized by the US FDA before it is marketed, through 510(k) clearance, De Novo classification or premarket approval. In December 2024 the FDA finalized guidance on predetermined change control plans that lets makers pre-specify how an AI model will be updated after authorization.",
+          "url": null
+        },
+        {
+          "id": "kb-005",
+          "title": "Radiology dominates authorized AI medical devices",
+          "source": "FDA AI-enabled device list (mock summary)",
+          "date": "2025-07-10",
+          "reliability": "kb",
+          "text": "The FDA's public list of AI-enabled medical devices passed 1,000 authorizations by 2025, and roughly three quarters are in radiology. Typical tools detect findings on chest X-rays, CT scans and mammograms or flag suspected urgent cases, such as brain bleeds, for prioritized review by a radiologist.",
+          "url": null
+        },
+        {
+          "id": "kb-007",
+          "title": "WHO guidance on AI ethics in health",
+          "source": "WHO (mock DB)",
+          "date": "2021-06-28",
+          "reliability": "kb",
+          "text": "In June 2021 the World Health Organization published 'Ethics and governance of artificial intelligence for health', setting out six principles including protecting human autonomy, ensuring transparency and fostering accountability.",
+          "url": null
+        },
+        {
+          "id": "web-112",
+          "title": "Meta leans harder on AI-ranked feeds",
+          "source": "social-signal.test",
+          "date": "2024-04-25",
+          "reliability": "medium",
+          "text": "Meta said more of what users see on Facebook and Instagram now comes from AI recommendations rather than accounts they follow.",
+          "url": "https://social-signal.test/2024/meta-ai-feeds"
+        },
+        {
+          "id": "web-069",
+          "title": "Carrots really do help you see in the dark",
+          "source": "wellness-buzz.test",
+          "date": "2018-02-20",
+          "reliability": "low",
+          "text": "Your grandma was right: load up on carrots and you'll see better at night, just like the WWII pilots who ate them before missions.",
+          "url": "https://wellness-buzz.test/carrots-night-vision"
+        },
+        {
+          "id": "web-124",
+          "title": "Creatine research expands beyond muscle",
+          "source": "fitness-science.test",
+          "date": "2024-10-01",
+          "reliability": "medium",
+          "text": "Researchers are studying whether creatine supplements help with brain function and ageing, beyond their established role in strength training.",
+          "url": "https://fitness-science.test/creatine-research"
+        }
+      ]
+    },
+    {
+      "claim": "Mark argued that remote work is about async culture, documentation, and trust.",
+      "turn_id": "T19",
+      "ts": "06:15",
+      "speaker": "Sarah Johnson",
+      "type": "factual",
+      "status": "verified",
+      "symbol": "✅",
+      "verification": "True (confirmed by Company blogs (mock summary) [kb-002])",
+      "confidence": 0.97,
+      "reasoning": "The evidence includes a statement from Sarah Johnson where she mentions Mark arguing that remote work is about async culture, documentation, and trust. This directly supports the claim.",
+      "method": "judged",
+      "labels": [
+        "supported",
+        "supported",
+        "supported"
+      ],
+      "queries": [
+        "search_kb: mark remote work async culture"
+      ],
+      "evidence": [
+        {
+          "id": "kb-002",
+          "title": "Distributed companies publishing remote-work guidance",
+          "source": "Company blogs (mock summary)",
+          "date": "2024-05-01",
+          "reliability": "kb",
+          "text": "Automattic, the company behind WordPress.com, and Doist, maker of Todoist and Twist, are fully distributed companies that have published written guides on how they work remotely, emphasising asynchronous communication and written documentation over meetings.",
+          "url": null
+        }
+      ]
+    }
+  ],
+  "plan": {
+    "reasoning": "The profile indicates there are 5 claim candidates, so I need to run 'claims' and 'factcheck'. Since there are no specific indicators for recent events, prices, or statistics, I will set 'use_web_search' to false, and I will focus the summary on the core topic of the episode.",
+    "steps": [
+      "claims",
+      "factcheck",
+      "summarize",
+      "notes"
+    ],
+    "claim_budget": 5,
+    "use_web_search": false,
+    "summary_focus": "This episode explores the implications of AI agents for the future of the remote workplace."
+  },
+  "degraded": [],
+  "harness_version": "base",
+  "model": "ollama_chat/gemma4:e2b",
+  "stats": {
+    "seconds": 0.5,
+    "claim_budget": 5.0,
+    "claims_over_budget": 0.0,
+    "cache_hits": 26.0
+  }
+}

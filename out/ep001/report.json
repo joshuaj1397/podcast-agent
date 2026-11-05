@@ -7,13 +7,13 @@
   ],
   "recorded": null,
   "source": "data/heldout/ep001_remote_work.json",
-  "summary": "In this episode of Work Reimagined, host Sarah Johnson discusses the future of remote work, moving beyond the simple idea of working from anywhere to explore the necessary cultural shifts for successful remote operations. Guest Mark Rivera shared that the modern remote work model is less about location and more about an async-first culture, robust documentation, and employee autonomy. Mark explained that successful remote environments, citing companies like GitLab and Automattic, rely on written handbooks so employees can find answers without constant guidance, noting that this approach benefits even smaller teams by reducing context-switching and preventing knowledge silos. \n\nMark cautioned against relying solely on tools like Slack and Zoom, emphasizing that culture is the true solution. When discussing productivity, Mark advocated for focusing on outcomes rather than hours, suggesting that teams should set clear goals, track deliverables, and prioritize transparency over constant check-ins. To combat potential downsides like isolation, Mark suggested that intentional efforts such as regular virtual coffee chats and team rituals are necessary to maintain connection.\n\nLooking ahead, Mark predicted that remote-first companies will dominate talent acquisition, and async culture will become the standard practice. Sarah Johnson concluded by summarizing key advice for transitioning to remote work: focusing on documentation, setting clear goals, investing in culture, and trusting the team.",
+  "summary": "Sarah Johnson and Mark Rivera discussed the evolution and future implications of remote work on the podcast Work Reimagined. Mark Rivera emphasized that remote work is more than just working from anywhere; it fundamentally revolves around an async-first culture built on documentation and autonomy rather than just location. He pointed to companies like GitLab and Automattic as examples of how extensive documentation allows employees to operate without constant guidance, noting that clear documentation benefits even smaller teams by reducing context-switching and preventing knowledge silos.\n\nWhen discussing tools, Mark cautioned that platforms like Zoom and Slack are not the solution; culture is the key. He argued that relying too heavily on tools can lead to burnout, suggesting that measuring productivity should shift from tracking hours to focusing on outcomes and deliverables, relying on transparency and trust among the team. To combat potential isolation, Mark suggested that intentional efforts like regular virtual coffee chats and occasional in-person retreats are necessary to maintain connection.\n\nLooking toward the future, Mark predicted that remote-first companies will dominate talent acquisition, and asynchronous culture will become the standard practice. Sarah Johnson concluded the discussion by summarizing Mark's advice for transitioning teams: focusing on documentation, setting clear goals, investing in culture, and trusting the team as the foundation for success.",
   "takeaways": [
-    "Remote work is defined by an async-first culture, documentation, and autonomy, not just location.",
-    "Companies can build this culture by creating detailed handbooks so employees can self-guide.",
-    "Productivity should be measured by outcomes and deliverables rather than monitoring hours.",
-    "Combating isolation requires intentional efforts like virtual chats and in-person retreats.",
-    "The future points toward remote-first companies dominating talent acquisition and async culture becoming standard."
+    "Remote work is fundamentally about an async-first culture, documentation, and autonomy, not just location.",
+    "Companies can build this culture through extensive documentation so employees can self-guide.",
+    "Productivity should be measured by outcomes and deliverables rather than by tracking hours.",
+    "Culture and intentional connection, like virtual chats, are necessary to combat remote isolation.",
+    "The foundation for successful remote work involves clear goals, documentation, culture investment, and trust."
   ],
   "quotes": [
     {
@@ -56,7 +56,7 @@
   ],
   "fact_checks": [
     {
-      "claim": "GitLab, Automattic, and Doist have written handbooks for everything.",
+      "claim": "GitLab, Automattic, and Doist have written handbooks for employees.",
       "turn_id": "T06",
       "ts": "01:20",
       "speaker": "Mark Rivera",
@@ -65,7 +65,7 @@
       "symbol": "✅",
       "verification": "True (confirmed by GitLab (mock DB) [kb-001], Company blogs (mock summary) [kb-002])",
       "confidence": 0.97,
-      "reasoning": "The claim states that GitLab, Automattic, and Doist have written handbooks for everything. The evidence supports this by stating that GitLab maintains a public company handbook documenting processes, values, and the remote operating model, and that Automattic and Doist have published written guides on how they work remotely, emphasizing written documentation.",
+      "reasoning": "The claim states that GitLab, Automattic, and Doist have written handbooks for employees. The evidence supports this: [kb-001] states that GitLab maintains a public company handbook documenting processes, values, and the remote operating model, and employees are expected to look up and update it. [kb-002] states that Automattic and Doist have published written guides on how they work remotely. Therefore, the evidence confirms the claim.",
       "method": "judged",
       "labels": [
         "supported",
@@ -97,39 +97,7 @@
       ]
     },
     {
-      "claim": "Remote-first companies will dominate talent acquisition.",
-      "turn_id": "T16",
-      "ts": "05:00",
-      "speaker": "Mark Rivera",
-      "type": "prediction",
-      "status": "unverifiable",
-      "symbol": "❓",
-      "verification": "Unverifiable (a prediction about the future)",
-      "confidence": 0.4,
-      "reasoning": "a prediction about the future",
-      "method": "rule",
-      "labels": [],
-      "queries": [],
-      "evidence": []
-    },
-    {
-      "claim": "Local offices might become optional hubs.",
-      "turn_id": "T16",
-      "ts": "05:00",
-      "speaker": "Mark Rivera",
-      "type": "prediction",
-      "status": "unverifiable",
-      "symbol": "❓",
-      "verification": "Unverifiable (a prediction about the future)",
-      "confidence": 0.4,
-      "reasoning": "a prediction about the future",
-      "method": "rule",
-      "labels": [],
-      "queries": [],
-      "evidence": []
-    },
-    {
-      "claim": "Async culture will become standard practice.",
+      "claim": "Remote-first companies will dominate talent acquisition, local offices might become optional hubs, and async culture will become standard practice.",
       "turn_id": "T16",
       "ts": "05:00",
       "speaker": "Mark Rivera",
@@ -146,22 +114,24 @@
     }
   ],
   "plan": {
-    "reasoning": "The episode has claim candidates, so I need to run claims and fact-checking. Since the topic is about the future of remote work, and there are claim candidates, I will prioritize summarizing the discussion, followed by checking the claims, and then taking notes.",
+    "reasoning": "The episode profile indicates there are 6 claim candidates. Therefore, the plan will involve running 'claims' first, followed by 'factcheck'. Since the profile does not specify the need for a web search, it will be set to false, and a summary focus will be determined.",
     "steps": [
-      "summarize",
       "claims",
+      "notes",
       "factcheck",
-      "notes"
+      "summarize"
     ],
     "claim_budget": 6,
     "use_web_search": false,
-    "summary_focus": "The episode discusses the future trends and implications of remote work models."
+    "summary_focus": "The summary should emphasize the discussion surrounding the future trends and implications of remote work."
   },
   "degraded": [],
   "harness_version": "base",
   "model": "ollama_chat/gemma4:e2b",
   "stats": {
-    "seconds": 0.7,
+    "seconds": 0.4,
+    "claim_budget": 6.0,
+    "claims_over_budget": 0.0,
     "cache_hits": 9.0
   }
 }

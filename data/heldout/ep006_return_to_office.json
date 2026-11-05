@@ -1,0 +1,143 @@
+{
+  "episode_id": "ep006",
+  "title": "The Return-to-Office Debate",
+  "host": "Sarah Johnson",
+  "guests": [
+    "Mark Rivera",
+    "Dana Whitfield"
+  ],
+  "transcript": [
+    {
+      "timestamp": "00:00",
+      "speaker": "Sarah",
+      "section": "Introduction",
+      "text": "Welcome to Work Reimagined. I\u2019m Sarah Johnson. Today is a debate. Mark Rivera is back, and he predicted remote-first companies would dominate talent acquisition. Joining him is Dana Whitfield, a CFO who led her company back to the office three days a week."
+    },
+    {
+      "timestamp": "00:25",
+      "speaker": "Mark",
+      "section": "Introduction",
+      "text": "Thanks Sarah. Happy to be back, and ready to be held accountable."
+    },
+    {
+      "timestamp": "00:35",
+      "speaker": "Dana",
+      "section": "Introduction",
+      "text": "Glad to be here. I\u2019ll be the friendly opposition."
+    },
+    {
+      "timestamp": "00:45",
+      "speaker": "Sarah",
+      "section": "Deep Dive",
+      "text": "Dana, why did your company bring people back?"
+    },
+    {
+      "timestamp": "01:00",
+      "speaker": "Dana",
+      "section": "Deep Dive",
+      "text": "Three reasons. Junior employees were learning more slowly, cross-team collaboration had dropped, and our culture felt transactional. The numbers on early-career promotions were the clearest signal."
+    },
+    {
+      "timestamp": "01:35",
+      "speaker": "Mark",
+      "section": "Deep Dive",
+      "text": "I\u2019ll concede the junior point. Apprenticeship is the hardest thing to do remotely. You can document a process, but it\u2019s harder to document judgment."
+    },
+    {
+      "timestamp": "02:00",
+      "speaker": "Sarah",
+      "section": "Deep Dive",
+      "text": "That\u2019s a shift from the first episode, Mark. You were very confident about documentation."
+    },
+    {
+      "timestamp": "02:15",
+      "speaker": "Mark",
+      "section": "Deep Dive",
+      "text": "I still believe in it, and Hannah\u2019s episode on writing culture backed it up. But documentation explains the what. Watching a senior colleague handle a hard customer call teaches the how. That needs some shared time."
+    },
+    {
+      "timestamp": "02:45",
+      "speaker": "Sarah",
+      "section": "Examples",
+      "text": "Dana, what happened to hiring after your mandate?"
+    },
+    {
+      "timestamp": "03:00",
+      "speaker": "Dana",
+      "section": "Examples",
+      "text": "Honestly, it got harder. Our applicant pool for senior engineering roles shrank by about a third, and we lost some strong people to fully remote competitors."
+    },
+    {
+      "timestamp": "03:25",
+      "speaker": "Mark",
+      "section": "Examples",
+      "text": "That\u2019s exactly the talent acquisition point. The remote-first companies get the people who won\u2019t relocate or commute."
+    },
+    {
+      "timestamp": "03:45",
+      "speaker": "Dana",
+      "section": "Examples",
+      "text": "Fair, but we gained on retention for early-career staff. Our first-year attrition dropped. So it was a trade, not a loss."
+    },
+    {
+      "timestamp": "04:15",
+      "speaker": "Sarah",
+      "section": "Challenges",
+      "text": "What makes office days actually worth it? A lot of people complain about commuting in just to sit on video calls."
+    },
+    {
+      "timestamp": "04:30",
+      "speaker": "Dana",
+      "section": "Challenges",
+      "text": "That was our biggest mistake initially. Teams came in on different days. Now teams pick anchor days together, and those days are for workshops, mentoring, and planning, not heads-down work."
+    },
+    {
+      "timestamp": "05:00",
+      "speaker": "Mark",
+      "section": "Challenges",
+      "text": "That\u2019s basically the optional hub idea I described in the first episode. The office becomes a place you go for a reason, not by default."
+    },
+    {
+      "timestamp": "05:25",
+      "speaker": "Sarah",
+      "section": "Listener Question",
+      "text": "Listener question from Priya in Austin: my company announced a five-day return. Should I push back or start job hunting?"
+    },
+    {
+      "timestamp": "05:40",
+      "speaker": "Dana",
+      "section": "Listener Question",
+      "text": "First, ask what problem the mandate is solving. If leadership can\u2019t answer, that tells you something. If they can, propose a hybrid that solves the same problem."
+    },
+    {
+      "timestamp": "06:05",
+      "speaker": "Mark",
+      "section": "Listener Question",
+      "text": "And know your market. If your skills are in demand, you have more leverage than you think."
+    },
+    {
+      "timestamp": "06:25",
+      "speaker": "Sarah",
+      "section": "Predictions",
+      "text": "Mark, do you want to revise your prediction?"
+    },
+    {
+      "timestamp": "06:40",
+      "speaker": "Mark",
+      "section": "Predictions",
+      "text": "Partly. I now think the winner isn\u2019t fully remote or fully in-office. It\u2019s intentional hybrid: async by default, with deliberate in-person time, especially for early-career people."
+    },
+    {
+      "timestamp": "07:05",
+      "speaker": "Dana",
+      "section": "Predictions",
+      "text": "I can agree with that. Five-day mandates will fade. Structured hybrid will stick."
+    },
+    {
+      "timestamp": "07:25",
+      "speaker": "Sarah",
+      "section": "Closing",
+      "text": "A debate that ended in agreement. Thanks Mark and Dana. Next time, our season finale: how AI agents are changing the remote workplace."
+    }
+  ]
+}

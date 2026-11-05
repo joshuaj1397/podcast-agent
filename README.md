@@ -5,10 +5,11 @@ An agentic system that turns raw podcast transcripts into show notes for an ad a
 1. **Summary** of each episode (200–300 words): core themes, key discussions, outcomes and opinions.
 2. **Key notes**: 🔹 top 5 takeaways, 💬 notable quotes with timestamps, 🧭 topic tags.
 3. **Fact-check table**: every checkable claim is marked ✅ verified / ⚠ possibly outdated or inaccurate / ❓ unverifiable, with a confidence score and the cited evidence.
+4. **Series summary** (≤ 4,000 characters, enforced in code) of a podcast series, updated incrementally as episodes are added, with every change and its reason logged. See [Series summary](#series-summary).
 
 It runs fully locally: **Google ADK** agents on **Gemma 4 E2B** (via Ollama), **BM25** retrieval over a local knowledge base plus a mocked web-search API, and a CLI. It also includes **Evo²**, an implementation of harness-and-weights co-evolution (arXiv 2610.13025), which improves the agent's prompts/settings and fine-tunes the model.
 
-- Sample outputs: [`out/`](out/) (`report.md`, `report.json`, `trace.jsonl` per episode)
+- Sample outputs: [`out/`](out/) (`report.md`, `report.json`, `trace.jsonl` per episode); series summary: [`out/series/work_reimagined/series.md`](out/series/work_reimagined/series.md)
 - Evaluation: [`eval/RESULTS.md`](eval/RESULTS.md)
 - Deployment strategy (AWS, diagram + narrative): [`docs/deployment.md`](docs/deployment.md), Terraform in [`infra/terraform/`](infra/terraform/)
 
@@ -50,7 +51,7 @@ Requires [uv](https://docs.astral.sh/uv/) and [Ollama](https://ollama.com) ≥ 0
 ollama pull gemma4:e2b
 uv sync
 uv run podcast-agent run data/heldout -v          # all held-out episodes, verbose
-uv run podcast-agent run data/heldout/ep004_mars_noisy.txt
+uv run podcast-agent run data/heldout/ep004_async_writing_culture.json
 uv run pytest                                     # offline tests (FakeLlm, no Ollama needed)
 ```
 
@@ -60,10 +61,179 @@ uv run pytest                                     # offline tests (FakeLlm, no O
 |---|---|
 | `podcast-agent run <files or dirs> [-H harness.yaml] [--only factcheck] [-e ep004] [--model ollama_chat/gemma4:e4b] [--no-cache] [-v]` | Process transcripts; write `out/<ep>/report.{json,md}` and `trace.jsonl` |
 | `podcast-agent eval [--split heldout\|search\|all] [-H harness.yaml]` | Run and score against `eval/gold/`; writes `eval/RESULTS.md` |
+| `podcast-agent series sync [-m series/x.yaml] [--until ep001] [--reuse-reports]` | Create or update the series summary from the manifest (episodes not yet in the series, in order) |
+| `podcast-agent series add <transcript or episode id>` | Add an episode to the series (appends to the manifest), run its pipeline, update the summary |
+| `podcast-agent series show` / `series rebuild` | Print summary, character count and history / replay the series from the stored digests |
+| `podcast-agent series check` | Score the series state against `eval/gold/series_<id>.yaml` (revisions, conflicts, length, names) |
 | `podcast-agent kb-search "mars sample return" [--method tfidf] [--kind web]` | Query the knowledge base the way the research agent does |
 | `podcast-agent evo run --iterations 12 --group 4 [--evolver-model ...] [--episodes s01,s03] [--first-round 2] [--out h.yaml]` | Evo² tree search over harness edits |
 
-Input formats: the JSON format of the samples, or text lines like `[00:02:14] Host: ...` with optional `# title: ...` header lines (see `data/heldout/ep004_mars_noisy.txt`).
+Input formats: the JSON format of the samples, or text lines like `[00:02:14] Host: ...` with optional `# title: ...` header lines (see `data/search/s03_sports_recovery.txt`).
+
+---
+
+## Series summary
+
+Episodes can belong to a **series**. The agent keeps a summary of the series as a whole and updates it each time an episode is added. **Work Reimagined** is the example series: ep001, ep004, ep005, ep006 and ep007 (ep002 and ep003 are standalone episodes and are not in it). The per-episode outputs are unchanged: each series episode still gets its own `out/<ep>/report.{json,md}`.
+
+- Output: [`out/series/work_reimagined/series.md`](out/series/work_reimagined/series.md) and `series.json`. Both contain the summary, its character count, the episodes in the series and the update history with the reasoning behind each change.
+- Console logs of each run: `out/series/work_reimagined/console-<ep>.log`. Structured traces: `traces/vNN-<ep>.jsonl`.
+
+### Generate the initial series summary
+
+The series is defined in a manifest, [`series/work_reimagined.yaml`](series/work_reimagined.yaml): its id, its title and its transcripts in air order. Membership is configuration, so nothing has to be inferred.
+
+```bash
+# Docker
+docker compose run --rm agent series sync                   # every manifest episode not yet in the series, in order
+docker compose run --rm agent series sync --until ep001     # or only the first one: the initial summary
+
+# local
+uv run podcast-agent series sync --until ep001
+uv run podcast-agent series show                            # summary, character count, update history
+uv run podcast-agent series check                           # score it against eval/gold/series_work_reimagined.yaml
+```
+
+### Add a new episode and trigger an update
+
+```bash
+uv run podcast-agent series add data/new/ep008_some_topic.json   # appends it to the manifest, then updates
+uv run podcast-agent series add ep004                            # an episode already in the manifest: process it
+docker compose run --rm agent series add data/heldout/ep006_return_to_office.json
+```
+
+`series add` runs the episode through the existing pipeline (summary, notes, fact-check), then updates the series summary. Each command is a separate process: the state is read from disk at the start and written at the end. In Docker, `out/` and `series/` are bind mounts, so the state survives the container. Use `--reuse-reports` to skip the episode pipeline when `out/<ep>/report.json` already exists. `series rebuild` replays the whole series from the stored episode digests (see below).
+
+### How an update works
+
+```
+series add ep006
+  1. episode pipeline   (unchanged)                      -> out/ep006/report.{json,md}
+  2. extract  (LLM)     transcript + earlier episodes    -> digest: 3-10 points (theme / position / prediction /
+                                                            figure / reference), each with its transcript turn, the
+                                                            earlier episodes it answers and the earlier view it changes
+     code checks: every substantive section covered, speakers named, one measured result per figure
+  3. merge    (LLM)     current ledger + digest + hints  -> one operation per point, each with a reason:
+                                                            add | revise <L-id> | reinforce <L-id>
+     code resolves revise targets from the quoted earlier view, then applies the operations:
+     a revised item is marked superseded (kept for history) and replaced
+  4. write    (LLM)     current ledger + episode list    -> themes / evolution / connections (every sentence
+                        + previous version + changes        cites its ledger ids) / arc line per episode
+  5. enforce  (code)    every revised item covered; len(summary) <= 4,000, least important sentences dropped first
+  6. save     (code)    series.json, series.md, versions/vNN.json, traces/vNN-ep006.jsonl   (atomic)
+```
+
+**The model decides, code resolves and enforces.** Every series step follows the rule the episode pipeline already uses (quotes chosen by turn id, evidence cited by id): the model makes the judgement, and code does what can be done exactly. Every rule below was added after reading a failing run (see [How the update logic was tuned](#results-on-work-reimagined-gemma-4-e2b)):
+
+*Extraction*
+- **Facts code can get exactly right are computed, not generated:** recurring guests (guest lists), recurring segments (the transcripts' `section` names) and earlier guests named in a new episode (for example "Mark Rivera told us…" in ep004). The arc lines name each episode's guests in code, so every guest is named.
+- **Recall checks:** every point records the transcript turn it comes from (`turn_id`, restricted to valid ids). Every section where something substantive is said must contribute a point. Every measured value stated in the episode ("40 percent", "three weeks") must reach a point, because measured results are what later episodes update. If either check fails, the extract agent is re-prompted with what is missing and where.
+- **Quality checks:** points must name their speaker (no bare quotes). A figure point with values in different units ("meetings cut 40 percent, onboarding three weeks") must be split, so that a later update to one number does not replace the others. If the model keeps it compound through its repairs, code splits it at clause boundaries. A "figure" without a number becomes a position, and a "theme" stating a measured value becomes a figure. Near-duplicate points are dropped.
+- **`changes_earlier`:** a point that changes an earlier view restates it ("Mark Rivera predicted in ep001 that remote-first companies would dominate talent acquisition"). A statement that only repeats the point itself is discarded.
+
+*Merge*
+- **Hints:** for each new point, code lists the ledger items it *possibly relates to*: the items matching its `changes_earlier`, the same speaker's items of the same kind from the episode it answers (someone revising their own view rarely reuses its words), then BM25 matches.
+- **The model decides *that* a point revises something; code resolves *which* item.** The small model reliably recognizes a revision but sometimes writes the wrong L-number. Code redirects a revise to the item its `changes_earlier` clearly matches. A newer figure goes to the figure whose value it restates: "dropped **from three weeks** to about two" updates the item that says three weeks, and that wording also turns an add into a revise. Code prefers an item that measures nothing else.
+- **Rules that hold in any domain:** a figure only replaces a figure. A prediction never replaces or is replaced by a theme. A prediction is revised only by the person who made it, since someone else's prediction is a second view. When several points revise one item, the best-supported revise wins: the others become adds, or reinforce it if they repeat it.
+- **A self-check against over-revising:** before choosing `revise`, the merge agent fills `old_still_current` ("is the old item still the latest word on its subject?"). A revise of an item it judged still current becomes an add, unless independent evidence backs it: the quoted earlier view, or a shared measured value.
+
+*Writing*
+- **Every summary sentence cites its ledger items** (`[L04, L12]`). Code removes the citations from the text but keeps them as **provenance** in `series.json` (`summary_sources`) and in `series.md`: summary sentence → ledger item → transcript turn and timestamp. Code also uses the citations for three things. It checks that every revised item appears in "How the ideas developed" (an uncited sentence that carries the item's words counts; otherwise re-prompt, then append the ledger's own sentence). It drops the least important sentences first when the summary is too long. And it flags sentences that name an episode their sources do not come from (`series check`).
+
+For the first episode, the merge step is skipped: every point is added.
+
+### Design decisions
+
+**State persistence.** All state lives in one JSON file, `out/series/<id>/series.json`. It is also the required output. It holds the summary, character count, episodes, update history, the **ledger** (structured items behind the summary) and one **digest** per episode. Every update works on a copy of the state and writes it only at the end (temp file, then rename), so a failed or interrupted update leaves the previous version intact. Every version is also kept in `versions/vNN.json`, for diffs and rollback. A JSON file over a database: there is one writer, it is human-readable and it can be committed. In the AWS deployment ([`docs/deployment.md`](docs/deployment.md)) the same file would live in S3 with conditional writes (`If-Match`), so two workers cannot update a series at the same time.
+
+**Update strategy: incremental operations on a ledger, with the prose rewritten from it.** The options were to edit the previous summary in place or to regenerate it from all episodes every time:
+
+| | Edit the summary in place | Regenerate from all episodes | **Ledger operations + rewrite (chosen)** |
+|---|---|---|---|
+| Cost and latency per update | constant | grow with the series (O(n) per update) | **constant**: the merge sees the ledger (≤ 40 items) and one digest |
+| Superseded information | hard to find inside prose; conflicting sentences survive | handled implicitly, not visible | **explicit**: `revise` marks the old item superseded, and the writer never sees it as current |
+| "What changed and why" | needs a diff afterwards | needs a diff afterwards | **comes from the operations and their reasons** |
+| Drift over many updates | high: every rewrite paraphrases the last one | none | low: facts live in the ledger, only the wording is rewritten |
+| Consistency between versions | high | low: everything is reworded each time | medium; measured as the similarity to the previous version in every update record |
+
+The prose is still rewritten on every update, because a 4,000-character summary is cheap to write and rewriting keeps it coherent. The facts behind it change only through logged operations. `series rebuild` replays the series from the stored digests. It is the reset if the ledger ever drifts, and the way to handle a reordered or removed episode (incremental updates assume episodes arrive in order). With temperature 0 and the response cache, a rebuild with unchanged prompts reproduces the same result.
+
+**The character limit is enforced in code** (`series.enforce_length`), not only requested:
+
+1. The writer is asked for about 3,400 characters (`series.target_chars`), with a budget per section.
+2. The writer's output is checked before it is accepted: if the rendered summary is over 4,000 characters, the writer is re-prompted with the exact excess per section (the critic loop used everywhere in this agent).
+3. If it is still too long, code trims it deterministically and keeps every section and every episode's arc line. In the section furthest over its share, it drops the least important sentence, judged by the ledger items it cites: uncited sentences first, sentences about revised items last. Then it shortens the longest arc lines, and finally cuts at a word boundary. (The first version dropped the *last* sentence of a section. Because the writer tells the evolution chronologically, that cut the newest episodes and the key revisions in 4 of 6 runs.)
+4. An assertion makes it impossible to save a summary over the limit. The character count (`len()` of the exact saved text, spaces and headings included) is stored in `series.json`, printed after every update, shown in the `series.md` header and listed for every version in the update history.
+
+As the series grows, the per-episode arc budget shrinks (`target × 27% / n`), and the ledger is capped at 40 current items: the least important are archived (fewest supporting episodes, then kind, then oldest).
+
+All series settings and prompts are in the `series:` section of [`harness/base.yaml`](harness/base.yaml). For example, `max_chars: 2000` changes the limit.
+
+### Results on Work Reimagined (Gemma 4 E2B)
+
+**Headline: in 16 independent uncached builds of the series, all 9 checks passed in 13.** Mark's revision was found in 15/16, the onboarding revision in 14/16, and no build left two conflicting statements side by side (16/16).
+
+The committed output was built in Docker, one container per episode (`docker compose run --rm agent series add ep001`, then ep004, ep005, ep006, ep007). Each update read the previous state from the `./out` bind mount:
+
+| Version | Episode | Ledger operations | Characters | Trimmed by code | What changed (the update log's own words, shortened) |
+|---|---|---|---|---|---|
+| v1 | ep001 | 8 add | 2,274 | no | Initial summary: 8 ledger items |
+| v2 | ep004 | 8 add | 3,504 | no | Writing-culture practices, efficiency metrics, predictions about async work |
+| v3 | ep005 | 6 add, 1 revise, 2 reinforce | 3,846 | 4,340 → 3,846 | Tom Becker's caveat that outcomes alone can mask burnout revises Mark Rivera's outcomes-over-hours advice (L05 → L17) |
+| v4 | ep006 | 5 add, 1 revise, 1 reinforce | 3,921 | 4,837 → 3,921 | **Mark Rivera's ep001 prediction that remote-first companies will dominate becomes intentional hybrid (L07 → L28)** |
+| v5 | ep007 | 9 add, 1 revise | 3,908 | 5,566 → 3,908 | **Onboarding drops from three weeks (ep004) to about two (L12 → L31)**; AI-agent capabilities and predictions |
+
+`podcast-agent series check` on this state: **9/9 checks passed**. All 14 summary sentences cite ledger items, and none names an episode its sources do not come from. The ep005 revision is not in the gold set. It is defensible, since Tom Becker qualifies Mark Rivera's advice, but it could just as well have been a new item next to Mark's. Each episode's console output is in `out/series/work_reimagined/console-<episode>.log`. The reasoning of every step is in `traces/`.
+
+**How it is evaluated.** `podcast-agent series check` scores the state against [`eval/gold/series_work_reimagined.yaml`](eval/gold/series_work_reimagined.yaml). The 9 checks are:
+
+- every episode is included, in order
+- the summary is within 4,000 characters
+- the guests and the hybrid revision are named
+- the recurring guests are found
+- the two places where the transcripts revise earlier information are revised in the ledger: in ep006, Mark Rivera turns his ep001 prediction that remote-first companies will dominate talent acquisition into intentional hybrid; in ep007, onboarding drops from three weeks (ep004) to about two
+- key facts that nothing revises are still current, which catches over-revising and facts that were never extracted
+- no superseded statement is still current next to its replacement
+
+It also reports provenance: how many summary sentences cite ledger items, and whether any names an episode its sources do not come from.
+
+Ollama is not bit-for-bit deterministic, even at temperature 0, so one passing run proves little. [`scripts/series_robustness.py`](scripts/series_robustness.py) builds the whole series N times with the response cache off. Only the series steps run, reusing the episode reports. It reports how often each check passes:
+
+```bash
+uv run python scripts/series_robustness.py --runs 16 [--model ollama_chat/gemma4:e4b]
+```
+
+**How the update logic was tuned.** Every rule in [How an update works](#how-an-update-works) came from reading the failing runs of a batch. All batches below are rescored against the final 9 checks:
+
+| Iteration | What changed | Runs | Mark's revision | Onboarding revision | Key facts kept | All 9 checks |
+|---|---|---|---|---|---|---|
+| 5 | merge hints: the same speaker's earlier items | 3 | 1/3 | 3/3 | 1/3 | 1/3 |
+| 6 | extraction asked to name the view it revises; guests named in arc lines by code | 3 | 3/3 | 2/3 | 2/3 | 0/3 |
+| 7 | writer cites ledger ids; importance-aware trimming; revision-coverage check | 5 | 3/5 | 3/5 | 5/5 | 2/5 |
+| 8 | `changes_earlier` field in extraction | 5 | 3/5 | 3/5 | 4/5 | 1/5 |
+| 9 | code resolves revise targets from `changes_earlier` | 5 | 3/5 | 4/5 | 4/5 | 2/5 |
+| 10 | self-quotes discarded; points must name their speaker; stricter evidence | 5 | 5/5 | 5/5 | 4/5 | 4/5 |
+| 12 | kind rules; citation clean-up | 5 | 4/5 | 3/5 | 2/5 | 1/5 |
+| 13 | competing revises resolved; measured values make a figure | 8 | 7/8 | 6/8 | 7/8 | 3/8 |
+| 13, Gemma 4 E4B | same code, larger model for the series steps | 5 | 4/5 | 4/5 | 3/5 | 2/5 |
+| 14 | history follows merged revisions; wrong-kind targets redirected; duplicates | 8 | 7/8 | 7/8 | 7/8 | 6/8 |
+| 15 | figures matched by value; predictions revised only by their owner | 8 | 5/8 | 8/8 | 4/8 | 4/8 |
+| 16 | prediction ~ position allowed; turn ids and section-coverage check | 8 | 7/8 | 7/8 | 5/8 | 5/8 |
+| 17 | compound-figure split check | 8 | 8/8 | 6/8 | 6/8 | 4/8 |
+| 18 | "from X to Y" turns an add into a revise; shared values back figure revises | 16 | 16/16 | 14/16 | 15/16 | 13/16 |
+| 19 | measured-value recall check | 8 | 8/8 | 8/8 | 7/8 | 7/8 |
+| **final** | compound figures split in code as a fallback | **16** | **15/16** | **14/16** | **15/16** | **13/16** |
+
+Iterations 1–4 were single builds, before the robustness script existed. The first build over-revised: 11 `revise` ops, and Mark's core ep001 positions were superseded by points that were only related to them. The length trimmer also cut the key revisions, and the writer left out guests. Iteration 11 was stopped and is not reported, because the code changed during the batch. Each row is 5–16 independent uncached builds. With batches this small, differences of one or two runs are noise: compare pooled rows, not neighbours.
+
+In the final configuration, no summary sentence named an episode its sources do not come from (0 in 16 runs). One update averages 5.1 LLM calls and 29 s. Code trimmed the writer's draft in 32 of 80 updates, and the 40-item ledger cap archived 2 low-priority items in 16 runs.
+
+**Model choice.** With the iteration-13 code, Gemma 4 E4B for the series steps passed all checks in 2/5 builds at 60 s per update, against E2B's 3/8 at 24 s. The larger model bought nothing measurable, so the series uses the same E2B model as the episode pipeline. What raised the pass rate was moving decisions that can be made exactly into code.
+
+**Known limits.**
+- The prompts and rules were tuned on these five episodes. There is no held-out series, so the gold checks measure fit to this series, not generalization. The rules are domain-neutral (kinds, quoted earlier views, measured values, speakers, citations), and the prompt examples come from other topics (EV sales, waiting lists). But a second series would be the real test.
+- The remaining failures are Gemma 4 E2B being inconsistent. Sometimes extraction phrases a revision as a fresh statement ("Mark Rivera predicts intentional hybrid", with no reference to the earlier view), and without any signal that it changes something, code cannot tell it from a second opinion. Sometimes a fact is not extracted at all.
+- Rewriting the prose on every update keeps it coherent, but consecutive versions share only about 40% of their text (similarity 0.10–0.79, mean 0.39). The facts are stable in the ledger and the wording is not.
 
 ---
 
@@ -209,13 +379,15 @@ What worked, and what didn't:
 ```
 src/podcast_agent/   cli.py pipeline.py agent_factory.py tools.py factcheck.py critic.py
                      ingest.py retrieval.py llm.py trace.py render.py models.py harness.py evaluate.py
+                     series.py (series summary: manifest, state, ledger, extract/merge/write agents, length limit)
+series/              series manifests (work_reimagined.yaml)
 harness/             base.yaml (the genome)  evolved.yaml, evolved_r2.yaml, evolved_r3_12b.yaml (Evo² rounds 1-3)
                      base_12b.yaml (base with few-shot examples Gemma 4 12B can follow)
-data/heldout/        ep001–ep005 (eval only)      data/search/  s01–s10 (Evo² fitness)
+data/heldout/        ep001–ep007 (ep001, ep004–ep007 = Work Reimagined series; gold only for ep001–ep003)  data/search/  s01–s10 (Evo² fitness)
 kb/                  facts.jsonl  search_corpus.jsonl
 eval/                gold/*.yaml  RESULTS.md
 evo/                 genome.py search.py lora.py train_evolver.py train_executor.py export.py  runs/
-out/                 sample outputs for every episode
+out/                 sample outputs for every episode; out/series/<id>/: series summary state and logs
 infra/terraform/     AWS modules + envs/dev       docs/deployment.md
 tests/               offline tests (FakeLlm)
 ```
@@ -232,3 +404,6 @@ tests/               offline tests (FakeLlm)
 | Add an output field | add it to `models.Report`, fill it in `pipeline.assemble`, print it in `render.py` |
 | Add a pipeline step | add `step_<name>` in `pipeline.py`, add the name to `STEP_ORDER` and `harness.StepName` |
 | Run without cache | `--no-cache` |
+| Change the series character limit | `series: max_chars` (and `target_chars`) in `harness/base.yaml`, then `podcast-agent series rebuild` |
+| Add a series | write `series/<id>.yaml` (series_id, title, episodes) and run `podcast-agent series sync -m series/<id>.yaml` |
+| Change what the series summary covers | `series.prompts.writer` in the harness; the sections are `PROSE` in `series.py` |

@@ -1,60 +1,57 @@
-# Red Planet Rumors
+# Async in Practice: Building a Writing Culture
 
-*Episode ep004 · Host: Jamie Ortiz · Guests: Dr. Lena Park · Recorded 2025-02-10*
+*Episode ep004 · Host: Sarah Johnson · Guests: Hannah Okafor*
 
 ## Summary
 
-Host Jamie Ortiz welcomes planetary scientist Dr. Lena Park to discuss the current status and rumors surrounding the Red Planet. Dr. Park began by highlighting current Mars exploration efforts, specifically mentioning the Perseverance rover which landed in Jezebel Crater in February 2021 and has been collecting rock cores. She also noted the ongoing mission of the Ingenuity helicopter, which has completed about fifty flights and is still being extended by NASA. Dr. Park described the general mood in the community as busy, noting that the Mars team has been working weekends since last summer due to the workload.
+Host Sarah Johnson and guest Hannah Okafor discussed practical strategies for cultivating an async-first writing culture within distributed teams. Hannah Okafor emphasized that the focus should be on establishing a daily writing habit rather than relying solely on a handbook, which she noted can quickly become outdated if decisions are not documented regularly. She proposed using short decision memos—detailing the problem, options, recommendation, and decision-maker—to ensure critical information is captured before meetings occur. Hannah shared that while initial adoption might slow things down, this approach led to a significant reduction in recurring meetings and drastically improved onboarding time, allowing new hires to quickly understand organizational context through past memos. 
 
-The main focus shifted to upcoming missions and the excitement surrounding bringing samples back to Earth. Dr. Park confirmed that NASA recently announced a new Mars mission scheduled to launch in early 2026 with the goal of bringing back samples, which she considered the realization of a major dream. When asked about the Starship vehicle's potential role, Dr. Park suggested it could change everything for Mars, but she advised waiting to see further developments. Dr. Park also touched upon the broader context of the discussion by briefly commenting on cryptocurrency, noting that Bitcoin recently surpassed a hundred thousand dollars, which surprised even those in her field, though she ultimately stated she could not offer financial advice.
-
-Finally, Dr. Park concluded by sharing what she is watching for in space, emphasizing the importance of weather reports from Mars, particularly concerning the dust storms. She provided social media information for listeners to follow her work.
+When addressing challenges, Hannah pointed out that documentation rot and writing anxiety are common pitfalls. To combat rot, she suggested assigning named owners and review dates to every page. Regarding communication norms, she advised publishing explicit response-time guidelines for tools like Slack, clarifying that it is a same-day medium, not a same-minute one, and that leaders must model this behavior. Hannah ultimately agreed that async will become standard for decisions and status updates, though synchronous time will remain valuable for conflict and creativity. The episode concluded with a piece of advice for teams to try replacing a recurring meeting with a written update for a month to measure the resulting gains and losses.
 
 ## 🔹 Top takeaways
 
-1. The Perseverance rover has been drilling rock cores in Jezebel Crater since landing in 2021.
-2. The Ingenuity helicopter continues to fly, with NASA extending the mission.
-3. A new Mars mission is scheduled to launch in early 2026 with the goal of bringing back samples.
-4. Starship is considered a potential game-changer for future Mars missions.
-5. Bitcoin experienced a significant price jump, surprising even those in the planetary science department.
+1. A writing habit is the starting point for building a culture around async work, not a formal handbook.
+2. Use short decision memos detailing the problem, options, recommendation, and decision-maker before scheduling meetings.
+3. Implementing this practice reduced recurring meetings by 40% and sped up new hire ramping time significantly.
+4. To combat documentation rot, assign a named owner and a review date to every documentation page.
+5. Async communication requires publishing explicit response-time norms so teams know when to use Slack versus a phone call.
 
 ## 💬 Notable quotes
 
-> “Honestly it's the coolest thing NASA has done in a decade, I will die on that hill.”  
-> — **Dr. Lena Park**, `00:01:18`
+> “Honestly, no. A handbook is the output. The starting point is a writing habit. If people don’t write decisions down day to day, a handbook just becomes a graveyard of stale pages.”  
+> — **Hannah Okafor**, `00:50`
 
-> “It's the dream. I mean, those, those sealed tubes are kind of the whole point of the rover, you know.”  
-> — **Dr. Lena Park**, `00:02:35`
+> “We use short decision memos: the problem, the options, the recommendation, and who decides. Anything that affects more than one team gets a memo before it gets a meeting.”  
+> — **Hannah Okafor**, `01:30`
 
-> “A little from a distance. Bitcoin went over a hundred thousand dollars for the first time back in early December, which, nobody in my department saw coming.”  
-> — **Dr. Lena Park**, `00:03:15`
+> “It’s the biggest win. A new hire can read the last six months of memos and understand why things are the way they are, not just what they are.”  
+> — **Hannah Okafor**, `03:00`
 
-> “Honestly just the, the weather reports from Mars. The dust storms out there are no joke.”  
-> — **Dr. Lena Park**, `00:03:50`
+> “Two things. Documentation rot, where nobody owns updating pages, and writing anxiety. Not everyone is comfortable writing, especially non-native English speakers. We had to make it clear that clarity beats polish.”  
+> — **Hannah Okafor**, `03:40`
+
+> “Mostly, but I’d add a nuance. Async will become standard for decisions and status updates. Sync time won’t disappear; it’ll get reserved for conflict, creativity, and relationships.”  
+> — **Hannah Okafor**, `05:55`
 
 ## 🧭 Topics
 
-`mars exploration` `perseverance rover` `nasa missions` `bitcoin` `planetary science`
+`async culture` `decision making` `writing habits` `documentation` `remote work`
 
 ## Fact-check
 
 | | Claim | Verification | Confidence | Said at |
 |---|---|---|---|---|
-| ✅ | The Perseverance rover landed in Jezebel Crater in February 2021 and has been drilling rock cores since. | True (confirmed by NASA (mock DB) [kb-012]) | 0.97 | Dr. Lena Park `00:00:31` |
-| ⚠ | Ingenuity has completed about fifty flights and NASA is extending the mission. | Possibly inaccurate (contradicted by NASA (mock DB) [kb-013]) | 0.97 | Dr. Lena Park `00:01:01` |
-| ⚠ | A new Mars mission is launching in early 2026, with plans to bring back samples. | Possibly inaccurate (contradicted by NASA (mock DB) [kb-010], NASA (mock DB) [kb-011]) | 0.85 | Dr. Lena Park `00:02:18` |
-| ⚠ | Bitcoin went over one hundred thousand dollars for the first time in early December. | Possibly inaccurate (contradicted by Market data (mock) [kb-022]) | 0.85 | Dr. Lena Park `00:03:15` |
-| ❓ | A Mars team has been working weekends since last summer. | Unverifiable (a personal anecdote with no public record) | 0.40 | Dr. Lena Park `00:01:31` |
-| ❓ | Jamie Ortiz told Dr. Lena Park that Bitcoin will reach $200,000 by 2025. | Unverifiable (a prediction about the future) | 0.40 | Jamie Ortiz `00:03:29` |
+| ❓ | Hannah Okafor runs operations at Fieldnote, a 60-person fully distributed company. | Unverifiable (no evidence found that addresses the claim) | 0.50 | Hannah Okafor `00:20` |
+| ❓ | In the first quarter, decisions took about a day longer at Fieldnote. | Unverifiable (no evidence found that addresses the claim) | 0.50 | Hannah Okafor `02:15` |
+| ❓ | Fieldnote cut recurring meetings by roughly 40 percent by the second quarter. | Unverifiable (no evidence found that addresses the claim) | 0.40 | Hannah Okafor `02:15` |
+| ✅ | New hires at Fieldnote were ramping in three weeks instead of six. | True (confirmed by IEA / industry data (mock summary) [kb-056]) | 0.97 | Hannah Okafor `02:15` |
 
 <details><summary>Fact-check reasoning</summary>
 
-- ✅ **The Perseverance rover landed in Jezebel Crater in February 2021 and has been drilling rock cores since.** (factual, judged · samples: supported, supported, supported · searches: search_kb: perseverance rover jezebel crater february 2021): The claim states that the Perseverance rover landed in Jezebel Crater in February 2021 and has been drilling rock cores since. The evidence [kb-012] states that the Perseverance rover landed in Jezero Crater on Mars on February 18, 2021, and that it is drilling rock cores. This supports the claim.
-- ⚠ **Ingenuity has completed about fifty flights and NASA is extending the mission.** (factual, judged · samples: contradicted, contradicted, contradicted · searches: search_kb: ingenuity flights nasa mission): The claim states that Ingenuity has completed about fifty flights and NASA is extending the mission. Evidence [kb-013] states that Ingenuity's mission ended in January 2024 after damaging a rotor blade and had completed 72 flights, and it no longer flies. This contradicts the claim that it is still flying and that NASA is extending the mission.
-- ⚠ **A new Mars mission is launching in early 2026, with plans to bring back samples.** (factual, judged · samples: insufficient, contradicted, contradicted · searches: search_kb: mars mission early 2026 samples): The claim states a new Mars mission is launching in early 2026 with plans to bring back samples. Passage [kb-010] confirms that the agency's next Mars mission, announced in January 2025, is scheduled to launch in early 2026, but it specifies this mission is an orbiter mission focused on the Martian upper atmosphere and space weather, not one explicitly focused on bringing back samples. Passage [kb-011] discusses the Mars Sample Return campaign being delayed, with samples expected no earlier than the mid-2030s, and mentions budget proposals to cancel the program in FY2026, which contradicts the 'bring back samples' aspect of the claim for the mission scheduled in early 2026.
-- ⚠ **Bitcoin went over one hundred thousand dollars for the first time in early December.** (factual, judged · samples: supported, contradicted, contradicted · searches: search_kb: bitcoin over one hundred thousand dollars december): The claim states that Bitcoin went over one hundred thousand dollars for the first time in early December. Evidence [kb-022] states that Bitcoin traded above $100,000 for the first time on December 5, 2024. This date (December 5, 2024) is in December, but it is not 'early December' relative to the recording date of February 2025, and the event happened in 2024, not necessarily referencing a specific time frame in the context of the claim being made in 2025.
-- ❓ **A Mars team has been working weekends since last summer.** (anecdote, rule): a personal anecdote with no public record
-- ❓ **Jamie Ortiz told Dr. Lena Park that Bitcoin will reach $200,000 by 2025.** (prediction, rule): a prediction about the future
+- ❓ **Hannah Okafor runs operations at Fieldnote, a 60-person fully distributed company.** (factual, judged · samples: insufficient, insufficient, insufficient · searches: search_kb: hannah okafor fieldnote; search_web: hannah okafor fieldnote 60-person distributed company; search_web: hannah okafor runs operations at fieldnote, a 60-person fully distributed company. (escalation)): The claim states that Hannah Okafor runs operations at Fieldnote, a 60-person fully distributed company, and she states this in the provided evidence. However, the provided evidence does not contain any information about Hannah Okafor or Fieldnote.
+- ❓ **In the first quarter, decisions took about a day longer at Fieldnote.** (statistic, judged · samples: insufficient, insufficient, insufficient · searches: search_kb: fieldnote decisions first quarter; search_web: in the first quarter, decisions took about a day longer at fieldnote. (escalation)): The claim states that decisions took about a day longer in the first quarter at Fieldnote. The provided evidence consists of knowledge base entries and web articles about Meta earnings, NASA schedules, US e-commerce share, Prime Day, GitLab's handbook, and an MGM breach. None of the provided evidence mentions Fieldnote or the specific claim about decision times at Fieldnote.
+- ❓ **Fieldnote cut recurring meetings by roughly 40 percent by the second quarter.** (statistic, judged · samples: supported, insufficient, insufficient · searches: search_kb: fieldnote cut recurring meetings by 40 percent; search_web: fieldnote cut recurring meetings by roughly 40 percent by the second quarter. (escalation)): The claim states that Fieldnote cut recurring meetings by roughly 40 percent by the second quarter. The provided evidence does not contain any information about Fieldnote or the specific metrics mentioned in the claim.
+- ✅ **New hires at Fieldnote were ramping in three weeks instead of six.** (statistic, judged · samples: supported, supported, supported · searches: search_kb: fieldnote new hires ramping; search_web: new hires at fieldnote were ramping in three weeks instead of six. (escalation)): The claim states that new hires at Fieldnote were ramping in three weeks instead of six. Hannah Okafor stated, "By the second quarter we had cut recurring meetings by roughly 40 percent, and new hires were ramping in three weeks instead of six." This directly supports the claim.
 
 </details>
 

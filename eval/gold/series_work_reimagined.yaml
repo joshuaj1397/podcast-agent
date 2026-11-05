@@ -1,0 +1,25 @@
+# Checks on the Work Reimagined series state: `podcast-agent series check`.
+# Patterns are case-insensitive regular expressions.
+episodes: [ep001, ep004, ep005, ep006, ep007]
+max_chars: 4000
+summary_mentions: [Mark Rivera, Hannah Okafor, Tom Becker, Leila Haddad, Dana Whitfield, Lucas Ferreira, hybrid]
+recurring_guests: [Mark Rivera, Hannah Okafor]
+# Superseded information: in `episode`, a ledger item matching `old` must be revised into a current item matching `new`.
+revisions:
+  - name: Mark's remote-first prediction becomes intentional hybrid
+    episode: ep006
+    old: remote.first
+    new: hybrid
+  - name: onboarding figure updated (three weeks -> about two)
+    episode: ep007
+    old: three weeks|3 weeks
+    new: two( weeks)?|2 weeks
+# Facts no later episode revises: a current ledger item must still match each (fails on over-revising, or if
+# extraction never captured the fact).
+must_stay_current:
+  coffee chats / retreats against isolation (ep001): coffee chats
+  activity monitoring hurt morale (ep005): activity.monitoring
+  applicant pool shrank by a third (ep006): applicant pool
+  meetings cut by 40 percent (ep004): 40 percent|forty percent
+# At most one current ledger item may match each pattern (no conflicting statements side by side).
+single_current: ['remote.first companies will dominate', '\b(two|three|six|2|3|6) weeks']

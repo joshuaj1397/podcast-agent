@@ -1,0 +1,143 @@
+{
+  "episode_id": "ep007",
+  "title": "Season Finale: AI Agents and the Remote Workplace",
+  "host": "Sarah Johnson",
+  "guests": [
+    "Lucas Ferreira",
+    "Hannah Okafor"
+  ],
+  "transcript": [
+    {
+      "timestamp": "00:00",
+      "speaker": "Sarah",
+      "section": "Introduction",
+      "text": "Welcome to the season finale of Work Reimagined. I\u2019m Sarah Johnson. Today we\u2019re asking how AI agents fit into everything we\u2019ve discussed this season. Joining me is Lucas Ferreira, who builds AI workflow tools, and Hannah Okafor is back from our writing culture episode."
+    },
+    {
+      "timestamp": "00:25",
+      "speaker": "Lucas",
+      "section": "Introduction",
+      "text": "Thanks Sarah. Great to be here."
+    },
+    {
+      "timestamp": "00:30",
+      "speaker": "Hannah",
+      "section": "Introduction",
+      "text": "Happy to be back. I\u2019ve been experimenting with agents since we last spoke."
+    },
+    {
+      "timestamp": "00:45",
+      "speaker": "Sarah",
+      "section": "Deep Dive",
+      "text": "Lucas, what\u2019s actually changing for remote teams?"
+    },
+    {
+      "timestamp": "01:00",
+      "speaker": "Lucas",
+      "section": "Deep Dive",
+      "text": "The biggest shift is that agents are turning async content into something you can query. If a team writes decisions down, an agent can answer questions like why did we choose this vendor, with a link to the memo."
+    },
+    {
+      "timestamp": "01:30",
+      "speaker": "Hannah",
+      "section": "Deep Dive",
+      "text": "That\u2019s been real for us. Our decision memos used to be read once. Now new hires ask an agent and get pointed to the right memo. Onboarding dropped again, from three weeks to about two."
+    },
+    {
+      "timestamp": "02:00",
+      "speaker": "Sarah",
+      "section": "Deep Dive",
+      "text": "So documentation becomes even more valuable."
+    },
+    {
+      "timestamp": "02:10",
+      "speaker": "Lucas",
+      "section": "Deep Dive",
+      "text": "Exactly. Agents amplify whatever knowledge you have. Good documentation gets more useful. Bad documentation gets confidently repeated."
+    },
+    {
+      "timestamp": "02:35",
+      "speaker": "Sarah",
+      "section": "Examples",
+      "text": "What are teams using agents for day to day?"
+    },
+    {
+      "timestamp": "02:45",
+      "speaker": "Lucas",
+      "section": "Examples",
+      "text": "Meeting summaries for people in other time zones, drafting weekly status updates from project tools, and triaging support tickets. The common thread is reducing the coordination tax of distributed work."
+    },
+    {
+      "timestamp": "03:15",
+      "speaker": "Hannah",
+      "section": "Examples",
+      "text": "We also use one to flag stale documentation. Remember the owner and review date system? The agent now nudges owners and suggests edits based on newer memos."
+    },
+    {
+      "timestamp": "03:45",
+      "speaker": "Sarah",
+      "section": "Challenges",
+      "text": "What are the risks?"
+    },
+    {
+      "timestamp": "03:55",
+      "speaker": "Lucas",
+      "section": "Challenges",
+      "text": "Accuracy and accountability. Summaries can drop nuance, and if nobody checks, wrong information spreads quickly. There are also governance questions: what data the agent can see, and who audits what it does."
+    },
+    {
+      "timestamp": "04:25",
+      "speaker": "Hannah",
+      "section": "Challenges",
+      "text": "And a human risk. If an agent writes everyone\u2019s status update, you lose the reflection that writing forces. Tom said last episode that problems show up as silence. Agents can make that silence harder to notice."
+    },
+    {
+      "timestamp": "04:55",
+      "speaker": "Sarah",
+      "section": "Challenges",
+      "text": "That connects to the management episode. Do agents make surveillance worse?"
+    },
+    {
+      "timestamp": "05:10",
+      "speaker": "Lucas",
+      "section": "Challenges",
+      "text": "They can, if companies point them at activity data. Leila\u2019s story about monitoring software applies here too. Use agents to help people, not to watch them."
+    },
+    {
+      "timestamp": "05:35",
+      "speaker": "Sarah",
+      "section": "Listener Question",
+      "text": "Our last listener question of the season, from Ben in Dublin: will AI agents make remote work easier or replace remote workers?"
+    },
+    {
+      "timestamp": "05:50",
+      "speaker": "Lucas",
+      "section": "Listener Question",
+      "text": "Mostly easier. They replace tasks, like summarizing and routing, more than roles. The people who benefit most are the ones who already work in a documented, async way."
+    },
+    {
+      "timestamp": "06:15",
+      "speaker": "Sarah",
+      "section": "Season Recap",
+      "text": "Before we close, let\u2019s recap the season. We started with Mark arguing that remote work is about async culture, documentation, and trust. Hannah showed what a writing culture looks like in practice. Tom and Leila added that outcomes over hours needs human check-ins and role-specific nuance. Mark and Dana converged on intentional hybrid. And today, agents amplify all of it, good and bad."
+    },
+    {
+      "timestamp": "06:55",
+      "speaker": "Hannah",
+      "section": "Season Recap",
+      "text": "The thread for me is intention. Every good outcome this season came from teams deciding how they work instead of drifting into it."
+    },
+    {
+      "timestamp": "07:15",
+      "speaker": "Lucas",
+      "section": "Predictions",
+      "text": "My prediction: within two years, the gap between well-documented teams and everyone else will widen, because agents will make the documented teams dramatically faster."
+    },
+    {
+      "timestamp": "07:40",
+      "speaker": "Sarah",
+      "section": "Closing",
+      "text": "Thanks Lucas and Hannah, and thanks to all our guests and listeners this season. Work Reimagined will be back next season with a focus on careers and skills in the age of AI."
+    }
+  ]
+}

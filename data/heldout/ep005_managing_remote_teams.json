@@ -1,0 +1,143 @@
+{
+  "episode_id": "ep005",
+  "title": "Managing Remote Teams: Is \u201cOutcomes Over Hours\u201d Enough?",
+  "host": "Sarah Johnson",
+  "guests": [
+    "Tom Becker",
+    "Leila Haddad"
+  ],
+  "transcript": [
+    {
+      "timestamp": "00:00",
+      "speaker": "Sarah",
+      "section": "Introduction",
+      "text": "Welcome to Work Reimagined. I\u2019m Sarah Johnson. In our first episode, Mark Rivera said remote teams should measure outcomes over hours. Today we\u2019re stress-testing that with two managers."
+    },
+    {
+      "timestamp": "00:20",
+      "speaker": "Tom",
+      "section": "Introduction",
+      "text": "Hi Sarah. I\u2019m an engineering director, and I manage about 45 people across nine time zones."
+    },
+    {
+      "timestamp": "00:30",
+      "speaker": "Leila",
+      "section": "Introduction",
+      "text": "And I lead a remote customer support team, which is a very different world. Hours actually matter for us."
+    },
+    {
+      "timestamp": "00:45",
+      "speaker": "Sarah",
+      "section": "Deep Dive",
+      "text": "Tom, let\u2019s start with you. Does outcomes over hours work in engineering?"
+    },
+    {
+      "timestamp": "01:00",
+      "speaker": "Tom",
+      "section": "Deep Dive",
+      "text": "Mostly. We set quarterly goals and track deliverables, like Mark described. But outcomes alone can hide problems. Someone can hit targets while quietly burning out, or while being invisible to the rest of the team."
+    },
+    {
+      "timestamp": "01:35",
+      "speaker": "Sarah",
+      "section": "Deep Dive",
+      "text": "So what do you add?"
+    },
+    {
+      "timestamp": "01:45",
+      "speaker": "Tom",
+      "section": "Deep Dive",
+      "text": "Weekly one-on-ones that are explicitly not status updates. Status lives in writing. The one-on-one is for blockers, growth, and how the person is actually doing."
+    },
+    {
+      "timestamp": "02:15",
+      "speaker": "Sarah",
+      "section": "Deep Dive",
+      "text": "Leila, you said hours matter for support."
+    },
+    {
+      "timestamp": "02:25",
+      "speaker": "Leila",
+      "section": "Deep Dive",
+      "text": "They do. If a customer is waiting, coverage is the outcome. So we measure response times and resolution quality, but we schedule shifts. Remote doesn\u2019t mean fully flexible for every role."
+    },
+    {
+      "timestamp": "02:55",
+      "speaker": "Sarah",
+      "section": "Examples",
+      "text": "How do you avoid that turning into micromanagement?"
+    },
+    {
+      "timestamp": "03:05",
+      "speaker": "Leila",
+      "section": "Examples",
+      "text": "We don\u2019t track keystrokes or screen time. We tried activity-monitoring software for a month in 2023 and morale collapsed. Two of our best agents quit. We removed it and trust went back up within a quarter."
+    },
+    {
+      "timestamp": "03:40",
+      "speaker": "Tom",
+      "section": "Examples",
+      "text": "That matches what I\u2019ve seen. Surveillance tools measure activity, not value. People learn to game them."
+    },
+    {
+      "timestamp": "04:00",
+      "speaker": "Sarah",
+      "section": "Challenges",
+      "text": "What about promotions? There\u2019s research on proximity bias, where people in the office get promoted faster."
+    },
+    {
+      "timestamp": "04:15",
+      "speaker": "Tom",
+      "section": "Challenges",
+      "text": "It\u2019s real, even in fully remote teams. The people who talk most in meetings get noticed. We fixed part of it by requiring written impact summaries for every promotion case, so evidence beats visibility."
+    },
+    {
+      "timestamp": "04:50",
+      "speaker": "Leila",
+      "section": "Challenges",
+      "text": "We also rotate who presents team wins. Otherwise it\u2019s always the same confident voices."
+    },
+    {
+      "timestamp": "05:15",
+      "speaker": "Sarah",
+      "section": "Listener Question",
+      "text": "Listener question from Amara in Lagos: I\u2019m a first-time remote manager. How do I know if my team is struggling?"
+    },
+    {
+      "timestamp": "05:30",
+      "speaker": "Tom",
+      "section": "Listener Question",
+      "text": "Watch for silence. Fewer questions, shorter written updates, cameras going off. In remote teams, problems show up as absence, not noise."
+    },
+    {
+      "timestamp": "05:55",
+      "speaker": "Leila",
+      "section": "Listener Question",
+      "text": "And ask directly. A simple monthly pulse question, how sustainable does your workload feel, catches things early."
+    },
+    {
+      "timestamp": "06:20",
+      "speaker": "Sarah",
+      "section": "Predictions",
+      "text": "Will outcomes over hours become the norm?"
+    },
+    {
+      "timestamp": "06:35",
+      "speaker": "Tom",
+      "section": "Predictions",
+      "text": "For knowledge work, yes, but paired with human check-ins. Outcomes over hours, plus people over dashboards."
+    },
+    {
+      "timestamp": "06:55",
+      "speaker": "Leila",
+      "section": "Predictions",
+      "text": "For frontline remote roles, I think we\u2019ll see hybrid models: scheduled coverage with flexibility around it."
+    },
+    {
+      "timestamp": "07:15",
+      "speaker": "Sarah",
+      "section": "Closing",
+      "text": "So it\u2019s outcomes over hours, with important caveats. Thanks Tom and Leila. Next episode, we tackle the big one: return-to-office mandates, and Mark Rivera is coming back to defend his predictions."
+    }
+  ]
+}

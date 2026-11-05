@@ -19,7 +19,8 @@ from pydantic import BaseModel
 from . import llm, trace
 from .config import Settings
 from .harness import HarnessSpec
-from .models import Plan, SummaryOut, claims_schema, notes_schema, verdict_schema
+from .models import (Plan, SummaryOut, claims_schema, notes_schema, series_extract_schema, series_merge_schema,
+                     series_writer_schema, verdict_schema)
 from .tools import ToolGuard
 
 APP = "podcast_agent"
@@ -39,6 +40,7 @@ class AgentFactory:
         tools: list | None = None,
         temperature: float | None = None,
         seed: int | None = None,
+        max_output_tokens: int | None = None,
         **callbacks: Any,
     ) -> LlmAgent:
         gen = self.spec.generation
@@ -53,7 +55,7 @@ class AgentFactory:
             generate_content_config=types.GenerateContentConfig(
                 temperature=gen.temperature if temperature is None else temperature,
                 seed=gen.seed if seed is None else seed,
-                max_output_tokens=gen.max_output_tokens,
+                max_output_tokens=max_output_tokens or gen.max_output_tokens,
             ),
             after_model_callback=trace.after_model,
             disallow_transfer_to_parent=True,
@@ -95,6 +97,23 @@ class AgentFactory:
         return self._agent(
             "judge", text, verdict_schema(evidence_ids), temperature=temperature, seed=self.spec.generation.seed + sample
         )
+
+    # ---- series summary agents (prompts in the harness `series` section)
+
+    def series_extract(self, earlier_ids: list[str], turn_ids: list[str]) -> LlmAgent:
+        s = self.spec.series
+        text = self.spec.instruction("series_extract", points_min=s.points_min, points_max=s.points_max)
+        return self._agent("series_extract", text, series_extract_schema(earlier_ids, turn_ids),
+                           max_output_tokens=s.max_output_tokens)
+
+    def series_merge(self, point_ids: list[str], ledger_ids: list[str]) -> LlmAgent:
+        return self._agent("series_merge", self.spec.instruction("series_merge"),
+                           series_merge_schema(point_ids, ledger_ids), max_output_tokens=self.spec.series.max_output_tokens)
+
+    def series_writer(self, episode_ids: list[str], budgets: dict[str, int]) -> LlmAgent:
+        s = self.spec.series
+        text = self.spec.instruction("series_writer", max_chars=s.max_chars, target_chars=s.target_chars, **budgets)
+        return self._agent("series_writer", text, series_writer_schema(episode_ids), max_output_tokens=s.max_output_tokens)
 
 
 async def run(agent: LlmAgent, message: str, max_llm_calls: int) -> tuple[Any, str]:

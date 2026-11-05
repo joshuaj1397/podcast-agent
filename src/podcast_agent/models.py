@@ -151,3 +151,44 @@ class Report(BaseModel):
     harness_version: str
     model: str
     stats: dict[str, float] = {}
+
+
+# ---------------------------------------------------------------- series (LLM output schemas; state lives in series.py)
+
+PointKind = Literal["theme", "position", "prediction", "figure", "reference"]
+LedgerOpName = Literal["add", "revise", "reinforce"]
+
+
+def series_extract_schema(earlier_ids: list[str], turn_ids: list[str]) -> type[BaseModel]:
+    refs = tuple(earlier_ids) or ("none",)
+    point = create_model(
+        "SeriesPoint",
+        turn_id=(Literal[tuple(turn_ids)], ...),  # type: ignore[valid-type]  # where the point is said
+        kind=(PointKind, ...),
+        text=(str, ...),
+        refers_to=(list[Literal[refs]], ...),  # type: ignore[valid-type]
+        changes_earlier=(str, ...),  # the earlier view or figure this point changes, as the transcript states it
+    )
+    return create_model("ExtractOut", reasoning=(str, ...), points=(list[point], ...),  # type: ignore[valid-type]
+                        arc_role=(str, ...))
+
+
+def series_merge_schema(point_ids: list[str], ledger_ids: list[str]) -> type[BaseModel]:
+    op = create_model(
+        "LedgerOp",
+        point=(Literal[tuple(point_ids)], ...),  # type: ignore[valid-type]
+        target=(Literal[(*ledger_ids, "new")], ...),  # type: ignore[valid-type]
+        # Self-check before the operation is chosen: code turns a revise of a still-current item into an add.
+        old_still_current=(bool, ...),
+        op=(LedgerOpName, ...),
+        text=(str, ...),
+        reason=(str, ...),
+    )
+    return create_model("MergeOut", reasoning=(str, ...), ops=(list[op], ...),  # type: ignore[valid-type]
+                        change_summary=(str, ...))
+
+
+def series_writer_schema(episode_ids: list[str]) -> type[BaseModel]:
+    arc = create_model("ArcEntry", episode_id=(Literal[tuple(episode_ids)], ...), role=(str, ...))  # type: ignore[valid-type]
+    return create_model("SeriesSummaryOut", reasoning=(str, ...), themes=(str, ...), evolution=(str, ...),
+                        connections=(str, ...), arc=(list[arc], ...))  # type: ignore[valid-type]
